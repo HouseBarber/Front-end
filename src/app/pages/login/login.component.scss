@@ -1,0 +1,98 @@
+.div-login-screen {
+  background-color: #344edf;
+}
+
+.login-div {
+  justify-content: flex-start !important;
+}
+
+.login-div div {
+  height: 30% !important;
+}
+
+.login-div div img {
+  max-width: 12.5rem;
+}
+
+.default-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.spinner {
+  width: 1.5rem !important;
+}
+
+.matspinner-div {
+  height: 3rem;
+}
+
+.forgotPassword-Or-Register {
+  width: 20rem;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-top: 1.5rem;
+  font-weight: 300;
+}
+
+.font {
+  font-weight: 500;
+  cursor: pointer !important;
+}
+
+.forgotPassword-Or-Register span {
+  cursor: default;
+}
+
+mat-form-field, button {
+  width: 18.75rem !important;
+}
+
+div img {
+  max-width: 100%;
+}
+
+@media (max-width: 56.25rem) {
+  .div-login-screen {
+    display: none;
+  }
+
+  .login-div {
+    width: 100%;
+  }
+
+  .matspinner-div {
+    padding-top: 2rem;
+  }
+}
+
+@media (min-width: 62.5rem) {
+  .login-screen {
+    width: 660px;
+  }
+}
+
+.alternative-login {
+  max-width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.alternative-login img {
+  cursor: pointer;
+}
+
+.alternative-login img:hover {
+  opacity: 0.8;
+}
+
+form {
+  max-height: 35%;
+}
+
+mat-icon {
+  color: #344edf;
+}

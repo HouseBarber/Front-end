@@ -1,0 +1,43 @@
+@import "src/assets/scss/colors.scss";
+
+mat-sidenav-container {
+  height: calc(205vh - 112vh);
+}
+mat-sidenav {
+  width: 14rem;
+  background-color: rgba(45, 44, 44, 0.6);
+}
+
+mat-nav-list {
+  h6 {
+    margin: auto 10px;
+  }
+}
+
+.spacer-sidenav {
+  flex: 1 1 auto;
+}
+
+.spacer-sidenav-list {
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.display-default {
+  display: flex;
+  align-content: center;
+}
+
+.p-top {
+  padding-top: 10.7%;
+}
+
+.menu-sidenav {
+  width: 5.625rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon-texto{
+  margin-left: 10px;
+}

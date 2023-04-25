@@ -1,0 +1,83 @@
+<div *ngIf="routeLogin; then appLoginComponent else everyComponent"></div>
+<ng-template #appLoginComponent>
+  <router-outlet></router-outlet>
+</ng-template>
+<ng-template #everyComponent>
+  <mat-toolbar color="primary" *ngIf="!routeLogin">
+    <div class="d-flex">
+      <button mat-icon-button (click)="opened = !opened">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="p-top">House Barber</div>
+    </div>
+    <span class="spacer-sidenav"></span>
+    <button mat-icon-button [matMenuTriggerFor]="logout" #menuTrigger>
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+    <mat-menu #logout="matMenu">
+      <button mat-menu-item (click)="openDialog()">
+        Sign out
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav [(opened)]="opened" mode="over">
+      <mat-nav-list>
+
+        <mat-list-item>
+          <div class="d-flex">
+            <mat-icon class="text-white">home</mat-icon>
+            <a [routerLink]="['/home']" class="text-white icon-texto">
+              Home
+            </a>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item>
+          <div class="d-flex">
+            <mat-icon class="text-white">person</mat-icon>
+            <a [routerLink]="['/employees']" class="text-white icon-texto">
+              Employees
+            </a>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item>
+          <div class="d-flex">
+            <mat-icon class="text-white">description</mat-icon>
+            <a [routerLink]="['/reports']" class="text-white icon-texto">
+              Reports
+            </a>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item>
+          <div class="d-flex">
+            <mat-icon class="text-white">date_range</mat-icon>
+            <a [routerLink]="['/schedules']" class="text-white icon-texto">
+              Schedules
+            </a>
+          </div>
+        </mat-list-item>
+
+        <span class="spacer-sidenav-list"></span>
+        <mat-list-item>
+          <div class="d-flex">
+            <mat-icon class="text-white">settings</mat-icon>
+            <a [routerLink]="['/settings']" class="text-white icon-texto">
+              Settings
+            </a>
+          </div>
+        </mat-list-item>
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</ng-template>
