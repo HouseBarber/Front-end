@@ -32,7 +32,8 @@ export class RegisterComponent implements OnInit{
       telephone: ['', Validators.required],
       dateBirth: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required],
+      role: ['', Validators.required],
     }, {
       validator: this.passwordMatchValidator
     });
@@ -53,13 +54,14 @@ export class RegisterComponent implements OnInit{
     const telephone = this.registerForm.get('telephone')!.value;
     const dateBirth = this.registerForm.get('dateBirth')!.value;
     const password = this.registerForm.get('password')!.value;
+    const role = this.registerForm.get('role')?.value;
 
     console.log('Nome:', name);
     console.log('Email:', email);
     console.log('Telefone:', telephone);
     console.log('Data nascimento:', dateBirth);
     console.log('Senha:', password);
-    console.log('Função:', this.selectedRole)
+    console.log('Função:', role);
   }
 
   revealPassword(){
