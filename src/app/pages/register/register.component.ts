@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/authService';
 
+interface Role {
+  value: string;
+}
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,6 +15,12 @@ export class RegisterComponent implements OnInit{
   revealedPassword: boolean = false;
   revealedPassword2: boolean = false;
   registerForm!: FormGroup;
+  selectedRole!: string;
+
+  roles: Role[] = [
+    {value: "Cliente"},
+    {value: "Barbeiro"}
+  ]
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,6 +59,7 @@ export class RegisterComponent implements OnInit{
     console.log('Telefone:', telephone);
     console.log('Data nascimento:', dateBirth);
     console.log('Senha:', password);
+    console.log('Função:', this.selectedRole)
   }
 
   revealPassword(){

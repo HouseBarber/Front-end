@@ -48,10 +48,10 @@
       <div class="row">
         <mat-form-field class="funcao" appearance="outline">
           <mat-label>Cadastrar-se como</mat-label>
-          <mat-select required>
-            <mat-option value="admin">Administrador</mat-option>
-            <mat-option value="barber">Barbeiro</mat-option>
-            <mat-option value="client">Cliente</mat-option>
+          <mat-select matNativeControl [(ngModel)]="selectedRole" name="role">
+            <mat-option *ngFor="let role of roles" [value]="role.value">
+              {{role.value}}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </div>

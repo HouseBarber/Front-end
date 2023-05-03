@@ -23,48 +23,42 @@
   <mat-sidenav-container>
     <mat-sidenav [(opened)]="opened" mode="over">
       <mat-nav-list>
-
         <mat-list-item>
-          <div class="d-flex">
+          <div class="d-flex" [routerLink]="['/home']">
             <mat-icon class="text-white">home</mat-icon>
-            <a [routerLink]="['/home']" class="text-white icon-texto">
+            <a class="text-white icon-texto">
               Home
             </a>
           </div>
         </mat-list-item>
-
         <mat-list-item>
-          <div class="d-flex">
+          <div class="d-flex" [routerLink]="['/employees']">
             <mat-icon class="text-white">person</mat-icon>
-            <a [routerLink]="['/employees']" class="text-white icon-texto">
+            <a class="text-white icon-texto">
               Employees
             </a>
           </div>
         </mat-list-item>
-
         <mat-list-item>
-          <div class="d-flex">
+          <div class="d-flex" [routerLink]="['/reports']">
             <mat-icon class="text-white">description</mat-icon>
-            <a [routerLink]="['/reports']" class="text-white icon-texto">
+            <a class="text-white icon-texto">
               Reports
             </a>
           </div>
         </mat-list-item>
-
         <mat-list-item>
-          <div class="d-flex">
+          <div class="d-flex" [routerLink]="['/schedules']">
             <mat-icon class="text-white">date_range</mat-icon>
-            <a [routerLink]="['/schedules']" class="text-white icon-texto">
+            <a class="text-white icon-texto">
               Schedules
             </a>
           </div>
         </mat-list-item>
-
-        <span class="spacer-sidenav-list"></span>
         <mat-list-item>
-          <div class="d-flex">
+          <div class="d-flex" [routerLink]="['/settings']">
             <mat-icon class="text-white">settings</mat-icon>
-            <a [routerLink]="['/settings']" class="text-white icon-texto">
+            <a class="text-white icon-texto">
               Settings
             </a>
           </div>
