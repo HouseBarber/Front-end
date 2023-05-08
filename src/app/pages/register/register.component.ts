@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { RegisterService } from '../../services/registerService';
+import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/services/authService';
 
 interface Role {
   value: string;
@@ -12,7 +12,7 @@ interface Role {
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent {
   revealedPassword: boolean = false;
   revealedPassword2: boolean = false;
   registerForm!: FormGroup;
@@ -25,8 +25,8 @@ export class RegisterComponent implements OnInit{
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private registerService: RegisterService,
   ) {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -41,9 +41,6 @@ export class RegisterComponent implements OnInit{
     });
   }
 
-  ngOnInit() {
-  }
-
   passwordMatchValidator(g: FormGroup) {
     const password = g.get('password');
     const confirmPassword = g.get('confirmPassword');
@@ -51,25 +48,31 @@ export class RegisterComponent implements OnInit{
   }
 
   onSubmit(){
-    const name = this.registerForm.get('name')?.value;
-    const email = this.registerForm.get('email')?.value;
-    const telephone = this.registerForm.get('telephone')?.value;
-    const dateBirth = this.registerForm.get('dateBirth')?.value;
-    const password = this.registerForm.get('password')?.value;
-    const confirmPassword = this.registerForm.get('confirmPassword')?.value;
-    const role = this.registerForm.get('role')?.value;
-    const canRegister = this.validateRegister(name, email, telephone, dateBirth, role, password, confirmPassword);
+    const dadosCadastro = {
+      name: this.registerForm.get('name')?.value,
+      email: this.registerForm.get('email')?.value,
+      telephone: this.registerForm.get('telephone')?.value,
+      dateBirth: this.registerForm.get('dateBirth')?.value,
+      password: this.registerForm.get('password')?.value,
+      confirmPassword: this.registerForm.get('confirmPassword')?.value,
+      role: this.registerForm.get('role')?.value,
+    };
 
-    console.log('Nome:', name);
-    console.log('Email:', email);
-    console.log('Telefone:', telephone);
-    console.log('Data nascimento:', dateBirth);
-    console.log('Senha:', password);
-    console.log('Confirmar Senha:', confirmPassword);
-    console.log('Função:', role);
+    console.log(dadosCadastro);
+
+    const canRegister = this.validateRegister(
+      dadosCadastro.name,
+      dadosCadastro.email,
+      dadosCadastro.telephone,
+      dadosCadastro.dateBirth,
+      dadosCadastro.role,
+      dadosCadastro.password,
+      dadosCadastro.confirmPassword
+    );
 
     if (canRegister) {
       this.toastr.success('successful registration')
+      this.registerService.adicionarDadosCadastro(dadosCadastro);
     }
   }
 
