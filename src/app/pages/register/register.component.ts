@@ -2,6 +2,7 @@ import { RegisterService } from '../../services/registerService';
 import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { isEmailValid } from 'src/app/utils/validadorEmail';
 
 interface Role {
   value: string;
@@ -83,6 +84,10 @@ export class RegisterComponent {
     }
     if (email === null || email.length === 0) {
       this.toastr.error('email is required')
+      returnError = true;
+    }
+    if (!isEmailValid(email)) {
+      this.toastr.error('invalid email')
       returnError = true;
     }
     if (telephone === null || telephone.length === 0) {
