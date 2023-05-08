@@ -33,6 +33,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { SchedulesComponent } from './pages/schedules/schedules.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { PhoneFormatDirective } from './utils/phone-format.directive';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -51,6 +52,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReportsComponent,
     ForgotPasswordComponent,
     ChangePasswordComponent,
+    PhoneFormatDirective
   ],
   imports: [
     BrowserModule,
