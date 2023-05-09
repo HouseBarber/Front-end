@@ -2,6 +2,10 @@
   background-color: #344edf;
 }
 
+.div-login-screen img {
+  width: 50%;
+}
+
 .login-div {
   justify-content: flex-start !important;
 }
@@ -93,6 +97,4 @@ form {
   max-height: 35%;
 }
 
-mat-icon {
-  color: #344edf;
-}
+
