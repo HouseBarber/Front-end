@@ -49,7 +49,7 @@ export class RegisterComponent {
   }
 
   onSubmit(){
-    const dadosCadastro = {
+    const dataRegister = {
       name: this.registerForm.get('name')?.value,
       email: this.registerForm.get('email')?.value,
       telephone: this.registerForm.get('telephone')?.value,
@@ -60,18 +60,18 @@ export class RegisterComponent {
     };
 
     const canRegister = this.validateRegister(
-      dadosCadastro.name,
-      dadosCadastro.email,
-      dadosCadastro.telephone,
-      dadosCadastro.dateBirth,
-      dadosCadastro.role,
-      dadosCadastro.password,
-      dadosCadastro.confirmPassword
+      dataRegister.name,
+      dataRegister.email,
+      dataRegister.telephone,
+      dataRegister.dateBirth,
+      dataRegister.role,
+      dataRegister.password,
+      dataRegister.confirmPassword
     );
 
     if (canRegister) {
       this.toastr.success('successful registration')
-      this.registerService.adicionarDadosCadastro(dadosCadastro);
+      this.registerService.adicionarDadosCadastro(dataRegister);
     }
   }
 
