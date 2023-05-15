@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ForgotPasswordService } from 'src/app/services/forgotPasswordService';
+import { isEmailValid } from 'src/app/utils/validadorEmail';
 
 @Component({
   selector: 'app-forgot-password',
@@ -23,7 +24,7 @@ export class ForgotPasswordComponent {
   onSubmit() {
     const email = this.forgotForm.get('email')!.value;
 
-    this.validateRecovery(email);
+    const canRecovery = this.validateRecovery(email);
 
     if (email) {
       this.toastr.success('E-mail de recuperação enviado com sucesso.');
@@ -38,6 +39,10 @@ export class ForgotPasswordComponent {
     let returnError = false;
     if (email === null || email.length === 0) {
       this.toastr.error('email is required');
+      returnError = true;
+    }
+    if (!isEmailValid(email)) {
+      this.toastr.error('invalid email')
       returnError = true;
     }
     return !returnError;

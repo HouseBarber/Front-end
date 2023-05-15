@@ -49,31 +49,20 @@ export class RegisterComponent {
   }
 
   onSubmit(){
-    const dataRegister = {
-      name: this.registerForm.get('name')?.value,
-      email: this.registerForm.get('email')?.value,
-      telephone: this.registerForm.get('telephone')?.value,
-      dateBirth: this.registerForm.get('dateBirth')?.value,
-      password: this.registerForm.get('password')?.value,
-      confirmPassword: this.registerForm.get('confirmPassword')?.value,
-      role: this.registerForm.get('role')?.value,
-    };
 
-    console.log('register form: ', this.registerForm.value);
-
-    const canRegister = this.registerForm.value(
-      dataRegister.name,
-      dataRegister.email,
-      dataRegister.telephone,
-      dataRegister.dateBirth,
-      dataRegister.role,
-      dataRegister.password,
-      dataRegister.confirmPassword
+    const canRegister = this.validateRegister(
+      this.registerForm.value.name,
+      this.registerForm.value.email,
+      this.registerForm.value.telephone,
+      this.registerForm.value.dateBirth,
+      this.registerForm.value.role,
+      this.registerForm.value.password,
+      this.registerForm.value.confirmPassword
     );
 
     if (canRegister) {
       this.toastr.success('successful registration')
-      this.registerService.adicionarDadosCadastro(dataRegister);
+      this.registerService.adicionarDadosCadastro(this.registerForm.value);
     }
   }
 
