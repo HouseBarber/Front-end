@@ -47,7 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SettingsComponent,
     SchedulesComponent,
     ReportsComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
