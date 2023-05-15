@@ -59,7 +59,9 @@ export class RegisterComponent {
       role: this.registerForm.get('role')?.value,
     };
 
-    const canRegister = this.validateRegister(
+    console.log('register form: ', this.registerForm.value);
+
+    const canRegister = this.registerForm.value(
       dataRegister.name,
       dataRegister.email,
       dataRegister.telephone,
