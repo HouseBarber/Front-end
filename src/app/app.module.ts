@@ -34,6 +34,7 @@ import { SchedulesComponent } from './pages/schedules/schedules.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { PhoneFormatDirective } from './utils/phone-format.directive';
 
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -50,6 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SchedulesComponent,
     ReportsComponent,
     PhoneFormatDirective,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
