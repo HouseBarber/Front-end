@@ -41,7 +41,7 @@ export class ForgotPasswordComponent {
       this.toastr.error('o e-mail é obrigatório')
       returnError = true;
     }
-    if (!isEmailValid(email)) {
+    else if(!isEmailValid(email)) {
       this.toastr.error('e-mail invalido')
       returnError = true;
     }
