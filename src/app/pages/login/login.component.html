@@ -10,14 +10,14 @@
       <div>
         <mat-form-field appearance="fill">
           <mat-label>Username</mat-label>
-          <input matInput placeholder="Insert your username" formControlName="username">
+          <input matInput placeholder="insira seu username" formControlName="username">
           <mat-icon matSuffix>people</mat-icon>
         </mat-form-field>
       </div>
       <div>
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
-          <input id="password" matInput type="password" formControlName="password" placeholder="Insert your password">
+          <input id="password" matInput type="password" formControlName="password" placeholder="Insira sua senha">
           <mat-icon matSuffix (click)="revealPassword()">
             {{this.revealedPassword != null && !this.revealedPassword ? 'lock' : 'lock_open'}}
           </mat-icon>
@@ -25,16 +25,14 @@
       </div>
       <button mat-raised-button color="primary">Login</button>
       <div class="d-flex flex-column forgotPassword-Or-Register">
-        <span>Forgot password ?
-          <span class="font" [routerLink]="['/forgotPassword']" >click here</span>
+        <span>Esqueceu a senha ?
+          <span class="font" [routerLink]="['/forgotPassword']" >clique aqui</span>
         </span>
-        <span>or</span>
-        <span>Register
-          <span class="font">
-            <a [routerLink]="['/register']">
-                new account
-            </a>
-          </span>
+        <span>ou</span>
+        <span class="font">
+          <a [routerLink]="['/register']">
+            Cadastre-se
+          </a>
         </span>
         <div class="alternative-login">
           <img src="/assets/img/apple-logo.png" alt="Logo Apple">
