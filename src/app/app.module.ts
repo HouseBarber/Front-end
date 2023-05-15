@@ -31,6 +31,7 @@ import { EmployeesComponent } from './pages/employees/employees.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { SchedulesComponent } from './pages/schedules/schedules.component';
 import { ReportsComponent } from './pages/reports/reports.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -45,7 +46,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     EmployeesComponent,
     SettingsComponent,
     SchedulesComponent,
-    ReportsComponent
+    ReportsComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,

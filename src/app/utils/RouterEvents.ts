@@ -89,6 +89,7 @@ export default class RouterEvents {
     return this.routeLogin = eventUrl=== '' ||
       eventUrl === '/' ||
       eventUrl === '/login' ||
-      eventUrl === '/register';
+      eventUrl === '/register'||
+      eventUrl === '/forgotPassword';
   }
 }

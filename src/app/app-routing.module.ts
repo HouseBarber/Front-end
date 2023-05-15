@@ -6,16 +6,24 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { SchedulesComponent } from './pages/schedules/schedules.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
   },
+
+  {
+    path: 'forgotPassword',
+    component: ForgotPasswordComponent
+  },
+
   {
     path: 'home',
     component: HomeComponent
   },
+
   {
     path: 'employees',
     component: EmployeesComponent
