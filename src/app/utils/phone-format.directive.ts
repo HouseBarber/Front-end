@@ -10,7 +10,7 @@ export class PhoneFormatDirective {
   @HostListener('input', ['$event'])
   onInputChange(event: any) {
     const rawValue = event.target.value.replace(/\D/g, '');
-    const formattedValue = `(${rawValue.substring(0, 2)}) ${rawValue.substring(2, 6)}-${rawValue.substring(6, 11)}`;
+    const formattedValue = `(${rawValue.substring(0, 2)}) ${rawValue.substring(2, 7)}-${rawValue.substring(7, 11)}`;
     event.target.value = formattedValue;
   }
 
