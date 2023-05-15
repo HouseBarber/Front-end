@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
   validateLoginAndPassword(login: string, password: string): boolean | null {
     let returnError = false;
     if (login === null || login.length === 0) {
-      this.toastr.error('Username is required')
+      this.toastr.error('Usero nome é obrigatório')
       returnError = true;
     }
     if (password === null || password.length === 0) {

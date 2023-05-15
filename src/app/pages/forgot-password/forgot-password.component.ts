@@ -38,11 +38,11 @@ export class ForgotPasswordComponent {
   validateRecovery(email: string): boolean | null {
     let returnError = false;
     if (email === null || email.length === 0) {
-      this.toastr.error('email is required');
+      this.toastr.error('o e-mail é obrigatório')
       returnError = true;
     }
     if (!isEmailValid(email)) {
-      this.toastr.error('invalid email')
+      this.toastr.error('e-mail invalido')
       returnError = true;
     }
     return !returnError;

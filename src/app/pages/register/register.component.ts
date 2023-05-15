@@ -61,7 +61,7 @@ export class RegisterComponent {
     );
 
     if (canRegister) {
-      this.toastr.success('successful registration')
+      this.toastr.success('cadastro realizado com sucesso')
       this.registerService.adicionarDadosCadastro(this.registerForm.value);
     }
   }
@@ -70,43 +70,43 @@ export class RegisterComponent {
     role: string, password: string, confirmPassword: string): boolean | null{
     let returnError = false;
     if (name === null || name.length === 0) {
-      this.toastr.error('name is required')
+      this.toastr.error('o nome é obrigatório')
       returnError = true;
     }
     if (email === null || email.length === 0) {
-      this.toastr.error('email is required')
+      this.toastr.error('o e-mail é obrigatório')
       returnError = true;
     }
     if (!isEmailValid(email)) {
-      this.toastr.error('invalid email')
+      this.toastr.error('o e-mail é inválido')
       returnError = true;
     }
     if (telephone === null || telephone.length === 0) {
-      this.toastr.error('telephone is required')
+      this.toastr.error('o telefone é obrigatório')
       returnError = true;
     }
     if (dateBirth === null || dateBirth.length === 0) {
-      this.toastr.error('date of birth is required')
+      this.toastr.error('data de nascimento é obrigatório')
       returnError = true;
     }
     if (role === null || role.length === 0) {
-      this.toastr.error('role is required')
+      this.toastr.error('o tipo do cadastro é obrigatório')
       returnError = true;
     }
     if (password === null || password.length === 0) {
-      this.toastr.error('Password is required')
+      this.toastr.error('a senha é obrigatória')
       returnError = true;
     }
     if (password.length && password.length <= 5) {
-      this.toastr.error('The password must have at least 5 characters')
+      this.toastr.error('a senha precisa ter pelo menos 5 digitos')
       returnError = true;
     }
     if (password.length && password.length > 100) {
-      this.toastr.error('The password must have a maximum of 100 characters')
+      this.toastr.error('a senha pode ter no máximo 100 caracteres')
       returnError = true;
     }
     if (password != confirmPassword) {
-      this.toastr.error('passwords need to be the same')
+      this.toastr.error('as senhas não iguais')
       returnError = true;
     }
     return !returnError;
