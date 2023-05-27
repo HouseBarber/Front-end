@@ -26,7 +26,7 @@ export class ForgotPasswordComponent {
     this.validateRecovery(email);
 
     if (email) {
-      this.toastr.success('e-mail de recuperação enviado com sucesso')
+      this.toastr.success('E-mail de recuperação enviado com sucesso.')
       this.forgotPasswordService.recuperarSenha(email);
     }
   }
