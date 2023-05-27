@@ -1,6 +1,7 @@
 import { RegisterService } from '../../services/registerService';
 import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { isEmailValid } from 'src/app/utils/validadorEmail';
 
@@ -28,6 +29,7 @@ export class RegisterComponent {
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private registerService: RegisterService,
+    private router: Router
   ) {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -63,6 +65,9 @@ export class RegisterComponent {
     if (canRegister) {
       this.toastr.success('cadastro realizado com sucesso')
       this.registerService.adicionarDadosCadastro(this.registerForm.value);
+      if(this.registerForm.value.role == 'Barbeiro'){
+        this.router.navigate(['/register/establishment']);
+      }
     }
   }
 

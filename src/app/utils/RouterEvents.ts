@@ -85,7 +85,9 @@ export default class RouterEvents {
       eventUrl === '/' ||
       eventUrl === '/login' ||
       eventUrl === '/register' ||
+      eventUrl === '/register/establishment' ||
       eventUrl === '/forgotPassword' ||
-      eventUrl === '/changePassword');
+      eventUrl === '/changePassword'
+    );
   }
 }
