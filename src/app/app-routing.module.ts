@@ -1,5 +1,11 @@
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { NgModule } from '@angular/core';
-import {ActivatedRouteSnapshot, RouterModule, RouterStateSnapshot, Routes} from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  RouterModule,
+  RouterStateSnapshot,
+  Routes,
+} from '@angular/router';
 import { EmployeesComponent } from './pages/employees/employees.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
@@ -11,40 +17,47 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 const routes: Routes = [
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
+    loadChildren: () =>
+      import('./pages/login/login.module').then((m) => m.LoginModule),
   },
 
   {
     path: 'forgotPassword',
-    component: ForgotPasswordComponent
+    component: ForgotPasswordComponent,
   },
 
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
   },
 
   {
     path: 'employees',
-    component: EmployeesComponent
+    component: EmployeesComponent,
   },
   {
     path: 'schedules',
-    component: SchedulesComponent
+    component: SchedulesComponent,
   },
   {
     path: 'reports',
-    component: ReportsComponent
+    component: ReportsComponent,
   },
   {
     path: 'settings',
-    component: SettingsComponent
+    component: SettingsComponent,
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
   },
-  {path: '**', redirectTo: '/login', pathMatch: 'full'},
+
+  {
+    path: 'changePassword',
+    component: ChangePasswordComponent,
+  },
+
+  { path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -55,8 +68,8 @@ const routes: Routes = [
       provide: 'externalUrlRedirectResolver',
       useValue: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
         window.location.href = (route.data as any).externalUrl;
-      }
-    }
-  ]
+      },
+    },
+  ],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

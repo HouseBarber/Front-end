@@ -1,21 +1,18 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {environment} from "../../environments/environment";
-import User from "../models/User";
-import jwt_decode from "jwt-decode";
-
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+import User from '../models/User';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  private path = '/v1/auth';
+  private token_byCrypt = 'Local_TokenInfo';
 
-  private path = "/v1/auth";
-  private token_byCrypt = "Local_TokenInfo"
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   login(user: User): Observable<any> {
     return this.http.post(`${environment.api}${this.path}/login`, user);
@@ -39,7 +36,7 @@ export class AuthService {
       user.roles = infoUserObject.roles;
       return user;
     }
-    return null
+    return null;
   }
 
   setInfoUserLocalStorage(infoUser: string) {
@@ -47,12 +44,11 @@ export class AuthService {
   }
 
   checkIsAuthenticated() {
-    return this.getUserTokenInfo() !== null
+    return this.getUserTokenInfo() !== null;
   }
 
   logout() {
-    localStorage.removeItem(this.token_byCrypt)
-    window.location.href = "/login";
+    localStorage.removeItem(this.token_byCrypt);
+    window.location.href = '/login';
   }
-
 }

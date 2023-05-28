@@ -32,6 +32,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { SchedulesComponent } from './pages/schedules/schedules.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -48,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SchedulesComponent,
     ReportsComponent,
     ForgotPasswordComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
