@@ -13,6 +13,7 @@ import { ReportsComponent } from './pages/reports/reports.component';
 import { SchedulesComponent } from './pages/schedules/schedules.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { TokenRecoveryGuard } from './guards/tokenRecovery.guard';
 
 const routes: Routes = [
   {
@@ -53,7 +54,8 @@ const routes: Routes = [
   },
 
   {
-    path: 'changePassword',
+    path: 'changePassword/:token',
+    canActivate: [TokenRecoveryGuard],
     component: ChangePasswordComponent,
   },
 
