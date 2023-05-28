@@ -32,7 +32,7 @@ export class RegisterComponent {
     private router: Router
   ) {
     this.registerForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telephone: ['', Validators.required],
       dateBirth: ['', Validators.required],
@@ -53,7 +53,7 @@ export class RegisterComponent {
   onSubmit(){
 
     const canRegister = this.validateRegister(
-      this.registerForm.value.name,
+      this.registerForm.value.username,
       this.registerForm.value.email,
       this.registerForm.value.telephone,
       this.registerForm.value.dateBirth,
@@ -71,11 +71,11 @@ export class RegisterComponent {
     }
   }
 
-  validateRegister(name: string, email: string, telephone: string, dateBirth: string,
+  validateRegister(username: string, email: string, telephone: string, dateBirth: string,
     role: string, password: string, confirmPassword: string): boolean | null{
     let returnError = false;
-    if (name === null || name.length === 0) {
-      this.toastr.error('O nome é obrigatório')
+    if (username === null || username.length === 0) {
+      this.toastr.error('O username é obrigatório')
       returnError = true;
     }
     if (email === null || email.length === 0) {

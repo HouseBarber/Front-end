@@ -17,7 +17,7 @@ export class RegisterEstablishmentComponent {
     private establishmentService: EstablishmentService,
   ) {
     this.registerEstablishmentForm = this.formBuilder.group({
-      rua: ['', Validators.required],
+      logradouro: ['', Validators.required],
       bairro: ['', Validators.required],
       complemento: ['', Validators.required],
       numero: ['', Validators.required],
@@ -29,7 +29,7 @@ export class RegisterEstablishmentComponent {
 
   onSubmit(){
     const canRegister = this.validateRegister(
-      this.registerEstablishmentForm.value.rua,
+      this.registerEstablishmentForm.value.logradouro,
       this.registerEstablishmentForm.value.bairro,
       this.registerEstablishmentForm.value.complemento,
       this.registerEstablishmentForm.value.numero,
@@ -45,15 +45,15 @@ export class RegisterEstablishmentComponent {
     }
   }
 
-  validateRegister(rua: string, bairro: string, complemento: string, numero: string,
+  validateRegister(logradouro: string, bairro: string, complemento: string, numero: string,
     cep: string, estado: string, cidade: string, ): boolean | null{
     let returnError = false;
-    if (rua === null || rua.length === 0) {
-      this.toastr.error('O nome da rua é obrigatório')
+    if (logradouro === null || logradouro.length === 0) {
+      this.toastr.error('O logradouro é obrigatório')
       returnError = true;
     }
     if (bairro === null || bairro.length === 0) {
-      this.toastr.error('O nome do bairro é obrigatório')
+      this.toastr.error('O bairro é obrigatório')
       returnError = true;
     }
     if (complemento === null || complemento.length === 0) {
