@@ -6,13 +6,21 @@ import {
   UrlTree,
   Router,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
+import { ForgotPasswordService } from '../services/forgotPasswordService';
+import { InfoDTO } from '../models/infoDTO';
+import { TokenRecovery } from '../models/tokenRecovery';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenRecoveryGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private forgotPasswordService: ForgotPasswordService,
+    private toastr: ToastrService
+  ) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -22,15 +30,33 @@ export class TokenRecoveryGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    debugger;
     const hasToken = next.paramMap.has('token');
     const token = next.paramMap.get('token');
     if (!hasToken) {
-      // Redirecione para uma página de erro ou para algum lugar apropriado
       this.router.navigate(['/error']);
     }
-    console.log(token);
 
-    return hasToken;
+    return token
+      ? this.forgotPasswordService.validToken(token).pipe(
+          map((response) => {
+            debugger;
+            console.log(response);
+            if (response) {
+              return true;
+            } else {
+              this.router.navigate(['/error']);
+              return false;
+            }
+          }),
+          catchError((error) => {
+            console.log(error);
+            this.router.navigate(['/error']);
+            this.toastr.error(error.error.message);
+            return of(false);
+          })
+        )
+      : false;
   }
+
+  checkToken() {}
 }

@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../../environments/environment';
 import User from '../models/User';
+import { TokenRecovery } from '../models/tokenRecovery';
+import { InfoDTO } from '../models/infoDTO';
+import { tap } from 'rxjs/internal/operators/tap';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +21,7 @@ export class ForgotPasswordService {
   recuperarSenha(email: String): Observable<FormData> {
     return this.http.post<FormData>(
       `${environment.api}${this.path}/recoveryPassword`,
-      email
+      { email: email }
     );
   }
 
@@ -26,10 +29,16 @@ export class ForgotPasswordService {
     return this.http.post<FormData>(this.apiUrl, formData);
   }
 
-  changePassword(password: User): Observable<FormData> {
+  changePassword(password: String, token: String): Observable<FormData> {
     return this.http.post<FormData>(
       `${environment.api}${this.path}/changePassword`,
-      password
+      { password: password, token: token }
+    );
+  }
+
+  validToken(tokenRecovery: String): Observable<InfoDTO<TokenRecovery>> {
+    return this.http.get<InfoDTO<TokenRecovery>>(
+      `${environment.api}${this.path}/changePassword/${tokenRecovery}`
     );
   }
 }
