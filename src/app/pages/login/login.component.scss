@@ -1,21 +1,10 @@
-.div-login-screen {
-  background-color: #344edf;
-}
-
-.div-login-screen img {
-  width: 50%;
-}
-
-.login-div {
-  justify-content: flex-start !important;
-}
-
-.login-div div {
-  height: 30% !important;
-}
-
-.login-div div img {
-  max-width: 12.5rem;
+.body{
+  width: 100%;
+  height: 100%;
+  background-image: url('https://diaonline.ig.com.br/wp-content/uploads/2018/10/11-barbearias-em-goiania-com-estilo-vintage-que-voce-precisa-conhecer.jpeg');
+  background-size: cover;
+  opacity: 0.8;
+  display: flex;
 }
 
 .default-flex {
@@ -25,12 +14,62 @@
   flex-direction: column;
 }
 
-.spinner {
-  width: 1.5rem !important;
+.right{
+  width: 50vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.matspinner-div {
-  height: 3rem;
+.texto{
+  width: 75%;
+}
+
+.left {
+  width: 50vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h3{
+  color: #fff;
+}
+
+h1{
+  color: #fff;
+  margin-bottom: 5rem;
+}
+
+form{
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+mat-form-field, button {
+  width: 18.75rem !important;
+}
+
+.alternative-login {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.alternative-login img {
+  cursor: pointer;
+  width: 2rem;
+}
+
+.alternative-login img:hover {
+  opacity: 0.8;
 }
 
 .forgotPassword-Or-Register {
@@ -48,53 +87,6 @@
 
 .forgotPassword-Or-Register span {
   cursor: default;
-}
-
-mat-form-field, button {
-  width: 18.75rem !important;
-}
-
-div img {
-  max-width: 100%;
-}
-
-@media (max-width: 56.25rem) {
-  .div-login-screen {
-    display: none;
-  }
-
-  .login-div {
-    width: 100%;
-  }
-
-  .matspinner-div {
-    padding-top: 2rem;
-  }
-}
-
-@media (min-width: 62.5rem) {
-  .login-screen {
-    width: 660px;
-  }
-}
-
-.alternative-login {
-  max-width: 80%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1.5rem;
-}
-
-.alternative-login img {
-  cursor: pointer;
-}
-
-.alternative-login img:hover {
-  opacity: 0.8;
-}
-
-form {
-  max-height: 35%;
 }
 
 

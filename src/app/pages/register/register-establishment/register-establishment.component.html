@@ -7,7 +7,7 @@
     <form [formGroup]="registerEstablishmentForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <mat-form-field appearance="outline">
-          <mat-label>Rua</mat-label>
+          <mat-label>Logradouro</mat-label>
           <input matInput formControlName="logradouro">
           <mat-icon matSuffix>home</mat-icon>
         </mat-form-field>
@@ -31,19 +31,19 @@
         <mat-form-field class="endereco" appearance="outline">
           <mat-label>Cep</mat-label>
           <input matInput formControlName="cep">
-          <mat-icon matSuffix>home</mat-icon>
+          <mat-icon matSuffix>public</mat-icon>
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Estado</mat-label>
           <input matInput formControlName="estado">
-          <mat-icon matSuffix>home</mat-icon>
+          <mat-icon matSuffix>public</mat-icon>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Cidade</mat-label>
           <input matInput formControlName="cidade">
-          <mat-icon matSuffix>home</mat-icon>
+          <mat-icon matSuffix>public</mat-icon>
         </mat-form-field>
       </div>
       <button class="button-cadastrar" mat-raised-button color="primary" type="submit">Cadastrar</button>
