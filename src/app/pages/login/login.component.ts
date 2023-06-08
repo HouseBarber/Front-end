@@ -80,19 +80,19 @@ export class LoginComponent implements OnInit {
   validateLoginAndPassword(login: string, password: string): boolean | null {
     let returnError = false;
     if (login === null || login.length === 0) {
-      this.toastr.error('Username is required')
+      this.toastr.error('O username é obrigatório')
       returnError = true;
     }
     if (password === null || password.length === 0) {
-      this.toastr.error('Password is required')
+      this.toastr.error('A senha é obrigatória')
       returnError = true;
     }
     if (password.length && password.length <= 5) {
-      this.toastr.error('The password must have at least 5 characters')
+      this.toastr.error('A senha precisa ter pelo menos 5 digitos')
       returnError = true;
     }
     if (password.length && password.length > 100) {
-      this.toastr.error('The password must have a maximum of 100 characters')
+      this.toastr.error('A senha pode ter no máximo 100 caracteres')
       returnError = true;
     }
     return !returnError;
