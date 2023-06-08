@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { isEmailValid } from 'src/app/utils/validadorEmail';
 import { Role } from "../../models/role";
+import {RolesService} from "../../services/roles.service";
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,8 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private registerService: RegisterService,
-    private router: Router
+    private router: Router,
+    private rolesService: RolesService
   ) {
 
   }
@@ -47,7 +49,14 @@ export class RegisterComponent implements OnInit {
   }
 
   popularRoles(): void {
-
+    this.rolesService.getAllRoles().subscribe({
+      next: (response) => {
+        this.roles = response.object;
+      },
+      error: () => {
+        this.toastr.error("Erro ao buscar roles");
+      }
+    });
   }
 
   passwordMatchValidator(g: FormGroup) {
