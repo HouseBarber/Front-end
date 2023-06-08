@@ -49,8 +49,8 @@
         <mat-form-field class="funcao" appearance="outline">
           <mat-label>Cadastrar-se como</mat-label>
           <mat-select matNativeControl formControlName="role" required>
-            <mat-option *ngFor="let role of roles" [value]="role.value">
-              {{role.value}}
+            <mat-option *ngFor="let role of roles" [value]="role.id">
+              {{ role.description }}
             </mat-option>
           </mat-select>
         </mat-form-field>
