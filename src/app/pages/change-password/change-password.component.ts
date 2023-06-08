@@ -1,46 +1,67 @@
-import { ErrorMessage } from './../../utils/constants/error/errorMessage';
+import {ErrorMessage} from '../../utils/constants/error/errorMessage';
 import {
   AbstractControl,
   FormBuilder,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-import { Component } from '@angular/core';
-import { ForgotPasswordService } from 'src/app/services/forgotPasswordService';
-import { ActivatedRoute } from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {Component, OnInit} from '@angular/core';
+import {ForgotPasswordService} from 'src/app/services/forgotPasswordService';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.scss'],
 })
-export class ChangePasswordComponent {
+export class ChangePasswordComponent implements OnInit {
   changePasswordForm!: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private forgotPasswordService: ForgotPasswordService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
+
+  }
+
+  ngOnInit(): void {
+    this.initializeForms();
+  }
+
+  initializeForms(): void {
     this.changePasswordForm = this.formBuilder.group({
       password: ['', [Validators.required]],
       confirmPassword: ['', Validators.required],
     });
   }
-  onSubmit() {
+
+  onSubmit(): void {
     const token = this.route.snapshot.paramMap.get('token');
     const password = this.changePasswordForm.get('password');
     const confirmPassword = this.changePasswordForm.get('confirmPassword');
     if (password && confirmPassword) {
       this.validatePassword(password, confirmPassword);
     }
-
-    return password && password.value && token
-      ? this.forgotPasswordService
-          .changePassword(password.value, token)
-          .subscribe()
-      : this.toastr.error(ErrorMessage.INVALID_ERROR);
+    if (!password || !password.value) {
+      this.toastr.error("Senha inválida.");
+      return;
+    }
+    if (!token) {
+      this.toastr.error("Token inválido.");
+      return;
+    }
+    this.forgotPasswordService.changePassword(password.value, token).subscribe({
+      next: (response) => {
+        this.toastr.success("Senha atualizada com sucesso.");
+        this.router.navigate(['']);
+      }, error: (error) => {
+        this.toastr.error(ErrorMessage.INVALID_ERROR);
+      }
+    })
   }
 
   validatePassword(

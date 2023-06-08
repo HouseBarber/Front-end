@@ -18,11 +18,9 @@ export class ForgotPasswordService {
 
   constructor(private http: HttpClient) {}
 
-  recuperarSenha(email: String): Observable<FormData> {
+  recuperarSenha(user: User): Observable<FormData> {
     return this.http.post<FormData>(
-      `${environment.api}${this.path}/recoveryPassword`,
-      { email: email }
-    );
+      `${environment.api}${this.path}/recoveryPassword`, user);
   }
 
   signup(formData: FormData): Observable<FormData> {

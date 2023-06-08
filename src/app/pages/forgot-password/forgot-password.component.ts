@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-import { ForgotPasswordService } from 'src/app/services/forgotPasswordService';
-import { isEmailValid } from 'src/app/utils/validadorEmail';
+import {Component} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ToastrService} from 'ngx-toastr';
+import {ForgotPasswordService} from 'src/app/services/forgotPasswordService';
+import {isEmailValid} from 'src/app/utils/validadorEmail';
+import User from "../../models/User";
 
 @Component({
   selector: 'app-forgot-password',
@@ -11,6 +12,7 @@ import { isEmailValid } from 'src/app/utils/validadorEmail';
 })
 export class ForgotPasswordComponent {
   forgotForm!: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
@@ -23,16 +25,21 @@ export class ForgotPasswordComponent {
 
   onSubmit() {
     const email = this.forgotForm.get('email')!.value;
-
+    const userToRecover = new User();
+    userToRecover.email = email;
     const canRecovery = this.validateRecovery(email);
-
-    if (email) {
-      this.toastr.success('E-mail de recuperação enviado com sucesso.');
-      this.forgotPasswordService.recuperarSenha(email).subscribe(
-        (resposta) => {},
-        (erro) => {}
-      );
+    if (!email) {
+      return;
     }
+    this.forgotPasswordService.recuperarSenha(userToRecover).subscribe({
+        next: () => {
+          this.toastr.success('E-mail de recuperação enviado com sucesso.');
+        }, error: () => {
+          this.toastr.error("Mensagem temporária.");
+        }
+      }
+    );
+
   }
 
   validateRecovery(email: string): boolean | null {
@@ -40,8 +47,7 @@ export class ForgotPasswordComponent {
     if (email === null || email.length === 0) {
       this.toastr.error('o e-mail é obrigatório')
       returnError = true;
-    }
-    else if(!isEmailValid(email)) {
+    } else if (!isEmailValid(email)) {
       this.toastr.error('e-mail invalido')
       returnError = true;
     }

@@ -22,7 +22,6 @@ import { RouterOutlet } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LogoutSessionComponent } from './components/logout-session/logout-session.component';
@@ -35,8 +34,6 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
 import { SchedulesComponent } from './pages/schedules/schedules.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { PhoneFormatDirective } from './utils/phone-format.directive';
-
-import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { RegisterEstablishmentComponent } from './pages/register/register-establishment/register-establishment.component';
 
 export function HttpLoaderFactory(http: HttpClient) {

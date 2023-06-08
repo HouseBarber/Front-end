@@ -1,29 +1,22 @@
 import { RegisterService } from '../../services/registerService';
-import { Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { isEmailValid } from 'src/app/utils/validadorEmail';
-
-interface Role {
-  value: string;
-}
+import { Role } from "../../models/role";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   revealedPassword: boolean = false;
   revealedPassword2: boolean = false;
   registerForm!: FormGroup;
   selectedRole!: string;
-
-  roles: Role[] = [
-    {value: "Cliente"},
-    {value: "Barbeiro"}
-  ]
+  roles: Role[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,6 +24,15 @@ export class RegisterComponent {
     private registerService: RegisterService,
     private router: Router
   ) {
+
+  }
+
+  ngOnInit(): void {
+    this.initializeForms();
+    this.popularRoles();
+  }
+
+  initializeForms(): void {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -44,13 +46,17 @@ export class RegisterComponent {
     });
   }
 
+  popularRoles(): void {
+
+  }
+
   passwordMatchValidator(g: FormGroup) {
     const password = g.get('password');
     const confirmPassword = g.get('confirmPassword');
-    return password === confirmPassword ? null : { 'passwordMismatch': true };
+    return password === confirmPassword ? null : {'passwordMismatch': true};
   }
 
-  onSubmit(){
+  onSubmit() {
 
     const canRegister = this.validateRegister(
       this.registerForm.value.username,
@@ -65,14 +71,14 @@ export class RegisterComponent {
     if (canRegister) {
       this.toastr.success('cadastro realizado com sucesso')
       this.registerService.adicionarDadosCadastro(this.registerForm.value);
-      if(this.registerForm.value.role == 'Barbeiro'){
+      if (this.registerForm.value.role == 'Barbeiro') {
         this.router.navigate(['/register/establishment']);
       }
     }
   }
 
   validateRegister(username: string, email: string, telephone: string, dateBirth: string,
-    role: string, password: string, confirmPassword: string): boolean | null{
+                   role: string, password: string, confirmPassword: string): boolean | null {
     let returnError = false;
     if (username === null || username.length === 0) {
       this.toastr.error('O username é obrigatório')
@@ -117,7 +123,7 @@ export class RegisterComponent {
     return !returnError;
   }
 
-  revealPassword(){
+  revealPassword() {
     let inputPassword = document.getElementById('password');
     if (this.revealedPassword) {
       inputPassword!.setAttribute('type', 'password');
@@ -128,7 +134,7 @@ export class RegisterComponent {
     }
   }
 
-  revealPassword2(){
+  revealPassword2() {
     let inputPassword = document.getElementById('confirmPassword');
     if (this.revealedPassword2) {
       inputPassword!.setAttribute('type', 'password');

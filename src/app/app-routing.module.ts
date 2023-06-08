@@ -22,17 +22,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/login/login.module').then((m) => m.LoginModule),
   },
-
   {
     path: 'forgotPassword',
     component: ForgotPasswordComponent,
   },
-
   {
     path: 'home',
     component: HomeComponent,
   },
-
   {
     path: 'employees',
     component: EmployeesComponent,
@@ -58,16 +55,14 @@ const routes: Routes = [
     component: RegisterEstablishmentComponent
   },
   {
-    path: '**', redirectTo: '/login',
-    pathMatch: 'full'
-  },
-  {
     path: 'changePassword/:token',
     canActivate: [TokenRecoveryGuard],
     component: ChangePasswordComponent,
   },
-
-  { path: '**', redirectTo: '/login', pathMatch: 'full' },
+  {
+    path: '**', redirectTo: '/login',
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({
