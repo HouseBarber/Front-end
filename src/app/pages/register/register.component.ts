@@ -1,11 +1,12 @@
-import { RegisterService } from '../../services/registerService';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { isEmailValid } from 'src/app/utils/validadorEmail';
 import { Role } from "../../models/role";
-import {RolesService} from "../../services/roles.service";
+import { RolesService } from "../../services/roles.service";
+import User from '../../models/User';
+import { AuthService } from '../../services/authService';
 
 @Component({
   selector: 'app-register',
@@ -14,17 +15,17 @@ import {RolesService} from "../../services/roles.service";
 })
 export class RegisterComponent implements OnInit {
   revealedPassword: boolean = false;
-  revealedPassword2: boolean = false;
+  revealedConfirmPassword: boolean = false;
   registerForm!: FormGroup;
-  selectedRole!: string;
+  controlForm: { [key: string]: AbstractControl } = {};
   roles: Role[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
-    private registerService: RegisterService,
     private router: Router,
-    private rolesService: RolesService
+    private rolesService: RolesService,
+    private authService: AuthService
   ) {
 
   }
@@ -37,15 +38,18 @@ export class RegisterComponent implements OnInit {
   initializeForms(): void {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
+      cpf: ['', Validators.required],
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telephone: ['', Validators.required],
       dateBirth: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
-      role: ['', Validators.required],
+      role: [],
     }, {
       validator: this.passwordMatchValidator
     });
+    this.controlForm = this.registerForm.controls;
   }
 
   popularRoles(): void {
@@ -71,22 +75,36 @@ export class RegisterComponent implements OnInit {
       this.registerForm.value.username,
       this.registerForm.value.email,
       this.registerForm.value.telephone,
-      this.registerForm.value.dateBirth,
       this.registerForm.value.role,
       this.registerForm.value.password,
       this.registerForm.value.confirmPassword
     );
 
-    if (canRegister) {
-      this.toastr.success('cadastro realizado com sucesso')
-      this.registerService.adicionarDadosCadastro(this.registerForm.value);
-      if (this.registerForm.value.role == 'Barbeiro') {
-        this.router.navigate(['/register/establishment']);
-      }
+    if (!canRegister) {
+      this.toastr.error("Existe informacoes a serem preenchidas.")
+      return;
     }
+
+    const userToRegister = new User();
+    userToRegister.username = this.registerForm.value.username;
+    userToRegister.name = this.registerForm.value.name;
+    userToRegister.email = this.registerForm.value.email;
+    userToRegister.telephone = this.registerForm.value.telephone;
+    userToRegister.password = this.registerForm.value.password;
+    userToRegister.roles = this.roles.filter(role => role.id === this.registerForm.value.role)
+    userToRegister.cnpj = "";
+    userToRegister.cpf = this.registerForm.value.cpf;
+    this.authService.signUp(userToRegister).subscribe({
+      next: () => {
+        this.toastr.success("Usuario cadastrado com sucesso!")
+        this.router.navigate(['']);
+      }, error: () => {
+        this.toastr.error("Erro interno, tente mais tarde.")
+      }
+    });
   }
 
-  validateRegister(username: string, email: string, telephone: string, dateBirth: string,
+  validateRegister(username: string, email: string, telephone: string,
                    role: string, password: string, confirmPassword: string): boolean | null {
     let returnError = false;
     if (username === null || username.length === 0) {
@@ -103,10 +121,6 @@ export class RegisterComponent implements OnInit {
     }
     if (telephone === null || telephone.length === 0) {
       this.toastr.error('O telefone é obrigatório')
-      returnError = true;
-    }
-    if (dateBirth === null || dateBirth.length === 0) {
-      this.toastr.error('A data de nascimento é obrigatório')
       returnError = true;
     }
     if (role === null || role.length === 0) {
@@ -143,14 +157,14 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  revealPassword2() {
+  revealConfirmPassword() {
     let inputPassword = document.getElementById('confirmPassword');
-    if (this.revealedPassword2) {
+    if (this.revealedConfirmPassword) {
       inputPassword!.setAttribute('type', 'password');
-      this.revealedPassword2 = false;
+      this.revealedConfirmPassword = false;
     } else {
       inputPassword!.setAttribute('type', 'text');
-      this.revealedPassword2 = true;
+      this.revealedConfirmPassword = true;
     }
   }
 }

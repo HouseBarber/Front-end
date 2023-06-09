@@ -8,6 +8,8 @@ export default class User extends Auditable {
   name?: string;
   email?: string;
   cpf?: string;
+  cnpj?: string;
+  telephone?: string;
   birthday?: Date;
   username?: string;
   password?: string;
@@ -24,6 +26,8 @@ export default class User extends Auditable {
     id?: number,
     name?: string,
     cpf?: string,
+    cnpj?: string,
+    telephone?: string,
     birthday?: Date,
     username?: string,
     password?: string,
@@ -41,6 +45,8 @@ export default class User extends Auditable {
     this.id = id;
     this.name = name;
     this.cpf = cpf;
+    this.cnpj = cnpj;
+    this.telephone = telephone;
     this.birthday = birthday;
     this.username = username;
     this.password = password;
