@@ -51,4 +51,8 @@ export class AuthService {
     localStorage.removeItem(this.token_byCrypt);
     window.location.href = '/login';
   }
+
+  signUp(user: User): Observable<any> {
+    return this.http.post(`${environment.api}${this.path}/register`, user);
+  }
 }
