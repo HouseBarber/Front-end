@@ -17,6 +17,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class ChangePasswordComponent implements OnInit {
   changePasswordForm!: FormGroup;
+  loading = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,6 +41,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.loading = true;
     const token = this.route.snapshot.paramMap.get('token');
     const password = this.changePasswordForm.get('password');
     const confirmPassword = this.changePasswordForm.get('confirmPassword');
@@ -60,6 +62,9 @@ export class ChangePasswordComponent implements OnInit {
         this.router.navigate(['']);
       }, error: (error) => {
         this.toastr.error(ErrorMessage.INVALID_ERROR);
+        this.loading = false;
+      }, complete: () => {
+        this.loading = false;
       }
     })
   }

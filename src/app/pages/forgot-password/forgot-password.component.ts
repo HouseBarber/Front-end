@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ToastrService} from 'ngx-toastr';
-import {ForgotPasswordService} from 'src/app/services/forgotPasswordService';
-import {isEmailValid} from 'src/app/utils/validadorEmail';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { ForgotPasswordService } from 'src/app/services/forgotPasswordService';
+import { isEmailValid } from 'src/app/utils/validadorEmail';
 import User from "../../models/User";
 
 @Component({
@@ -12,6 +12,7 @@ import User from "../../models/User";
 })
 export class ForgotPasswordComponent {
   forgotForm!: FormGroup;
+  loading = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,6 +25,7 @@ export class ForgotPasswordComponent {
   }
 
   onSubmit() {
+    this.loading = true;
     const email = this.forgotForm.get('email')!.value;
     const userToRecover = new User();
     userToRecover.email = email;
@@ -36,6 +38,9 @@ export class ForgotPasswordComponent {
           this.toastr.success('E-mail de recuperação enviado com sucesso.');
         }, error: () => {
           this.toastr.error("Mensagem temporária.");
+          this.loading = false;
+        }, complete: () => {
+          this.loading = false;
         }
       }
     );

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
 import Constants from '../../components/constants';
-import { Permissions } from '../../models/permissions';
+import {Permissions} from '../../models/permissions';
 import User from '../../models/User';
-import { AuthService } from '../../services/authService';
+import {AuthService} from '../../services/authService';
 import {ToastrService} from "ngx-toastr";
 
 @Component({
@@ -44,12 +44,17 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.loading = true;
     const canAuthenticate = this.validateLoginAndPassword(this.formLogin.value.username, this.formLogin.value.password);
-    if (canAuthenticate) {
-      const {username, password} = this.formLogin.value;
-      const user: User = new User();
-      user.username = username!;
-      user.password = password!;
-      this.authService.login(user).subscribe(response => {
+    if (!canAuthenticate) {
+      return;
+    }
+
+    const {username, password} = this.formLogin.value;
+    const user: User = new User();
+    user.username = username!;
+    user.password = password!;
+
+    this.authService.login(user).subscribe({
+      next: (response) => {
         let token = response.object.jwt.access_token;
         this.setRoles(response.object.roles);
         let objectToLocalStorage = {token: token, roles: this.permissions};
@@ -58,15 +63,17 @@ export class LoginComponent implements OnInit {
 
         this.router.navigateByUrl('/home', {state: {token: userAuthentication}})
           .then(r => this.toastr.success('Successfully authenticated'));
-      }, () => {
-      }, () => this.loading = false);
+      }, error: () => {
+        this.loading = false
+        this.toastr.error('Erro interno, tente novamente mais tarde.')
+      }, complete: () => {
+        this.loading = false
+      }
+    });
 
-    } else {
-      this.loading = false;
-    }
   }
 
-  revealPassword(){
+  revealPassword() {
     let inputPassword = document.getElementById('password');
     if (this.revealedPassword) {
       inputPassword!.setAttribute('type', 'password');
