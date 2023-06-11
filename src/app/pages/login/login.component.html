@@ -29,7 +29,8 @@
             </mat-icon>
           </mat-form-field>
         </div>
-        <button mat-raised-button color="primary">Login</button>
+        <mat-spinner *ngIf="loading" [style.height]="'25px'"></mat-spinner>
+        <button mat-raised-button color="primary" *ngIf="!loading">Login</button>
         <div class="d-flex flex-column forgotPassword-Or-Register">
           <span>Esqueceu a senha ?
             <span class="font" [routerLink]="['/forgotPassword']">clique aqui</span>
