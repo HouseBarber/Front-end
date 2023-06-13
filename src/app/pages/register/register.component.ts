@@ -81,7 +81,7 @@ export class RegisterComponent implements OnInit {
     );
 
     if (!canRegister) {
-      this.toastr.error("Existe informacoes a serem preenchidas.")
+      this.toastr.error("Existe informações a serem preenchidas.")
       return;
     }
 

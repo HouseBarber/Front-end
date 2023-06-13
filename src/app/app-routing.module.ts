@@ -13,7 +13,6 @@ import { ReportsComponent } from './pages/reports/reports.component';
 import { SchedulesComponent } from './pages/schedules/schedules.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
-import { RegisterEstablishmentComponent } from './pages/register/register-establishment/register-establishment.component';
 import { TokenRecoveryGuard } from './guards/tokenRecovery.guard';
 
 const routes: Routes = [
@@ -49,10 +48,6 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
-  },
-  {
-    path: 'register/establishment',
-    component: RegisterEstablishmentComponent
   },
   {
     path: 'changePassword/:token',
