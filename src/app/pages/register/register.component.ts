@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { isEmailValid } from 'src/app/utils/validadorEmail';
 import { Role } from "../../models/role";
-import { RolesService } from "../../services/roles.service";
+import { RolesService } from "../../services/rolesService";
 import User from '../../models/User';
 import { AuthService } from '../../services/authService';
 
