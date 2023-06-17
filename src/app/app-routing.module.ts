@@ -6,14 +6,9 @@ import {
   RouterStateSnapshot,
   Routes,
 } from '@angular/router';
-import { EmployeesComponent } from './pages/employees/employees.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { ReportsComponent } from './pages/reports/reports.component';
-import { SchedulesComponent } from './pages/schedules/schedules.component';
-import { SettingsComponent } from './pages/settings/settings.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
-import { RegisterEstablishmentComponent } from './pages/register/register-establishment/register-establishment.component';
 import { TokenRecoveryGuard } from './guards/tokenRecovery.guard';
 
 const routes: Routes = [
@@ -31,28 +26,8 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'employees',
-    component: EmployeesComponent,
-  },
-  {
-    path: 'schedules',
-    component: SchedulesComponent,
-  },
-  {
-    path: 'reports',
-    component: ReportsComponent,
-  },
-  {
-    path: 'settings',
-    component: SettingsComponent,
-  },
-  {
     path: 'register',
     component: RegisterComponent,
-  },
-  {
-    path: 'register/establishment',
-    component: RegisterEstablishmentComponent
   },
   {
     path: 'changePassword/:token',

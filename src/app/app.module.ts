@@ -25,16 +25,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LogoutSessionComponent } from './components/logout-session/logout-session.component';
-import { EmployeesComponent } from './pages/employees/employees.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { ReportsComponent } from './pages/reports/reports.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
-import { SchedulesComponent } from './pages/schedules/schedules.component';
-import { SettingsComponent } from './pages/settings/settings.component';
 import { PhoneFormatDirective } from './utils/phone-format.directive';
-import { RegisterEstablishmentComponent } from './pages/register/register-establishment/register-establishment.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -46,14 +41,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     LogoutSessionComponent,
     RegisterComponent,
-    EmployeesComponent,
-    SettingsComponent,
-    SchedulesComponent,
-    ReportsComponent,
     ForgotPasswordComponent,
     ChangePasswordComponent,
     PhoneFormatDirective,
-    RegisterEstablishmentComponent
   ],
   imports: [
     BrowserModule,
