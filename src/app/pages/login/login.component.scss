@@ -1,49 +1,28 @@
 .body{
+  margin: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
-  background-image: url('https://diaonline.ig.com.br/wp-content/uploads/2018/10/11-barbearias-em-goiania-com-estilo-vintage-que-voce-precisa-conhecer.jpeg');
+  display: flex;
+}
+
+.left-side, .right-side {
+  width: 50%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-side {
+  background-color: #ffffff;
+}
+
+.right-side {
+  background-image: url('https://hinova.com.br/wp-content/uploads/2017/07/Barbearia-1024x585.jpg');
   background-size: cover;
   opacity: 0.8;
-  display: flex;
 }
-
-.default-flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.right{
-  width: 50vw;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.texto{
-  width: 75%;
-}
-
-.left {
-  width: 50vw;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-h3{
-  color: #fff;
-}
-
-h1{
-  color: #fff;
-  margin-bottom: 5rem;
-}
-
 form{
   margin-top: 5rem;
   margin-bottom: 3rem;
@@ -87,16 +66,4 @@ mat-form-field, button {
 
 .forgotPassword-Or-Register span {
   cursor: default;
-}
-
-
-.body .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  opacity: 0.5;
-  /* Altere o valor da opacidade conforme necessário */
 }
