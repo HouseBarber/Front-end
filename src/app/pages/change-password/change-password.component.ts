@@ -1,14 +1,10 @@
-import {ErrorMessage} from '../../utils/constants/error/errorMessage';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import {ToastrService} from 'ngx-toastr';
-import {Component, OnInit} from '@angular/core';
-import {ForgotPasswordService} from 'src/app/services/forgotPasswordService';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ForgotPasswordService } from 'src/app/services/forgotPasswordService';
+
+import { ErrorMessage } from '../../utils/constants/error/errorMessage';
 
 @Component({
   selector: 'app-change-password',

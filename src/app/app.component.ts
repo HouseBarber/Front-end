@@ -1,9 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatMenuTrigger } from '@angular/material/menu';
+import { NavigationStart, Router } from '@angular/router';
+
 import { InternationalizationService } from './components/internationalization.service';
-import {MatMenuTrigger} from "@angular/material/menu";
-import {MatDialog} from "@angular/material/dialog";
-import {NavigationStart, Router} from "@angular/router";
-import {LogoutSessionComponent} from "./components/logout-session/logout-session.component";
+import { LogoutSessionComponent } from './components/logout-session/logout-session.component';
 import RouterEvents from './utils/RouterEvents';
 
 @Component({

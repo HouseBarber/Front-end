@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ForgotPasswordService } from 'src/app/services/forgotPasswordService';
 import { isEmailValid } from 'src/app/utils/validadorEmail';
-import User from "../../models/User";
+
+import User from '../../models/User';
 
 @Component({
   selector: 'app-forgot-password',

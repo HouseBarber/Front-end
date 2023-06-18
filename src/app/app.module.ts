@@ -16,8 +16,8 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
+import { SharedModule } from './shared/shared.module';
 import { PhoneFormatDirective } from './utils/phone-format.directive';
-import { SharedModule } from "./shared/shared.module";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);

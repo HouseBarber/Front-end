@@ -1,15 +1,11 @@
-import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { NgModule } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  RouterModule,
-  RouterStateSnapshot,
-  Routes,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterModule, RouterStateSnapshot, Routes } from '@angular/router';
+
+import { TokenRecoveryGuard } from './guards/tokenRecovery.guard';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
-import { TokenRecoveryGuard } from './guards/tokenRecovery.guard';
 
 const routes: Routes = [
   {

@@ -1,12 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-import {TranslateService} from "@ngx-translate/core";
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
+
 import Constants from '../../components/constants';
-import {Permissions} from '../../models/permissions';
+import { Permissions } from '../../models/permissions';
 import User from '../../models/User';
-import {AuthService} from '../../services/authService';
-import {ToastrService} from "ngx-toastr";
+import { AuthService } from '../../services/authService';
 
 @Component({
   selector: 'app-login',
