@@ -48,14 +48,14 @@
         <mat-form-field appearance="outline">
           <mat-label>Senha</mat-label>
           <input matInput placeholder="Digite sua senha" id="password" type="password" formControlName="password">
-          <mat-icon matSuffix (click)="revealPassword()">
+          <mat-icon matSuffix (click)="revealPassword('password')">
             {{this.revealedPassword != null && !this.revealedPassword ? 'lock' : 'lock_open'}}
           </mat-icon>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Confirme sua senha</mat-label>
           <input matInput placeholder="Confirme sua senha" id="confirmPassword" type="password" formControlName="confirmPassword">
-          <mat-icon matSuffix (click)="revealConfirmPassword()">
+          <mat-icon matSuffix (click)="revealPassword('confirmPassword')">
             {{this.revealedConfirmPassword != null && !this.revealedConfirmPassword ? 'lock' : 'lock_open'}}
           </mat-icon>
         </mat-form-field>

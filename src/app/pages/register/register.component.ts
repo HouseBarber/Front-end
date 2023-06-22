@@ -146,25 +146,29 @@ export class RegisterComponent implements OnInit {
     return !returnError;
   }
 
-  revealPassword() {
-    let inputPassword = document.getElementById('password');
-    if (this.revealedPassword) {
-      inputPassword!.setAttribute('type', 'password');
-      this.revealedPassword = false;
-    } else {
-      inputPassword!.setAttribute('type', 'text');
-      this.revealedPassword = true;
+  revealPassword(id: String) {
+    if(id === 'password'){
+      let inputPassword = document.getElementById('password');
+      if (this.revealedPassword) {
+        inputPassword!.setAttribute('type', 'password');
+        this.revealedPassword = false;
+      } else {
+        inputPassword!.setAttribute('type', 'text');
+        this.revealedPassword = true;
+      }
     }
+    
+    else if(id === 'confirmPassword'){
+      let inputPassword = document.getElementById('confirmPassword');
+      if (this.revealedConfirmPassword) {
+        inputPassword!.setAttribute('type', 'password');
+        this.revealedConfirmPassword = false;
+      } else {
+        inputPassword!.setAttribute('type', 'text');
+        this.revealedConfirmPassword = true;
+      }
+    }
+
   }
 
-  revealConfirmPassword() {
-    let inputPassword = document.getElementById('confirmPassword');
-    if (this.revealedConfirmPassword) {
-      inputPassword!.setAttribute('type', 'password');
-      this.revealedConfirmPassword = false;
-    } else {
-      inputPassword!.setAttribute('type', 'text');
-      this.revealedConfirmPassword = true;
-    }
-  }
 }
