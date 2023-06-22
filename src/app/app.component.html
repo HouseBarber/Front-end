@@ -12,11 +12,18 @@
     </div>
     <span class="spacer-sidenav"></span>
     <button mat-icon-button [matMenuTriggerFor]="logout" #menuTrigger>
-      <mat-icon>exit_to_app</mat-icon>
+      <mat-icon>
+        account_circle
+      </mat-icon>
     </button>
     <mat-menu #logout="matMenu">
-      <button mat-menu-item (click)="openDialog()">
-        Sign out
+      <button class="menu-itens" mat-menu-item [routerLink]="['/perfil']">
+        <mat-icon>person</mat-icon>
+        Perfil
+      </button>
+      <button class="menu-itens" mat-menu-item (click)="openDialog()">
+        <mat-icon>logout</mat-icon>
+        Sair
       </button>
     </mat-menu>
   </mat-toolbar>
