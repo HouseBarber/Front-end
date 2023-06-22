@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
-import Constants from '../../components/constants';
+import Constants from '../../shared/messages/constants';
 import {Permissions} from '../../models/permissions';
 import User from '../../models/User';
 import {AuthService} from '../../services/authService';

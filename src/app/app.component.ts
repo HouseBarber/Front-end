@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { InternationalizationService } from './components/internationalization.service';
+import { InternationalizationService } from './shared/messages/internationalization.service';
 import {MatMenuTrigger} from "@angular/material/menu";
 import {MatDialog} from "@angular/material/dialog";
 import {NavigationStart, Router} from "@angular/router";
