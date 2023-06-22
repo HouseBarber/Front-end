@@ -17,10 +17,10 @@
       </mat-icon>
     </button>
     <mat-menu #logout="matMenu">
-      <button class="menu-itens" mat-menu-item [routerLink]="['/perfil']">
+      <a class="menu-itens" mat-menu-item [routerLink]="['/perfil']">
         <mat-icon>person</mat-icon>
         Perfil
-      </button>
+      </a>
       <button class="menu-itens" mat-menu-item (click)="openDialog()">
         <mat-icon>logout</mat-icon>
         Sair
@@ -42,7 +42,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <div>
+      <div class="background-image">
         <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>
