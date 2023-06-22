@@ -71,14 +71,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
 
-    const canRegister = this.validateRegister(
-      this.registerForm.value.username,
-      this.registerForm.value.email,
-      this.registerForm.value.telephone,
-      this.registerForm.value.role,
-      this.registerForm.value.password,
-      this.registerForm.value.confirmPassword
-    );
+    const canRegister = this.validateRegister(this.registerForm);
 
     if (!canRegister) {
       this.toastr.error("Existe informacoes a serem preenchidas.")
@@ -104,42 +97,45 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  validateRegister(username: string, email: string, telephone: string,
-                   role: string, password: string, confirmPassword: string): boolean | null {
+  validateRegister(form: FormGroup): boolean | null {
     let returnError = false;
-    if (username === null || username.length === 0) {
+    if (form.value.username === null || form.value.username.length === 0) {
       this.toastr.error('O username é obrigatório')
       returnError = true;
     }
-    if (email === null || email.length === 0) {
+    if (form.value.name === null || form.value.name.length === 0) {
+      this.toastr.error('O nome é obrigatório')
+      returnError = true;
+    }
+    if (form.value.email === null || form.value.email.length === 0) {
       this.toastr.error('O e-mail é obrigatório')
       returnError = true;
     }
-    if (!isEmailValid(email)) {
+    if (!isEmailValid(form.value.email)) {
       this.toastr.error('O e-mail é inválido')
       returnError = true;
     }
-    if (telephone === null || telephone.length === 0) {
+    if (form.value.telephone === null || form.value.telephone.length === 0) {
       this.toastr.error('O telefone é obrigatório')
       returnError = true;
     }
-    if (role === null || role.length === 0) {
+    if (form.value.role === null || form.value.role.length === 0) {
       this.toastr.error('O tipo do cadastro é obrigatório')
       returnError = true;
     }
-    if (password === null || password.length === 0) {
+    if (form.value.password === null || form.value.password.length === 0) {
       this.toastr.error('A senha é obrigatória')
       returnError = true;
     }
-    if (password.length && password.length <= 5) {
+    if (form.value.password.length && form.value.password.length <= 5) {
       this.toastr.error('A senha precisa ter pelo menos 5 digitos')
       returnError = true;
     }
-    if (password.length && password.length > 100) {
+    if (form.value.password.length && form.value.password.length > 100) {
       this.toastr.error('A senha pode ter no máximo 100 caracteres')
       returnError = true;
     }
-    if (password != confirmPassword) {
+    if (form.value.password != form.value.confirmPassword) {
       this.toastr.error('As senhas não são iguais')
       returnError = true;
     }
@@ -157,7 +153,7 @@ export class RegisterComponent implements OnInit {
         this.revealedPassword = true;
       }
     }
-    
+
     else if(id === 'confirmPassword'){
       let inputPassword = document.getElementById('confirmPassword');
       if (this.revealedConfirmPassword) {
