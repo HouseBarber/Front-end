@@ -1,5 +1,103 @@
 <div class="body">
   <mat-card>
-      <p>Teste</p>
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input matInput placeholder="Digite seu nome" formControlName="name">
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Digite seu email" type="email" formControlName="email">
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="form-field-25"  appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Digite seu username" formControlName="username">
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="form-field-25" appearance="outline">
+          <mat-label>CPF</mat-label>
+          <input matInput placeholder="Digite seu CPF" type="text" formControlName="cpf">
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="form-field-25" appearance="outline">
+          <mat-label>Telefone</mat-label>
+          <input matInput placeholder="Digite seu telefone" type="tel" formControlName="telephone" appPhoneFormat>
+          <mat-icon matSuffix>call</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="funcao form-field-25" appearance="outline">
+          <mat-label>Cadastrar-se como</mat-label>
+          <mat-select matNativeControl formControlName="role" required>
+            <mat-option *ngFor="let role of roles" [value]="role.id">
+              {{ role.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-field-25" appearance="outline">
+          <mat-label>Genêro</mat-label>
+          <input matInput placeholder="Como voce se identiica?" formControlName="gender">
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="form-field-25" appearance="outline">
+          <mat-label>Data de nascimento</mat-label>
+          <input matInput placeholder="Digite sua data de nascimento" type="date" formControlName="dateBirth">
+          <mat-icon matSuffix>event</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="form-field-25" appearance="outline">
+          <mat-label>Cep</mat-label>
+          <input matInput formControlName="cep">
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="form-field-25" appearance="outline">
+          <mat-label>Cidade</mat-label>
+          <input matInput type="text" formControlName="city">
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="form-field-25" appearance="outline">
+          <mat-label>Estado</mat-label>
+          <input matInput type="text" formControlName="state">
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Bairro</mat-label>
+          <input matInput formControlName="neighborhood">
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Rua</mat-label>
+          <input matInput type="text" formControlName="street">
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Complemento</mat-label>
+          <input matInput formControlName="complement">
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Numero</mat-label>
+          <input matInput type="text" formControlName="number">
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="textarea" appearance="outline">
+          <mat-label>Fale sobre você</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+      </div>
+      <button class="button-update" mat-raised-button color="primary" type="submit">Salvar</button>
+    </form>
   </mat-card>
 </div>

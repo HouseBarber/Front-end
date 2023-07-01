@@ -1,11 +1,53 @@
 .body{
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  background-color: #f4f4f4;
 }
 
 mat-card{
-  width: 60%;
+  width: 40%;
+}
+
+mat-card-content{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+form{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.row{
+  width: 100%;
+  justify-content: space-between;
+}
+
+mat-form-field{
+  width: 50%;
+}
+
+.textarea{
+  width: 100%;
+}
+
+mat-icon {
+  color: #344edf;
+}
+
+.button-uppdate{
+  width: 50%;
+  margin-bottom: 2rem;
+}
+
+.form-field-25{
+  width: 32%;
 }
