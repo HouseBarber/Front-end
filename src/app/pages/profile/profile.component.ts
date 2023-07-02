@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import Address from 'src/app/models/Address';
+import User from 'src/app/models/User';
 import { Role } from 'src/app/models/role';
 import { RolesService } from 'src/app/services/rolesService';
 
@@ -62,6 +64,27 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log("Enviou o form")
+    const user = new User();
+    user.username = this.updateForm.value.username;
+    user.name = this.updateForm.value.name;
+    user.email = this.updateForm.value.email;
+    user.telephone = this.updateForm.value.telephone;
+    user.password = this.updateForm.value.password;
+    user.roles = this.roles.filter(role => role.id === this.updateForm.value.role)
+    user.cnpj = "";
+    user.cpf = this.updateForm.value.cpf;
+    user.dateBirth = this.updateForm.value.dateBirth;
+    user.gender = this.updateForm.value.gender;
+    user.description = this.updateForm.value.description;
+    console.log("User:", user);
+    const address = new Address();
+    address.cep = this.updateForm.value.cep;
+    address.city = this.updateForm.value.city;
+    address.state = this.updateForm.value.state;
+    address.neighborhood = this.updateForm.value.neighborhood;
+    address.street = this.updateForm.value.street;
+    address.complement = this.updateForm.value.complement;
+    address.number = this.updateForm.value.number;
+    console.log("Address:", address);
   }
 }
