@@ -17,6 +17,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { PhoneFormatDirective } from './utils/phone-format.directive';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
+import { CadastroEstabelecimentoComponent } from './pages/cadastro-estabelecimento/cadastro-estabelecimento.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -31,6 +32,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ForgotPasswordComponent,
     ChangePasswordComponent,
     PhoneFormatDirective,
+    CadastroEstabelecimentoComponent,
   ],
   imports: [
     BrowserModule,

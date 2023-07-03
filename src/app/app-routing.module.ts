@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { TokenRecoveryGuard } from './guards/tokenRecovery.guard';
+import { CadastroEstabelecimentoComponent } from './pages/cadastro-estabelecimento/cadastro-estabelecimento.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'forgotPassword',
     component: ForgotPasswordComponent,
+  },
+  {
+    path: 'cadastroEstabelecimento',
+    component: CadastroEstabelecimentoComponent,
   },
   {
     path: 'home',
