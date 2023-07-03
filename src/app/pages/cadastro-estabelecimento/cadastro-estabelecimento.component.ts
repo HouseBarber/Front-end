@@ -41,15 +41,19 @@ export class CadastroEstabelecimentoComponent implements OnInit{
 
   initializeForms(): void {
     this.estabelecimentoForm = this.formBuilder.group({
-      username: [''],
-      cnpj: [''],
       nomeFantasia: [''],
-      contato: [''],
+      cnpj: [''],
+      cep: [''],
+      endereco: [''],
       horarioAtendimento: [''],
-      dateBirth: [''],
-      password: [''],
-      confirmPassword: [''],
-      role: [],
+      numero: [''],
+      complemento: [''],
+      estado: [''],
+      cidade: [''],
+      contato: [''],
+      horario: [''],
+      diasAtendimento: [''],
+      faturamento: [''],
     });
     this.controlForm = this.estabelecimentoForm.controls;
   }

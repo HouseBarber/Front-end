@@ -9,21 +9,13 @@
     justify-content: center;
     align-items: center;
   }
+
+
+mat-card {
+  margin-top: 2cm;
+  width: 50%;
   
-  mat-card{
-    margin-top: 1cm;
-    width: 50%;
-  }
-
-  .info{
-    width: 30%;
-    background-color: #05050583;
-  }
-
-  textarea{
-    resize: none;
-    width: 300px;
-  }
+}
 
 
   mat-card-content{
@@ -46,7 +38,8 @@
   }
   
   mat-form-field{
-    width: 50%;
+    height: 100%;
+    width: 50%; 
   }
   
   mat-icon {
