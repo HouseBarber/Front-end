@@ -13,9 +13,12 @@ import { RolesService } from 'src/app/services/rolesService';
 })
 export class ProfileComponent implements OnInit {
   updateForm!: FormGroup;
-  addressForm!: FormGroup;
   controlForm: { [key: string]: AbstractControl } = {};
   roles: Role[] = [];
+  selectedValue: string = '1';
+  changeValue(newValue: string): void {
+    this.selectedValue = newValue;
+  }
 
   constructor(
     private formBuilder: FormBuilder,

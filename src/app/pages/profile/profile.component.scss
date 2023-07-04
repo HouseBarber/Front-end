@@ -1,53 +1,94 @@
 .body{
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  background-color: #f4f4f4;
+  justify-content: center;
 }
 
 mat-card{
-  width: 50%;
-}
-
-mat-card-content{
+  width: 70%;
+  height: 90%;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 2rem;
+  flex-direction: row;
 }
 
 form{
   width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  padding: 2rem;
 }
 
-.row{
+.right-card{
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.left-card{
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.photo{
   width: 100%;
+  height: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo > img{
+  width: 50%;
+  height: 60%;
+}
+
+.input-right{
+  width: 100%;
+  display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.input-left{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 mat-form-field{
-  width: 50%;
+  margin: 10px;
+  width: 40%;
 }
 
-.textarea{
+#Estado, #Numero{
+  width: 20%;
+}
+
+.button{
+  width: 20%;
+  height: 3rem;
+  margin-right: 1rem;
+}
+
+.buttons{
   width: 100%;
+  height: 50%;
+  display: flex;
+  margin-bottom: 1rem;
+  justify-content: flex-end;
+  margin-right: 1rem;
 }
 
-mat-icon {
-  color: #344edf;
+.form-80{
+  width: 80%;
 }
 
-.button-uppdate{
-  width: 50%;
-  margin-bottom: 2rem;
-}
 
-.form-field-25{
-  width: 32%;
-}
