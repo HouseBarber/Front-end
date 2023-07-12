@@ -18,6 +18,9 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
 import { PhoneFormatDirective } from './utils/phone-format.directive';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { CadastroEstabelecimentoComponent } from './pages/cadastro-estabelecimento/cadastro-estabelecimento.component';
+import { UserEnrichComponent } from './pages/user-enrich/user-enrich.component';
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -33,6 +36,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChangePasswordComponent,
     PhoneFormatDirective,
     CadastroEstabelecimentoComponent,
+    UserEnrichComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +62,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     RouterOutlet,
     AppMaterialModule,
+    MatStepperModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

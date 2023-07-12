@@ -14,9 +14,17 @@
     <button mat-icon-button [matMenuTriggerFor]="logout" #menuTrigger>
       <mat-icon>exit_to_app</mat-icon>
     </button>
+    <button mat-icon-button [matMenuTriggerFor]="profile" #menuTrigger>
+      <mat-icon>account_circle</mat-icon>
+    </button>
     <mat-menu #logout="matMenu">
       <button mat-menu-item (click)="openDialog()">
         Sign out
+      </button>
+    </mat-menu>
+    <mat-menu #profile="matMenu">
+      <button mat-menu-item [routerLink]="['/enrich-user']">
+        Perfil
       </button>
     </mat-menu>
   </mat-toolbar>
