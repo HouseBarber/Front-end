@@ -37,7 +37,6 @@ const routes: Routes = [
   },
   {
     path: 'changePassword/:token',
-    canActivate: [TokenRecoveryGuard],
     component: ChangePasswordComponent,
   },
   {

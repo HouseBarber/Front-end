@@ -24,7 +24,7 @@ export default class Address{
     this.rua = rua;
     this.cep = cep;
     this.cidade = cidade;
-    this. estado = estado;
+    this.estado = estado;
     this.complemento = complemento;
     this.numero = numero;
   }

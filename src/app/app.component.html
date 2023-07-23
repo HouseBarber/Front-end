@@ -8,7 +8,7 @@
       <button mat-icon-button (click)="opened = !opened">
         <mat-icon>menu</mat-icon>
       </button>
-      <div class="p-top">House Barber</div>
+      <div class="p-top"></div>
     </div>
     <span class="spacer-sidenav"></span>
     <button mat-icon-button [matMenuTriggerFor]="logout" #menuTrigger>
@@ -31,6 +31,14 @@
   <mat-sidenav-container>
     <mat-sidenav [(opened)]="opened" mode="over">
       <mat-nav-list>
+        <mat-list-item>
+          <div class="d-flex" [routerLink]="['/enrich-user']">
+            <mat-icon class="text-white">account_circle</mat-icon>
+            <a class="text-white icon-texto">
+              Informações Pessoais
+            </a>
+          </div>
+        </mat-list-item>
         <mat-list-item>
           <div class="d-flex" [routerLink]="['/home']">
             <mat-icon class="text-white">home</mat-icon>
