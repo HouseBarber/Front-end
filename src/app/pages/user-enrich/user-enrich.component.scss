@@ -18,3 +18,23 @@
   max-width: 500px;
   width: 100%;
 }
+
+::ng-deep body::-webkit-scrollbar {
+  overflow:hidden;
+  display: none;
+}
+
+:host{
+  ::ng-deep{
+    .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{
+      border-color: var(--bs-red);
+    }
+    .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__leading, .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__notch, .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{
+      border-color: var(--bs-red);
+      color:var(--bs-red);
+    }
+    .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label{
+      color:var(--bs-red);
+    }
+  }
+}

@@ -106,44 +106,52 @@ export class RegisterComponent implements OnInit {
 
   validateRegister(username: string, email: string, telephone: string,
                    role: string, password: string, confirmPassword: string): boolean | null {
-    let returnError = false;
     if (username === null || username.length === 0) {
       this.toastr.error('O username é obrigatório')
-      returnError = true;
+      const returnError = true;
+      return returnError;
     }
     if (email === null || email.length === 0) {
       this.toastr.error('O e-mail é obrigatório')
-      returnError = true;
+      const returnError = true;
+      return returnError;
     }
     if (!isEmailValid(email)) {
       this.toastr.error('O e-mail é inválido')
-      returnError = true;
+      const returnError = true;
+      return returnError;
     }
     if (telephone === null || telephone.length === 0) {
       this.toastr.error('O telefone é obrigatório')
-      returnError = true;
+      const returnError = true;
+      return returnError;
     }
     if (role === null || role.length === 0) {
       this.toastr.error('O tipo do cadastro é obrigatório')
-      returnError = true;
+      const returnError = true;
+      return returnError;
     }
     if (password === null || password.length === 0) {
       this.toastr.error('A senha é obrigatória')
-      returnError = true;
+      const returnError = true;
+      return returnError;
     }
     if (password.length && password.length <= 5) {
       this.toastr.error('A senha precisa ter pelo menos 5 digitos')
-      returnError = true;
+      const returnError = true;
+      return returnError;
     }
     if (password.length && password.length > 100) {
       this.toastr.error('A senha pode ter no máximo 100 caracteres')
-      returnError = true;
+      const returnError = true;
+      return returnError;
     }
     if (password != confirmPassword) {
       this.toastr.error('As senhas não são iguais')
-      returnError = true;
+      const returnError = true;
+      return returnError;
     }
-    return !returnError;
+    return false;
   }
 
   revealPassword() {
