@@ -17,6 +17,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   exports: [
@@ -36,7 +37,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatMenuModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
-    MatChipsModule
+    MatChipsModule,
+    MatRadioModule,
   ]
 })
 export class AppMaterialModule { }

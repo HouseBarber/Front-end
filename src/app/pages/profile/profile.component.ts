@@ -9,4 +9,5 @@ export class ProfileComponent implements OnInit {
   panelOpenState = false;
 
   ngOnInit(): void {}
+  
 }
