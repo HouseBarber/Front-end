@@ -2,14 +2,16 @@
   width: 100%;
   display: flex;
   flex-direction: row;
+  height: auto;
 }
 
 .profile{
   width: 30%;
-  background-color: red;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 
 .card-profile{
@@ -63,7 +65,57 @@ mat-chip-option{
 
 .information{
   width: 70%;
-  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+.card-info{
+  width: 90%;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.row{
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-row{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.content-row > span{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-row-addres{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.title{
+  width: 100%;
+}
+
+.info-addres{
+  width: 90%;
 }
 
 
