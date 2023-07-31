@@ -1,0 +1,50 @@
+<mat-dialog-content>
+  Atualize seu perfil
+</mat-dialog-content>
+<mat-dialog-actions class="d-flex justify-content-center">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Digite seu username" formControlName="username">
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Digite seu email" type="email" formControlName="email">
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Digite seu nome" formControlName="name">
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>CPF</mat-label>
+        <input matInput placeholder="Digite seu CPF" type="text" formControlName="cpf">
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Telefone</mat-label>
+        <input matInput placeholder="Digite seu telefone" type="tel" formControlName="telephone" appPhoneFormat>
+        <mat-icon matSuffix>call</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="funcao" appearance="outline">
+        <mat-label>Cadastrar-se como</mat-label>
+        <mat-select matNativeControl formControlName="role" required>
+          <mat-option *ngFor="let role of roles" [value]="role.id">
+            {{ role.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="buttons">
+      <button class="button" mat-stroked-button color="primary" type="reset">Cancelar</button>
+      <button class="button" mat-raised-button color="primary" type="submit">Atualizar</button>
+    </div>
+  </form>
+</mat-dialog-actions>

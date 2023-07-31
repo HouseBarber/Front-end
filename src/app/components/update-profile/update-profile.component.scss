@@ -1,0 +1,32 @@
+form {
+  width: 50rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.row {
+  width: 100%;
+  justify-content: space-between;
+}
+
+mat-form-field {
+  width: 50%;
+}
+
+mat-icon {
+  color: #344edf;
+}
+
+.buttons{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.button{
+  width: 20%;
+}

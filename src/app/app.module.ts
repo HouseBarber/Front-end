@@ -18,6 +18,7 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
 import { PhoneFormatDirective } from './utils/phone-format.directive';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -33,6 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChangePasswordComponent,
     PhoneFormatDirective,
     ProfileComponent,
+    UpdateProfileComponent,
   ],
   imports: [
     BrowserModule,

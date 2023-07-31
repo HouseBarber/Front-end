@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { UpdateProfileComponent } from 'src/app/components/update-profile/update-profile.component';
 import { Role } from 'src/app/models/role';
 import { AuthService } from 'src/app/services/authService';
 import { RolesService } from 'src/app/services/rolesService';
@@ -13,60 +16,21 @@ import { RolesService } from 'src/app/services/rolesService';
 })
 export class ProfileComponent implements OnInit {
   panelOpenState = false;
-  profileForm!: FormGroup;
-  controlForm: { [key: string]: AbstractControl } = {};
-  roles: Role[] = [];
+  opened: boolean = false;
+  currentRoute: string = '';
+  @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger | undefined;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private toastr: ToastrService,
-    private router: Router,
-    private rolesService: RolesService,
-    private authService: AuthService
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.initializeForms();
-    this.popularRoles();
   }
 
-  initializeForms(): void {
-    this.profileForm = this.formBuilder.group({
-      username: [''],
-      name: [''],
-      cpf: [''],
-      cnpj: [''],
-      email: [''],
-      telephone: [''],
-      gender: [''],
-      dateBirth: [''],
-      description: [''],
-      roles: [''],
-      cep: [''],
-      city: [''],
-      state: [''],
-      neighborhood: [''],
-      street: [''],
-      number: [''],
-      complement: [''],
-    });
-    this.controlForm = this.profileForm.controls;
-  }
-
-  popularRoles(): void {
-    this.rolesService.getAllRoles().subscribe({
-      next: (response) => {
-        this.roles = response.object;
-      },
-      error: () => {
-        this.toastr.error("Erro ao buscar roles");
-      }
+  openDialog() {
+    const dialogRef = this.dialog.open(UpdateProfileComponent, {restoreFocus: false});
+    dialogRef.afterClosed().subscribe(() => {
+      this.menuTrigger!.focus()
     });
   }
-
-
-  onSubmit() {
-
-  }
-  
 }
