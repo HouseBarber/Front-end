@@ -14,7 +14,7 @@
       <div class="row">
         <mat-form-field class="col-sm-12 col-md-12 col-lg-12 field-required" appearance="outline">
           <mat-label>Username</mat-label>
-          <input matInput placeholder="Digite seu username" [formControl]="usernameControl" required>
+          <input matInput placeholder="Digite seu username" required>
           <mat-icon matSuffix>person</mat-icon>
           <mat-error *ngIf="updateForm.get('username')?.hasError('required')">
             Username é <strong>obrigatório</strong>
@@ -67,13 +67,15 @@
           </mat-error>
         </mat-form-field>
       </div>
+
         <div class="row">
           <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
             <mat-label>CEP</mat-label>
-            <input matInput placeholder="Digite sua CEP" type="text" formControlName="cep">
+            <input matInput placeholder="Digite sua CEP" (blur)="getByCep()" type="text" formControlName="cep">
             <mat-icon matSuffix>location_on</mat-icon>
           </mat-form-field>
         </div>
+      <div hidden="!findCep">
         <div class="row">
           <mat-form-field class="col-sm-12 col-md-6 col-lg-6" appearance="outline">
             <mat-label>Cidade</mat-label>
@@ -120,6 +122,12 @@
 profissão.." formControlName="aboutYou"></textarea>
           </mat-form-field>
         </div>
+      </div>
+        <div class="d-flex justify-content-end gap-2">
+          <button mat-raised-button color="gray" type="submit">Descartar Alterações</button>
+          <button mat-raised-button color="primary" type="submit">Atualizar</button>
+        </div>
+
     </form>
   </div>
 

@@ -2,6 +2,8 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatAccordion} from "@angular/material/expansion";
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {RequiredField} from "../../utils/requiredField";
+import {AuthService} from "../../services/authService";
+import {AddressService} from "../../services/addressService";
 
 @Component({
   selector: 'app-user-enrich',
@@ -16,6 +18,7 @@ export class UserEnrichComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private addressService: AddressService
   ) {
   }
 
@@ -45,11 +48,25 @@ export class UserEnrichComponent implements OnInit {
     const usernameValid = this.updateForm.get("username")?.hasError('required');
     console.log(this.updateForm.get("username")?.hasError('required'));
   }
-  get usernameControl(): FormControl {
-    return this.updateForm.get('username') as FormControl;
-  }
 
   onSubmit(): void{
 
   }
+
+  get cepController(): FormControl{
+    return this.updateForm.get("cep") as FormControl;
+  }
+
+  getByCep(): void  {
+    if(this.cepController && this.cepController.value){
+      this.addressService.getAddressByCep(this.cepController.value).subscribe(
+        next => {
+          console.log(next)
+        } ,
+        error => {
+            console.log(error);
+        }
+      );
+    }
+  };
 }
