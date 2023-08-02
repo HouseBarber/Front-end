@@ -12,7 +12,7 @@ import { RolesService } from 'src/app/services/rolesService'
   styleUrls: ['./update-profile.component.scss']
 })
 export class UpdateProfileComponent implements OnInit {
-  profileForm!: FormGroup;
+  updateForm!: FormGroup;
   controlForm: { [key: string]: AbstractControl } = {};
   roles: Role[] = [];
 
@@ -30,7 +30,7 @@ export class UpdateProfileComponent implements OnInit {
   ){}
 
   initializeForms(): void {
-    this.profileForm = this.formBuilder.group({
+    this.updateForm = this.formBuilder.group({
       username: [''],
       name: [''],
       cpf: [''],
@@ -49,7 +49,7 @@ export class UpdateProfileComponent implements OnInit {
       number: [''],
       complement: [''],
     });
-    this.controlForm = this.profileForm.controls;
+    this.controlForm = this.updateForm.controls;
   }
 
   popularRoles(): void {
@@ -64,6 +64,7 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log("enviou o formulario")
+    console.log(this.updateForm.value);
   }
+  
 }
