@@ -55,7 +55,9 @@ export class UpdateProfileComponent implements OnInit {
   popularRoles(): void {
     this.rolesService.getAllRoles().subscribe({
       next: (response) => {
-        this.roles = response.object;
+        if (response.length > 0) {
+          this.roles = response;
+        }        
       },
       error: () => {
         this.toastr.error("Erro ao buscar roles");

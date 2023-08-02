@@ -1,65 +1,69 @@
-<mat-dialog-content>
-  Atualize seu perfil
-</mat-dialog-content>
-<mat-dialog-actions class="d-flex justify-content-center">
-  <form action="" [formGroup]="updateForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-      <mat-form-field class="col-sm-12 col-md-12 col-lg-12 field-required" appearance="outline">
-        <mat-label>Username</mat-label>
-        <input matInput placeholder="Digite seu username" required>
-        <mat-icon matSuffix>person</mat-icon>
-        <mat-error *ngIf="updateForm.get('username')?.hasError('required')">
-          Username é <strong>obrigatório</strong>
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
-        <mat-label>Data de Nascimento</mat-label>
-        <input matInput placeholder="Digite sua data de nascimento" type="date" formControlName="dateBirth">
-        <mat-icon matSuffix>calendar_today</mat-icon>
-        <mat-error *ngIf="updateForm.get('dateBirth')?.hasError('required')">
-          Data de nascimento é <strong>obrigatório</strong>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
-        <mat-label>CPF/CNPJ</mat-label>
-        <input matInput placeholder="Digite seu CPF" type="text" formControlName="cpf">
-        <mat-icon matSuffix>contact_page</mat-icon>
-        <mat-error *ngIf="updateForm.get('cpf')?.hasError('required')">
-          CPF/CNPJ é <strong>obrigatório</strong>
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Digite seu email" type="email" formControlName="email">
-        <mat-icon matSuffix>email</mat-icon>
-        <mat-error *ngIf="updateForm.get('email')?.hasError('email') && !updateForm.get('email')?.hasError('required')">
-          Por favor um email válido
-        </mat-error>
-        <mat-error *ngIf="updateForm.get('email')?.hasError('required')">
-          Email é <strong>obrigatório</strong>
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field class="col-sm-6 col-lg-6" appearance="outline">
-        <mat-label>Genero</mat-label>
-        <input matInput placeholder="Escolha seu Genero" formControlName="gender">
-        <mat-icon matSuffix>gender</mat-icon>
-      </mat-form-field>
-      <mat-form-field class="col-sm-6 col-lg-6" appearance="outline">
-        <mat-label>Telefone</mat-label>
-        <input matInput placeholder="Escolha seu Telefone" type="text" formControlName="telephone" appPhoneFormat
-          required>
-        <mat-icon matSuffix>phone</mat-icon>
-        <mat-error *ngIf="updateForm.get('telephone')?.hasError('required')">
-          Telefone é <strong>obrigatório</strong>
-        </mat-error>
-      </mat-form-field>
-    </div>
+<div style="height: 100vh;">
+  <mat-dialog-content>
+    Atualize seu perfil
+  </mat-dialog-content>
+
+
+  <mat-dialog-actions class="d-flex justify-content-center update_form">
+    <form action="" [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <mat-form-field class="col-sm-12 col-md-12 col-lg-12 field-required" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Digite seu username" required>
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="updateForm.get('username')?.hasError('required')">
+            Username é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
+          <mat-label>Data de Nascimento</mat-label>
+          <input matInput placeholder="Digite sua data de nascimento" type="date" formControlName="dateBirth">
+          <mat-icon matSuffix>calendar_today</mat-icon>
+          <mat-error *ngIf="updateForm.get('dateBirth')?.hasError('required')">
+            Data de nascimento é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
+          <mat-label>CPF/CNPJ</mat-label>
+          <input matInput placeholder="Digite seu CPF" type="text" formControlName="cpf">
+          <mat-icon matSuffix>contact_page</mat-icon>
+          <mat-error *ngIf="updateForm.get('cpf')?.hasError('required')">
+            CPF/CNPJ é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Digite seu email" type="email" formControlName="email">
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error
+            *ngIf="updateForm.get('email')?.hasError('email') && !updateForm.get('email')?.hasError('required')">
+            Por favor um email válido
+          </mat-error>
+          <mat-error *ngIf="updateForm.get('email')?.hasError('required')">
+            Email é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-sm-6 col-lg-6" appearance="outline">
+          <mat-label>Genero</mat-label>
+          <input matInput placeholder="Escolha seu Genero" formControlName="gender">
+          <mat-icon matSuffix>gender</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="col-sm-6 col-lg-6" appearance="outline">
+          <mat-label>Telefone</mat-label>
+          <input matInput placeholder="Escolha seu Telefone" type="text" formControlName="telephone" appPhoneFormat
+            required>
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-error *ngIf="updateForm.get('telephone')?.hasError('required')">
+            Telefone é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
 
       <div class="row">
         <mat-form-field class="col-sm-12 col-md-12 col-lg-4" appearance="outline">
@@ -111,13 +115,17 @@
         <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
           <mat-label>Sobre você</mat-label>
           <textarea matInput placeholder="Descreva suas experiências e formação, estilo e abordagem, avaliações ou motivação pela
-profissão.." formControlName="aboutYou"></textarea>
+    profissão.." formControlName="aboutYou"></textarea>
         </mat-form-field>
       </div>
-    <div class="d-flex justify-content-end gap-2">
-      <button mat-raised-button color="gray" type="reset">Descartar Alterações</button>
-      <button mat-raised-button color="primary" type="submit">Atualizar</button>
-    </div>
 
-  </form>
-</mat-dialog-actions>
+
+    </form>
+  </mat-dialog-actions>
+
+
+  <div class="d-flex justify-content-around" style="margin-top: 2rem;">
+    <button mat-raised-button color="gray" type="reset">Descartar Alterações</button>
+    <button mat-raised-button color="primary" type="submit">Atualizar</button>
+  </div>
+</div>

@@ -16,8 +16,8 @@ export class RolesService {
 
   constructor(private http: HttpClient) {}
 
-  getAllRoles(): Observable<any> {
-    return this.http.get<any>(
+  getAllRoles(): Observable<Role[]> {
+    return this.http.get<Role[]>(
       `${environment.api}${this.path}`
     );
   }

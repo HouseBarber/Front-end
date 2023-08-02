@@ -16,9 +16,7 @@ export default class User extends Auditable {
   gender?: string;
   description?: string;
   roles?: Role[];
-  gender?: string;
   dateBirth?: Date;
-  description?: string;
 
   address?: Address;
 
@@ -63,7 +61,6 @@ export default class User extends Auditable {
     this.gender = gender;
     this.dateBirth = dateBirth;
     this.description = description;
-    this.address = address;
     this.description = description;
     this.gender = gender;
 
