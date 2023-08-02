@@ -1,6 +1,7 @@
 
 import {Role} from "./role";
 import Auditable from './auditable';
+import Address from "./address";
 
 export default class User extends Auditable {
 
@@ -12,11 +13,14 @@ export default class User extends Auditable {
   telephone?: string;
   username?: string;
   password?: string;
+  gender?: string;
+  description?: string;
   roles?: Role[];
   gender?: string;
   dateBirth?: Date;
   description?: string;
 
+  address?: Address;
 
   // Auditable Properties
   override active?: boolean;
@@ -59,6 +63,10 @@ export default class User extends Auditable {
     this.gender = gender;
     this.dateBirth = dateBirth;
     this.description = description;
+    this.address = address;
+    this.description = description;
+    this.gender = gender;
+
 
     // Auditable Properties
     this.active = active;

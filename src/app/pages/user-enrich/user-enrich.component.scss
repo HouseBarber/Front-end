@@ -1,0 +1,26 @@
+.header-title{
+  height:100px;
+}
+
+.icon-user{
+  height: 100%;
+  width: 100%;
+  font-size: 5em;
+}
+
+.edit{
+  color: rgba(0, 0, 0, 0.54);
+  cursor:pointer;
+}
+
+.text-area {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+::ng-deep body::-webkit-scrollbar {
+  overflow:hidden;
+  display: none;
+}
+

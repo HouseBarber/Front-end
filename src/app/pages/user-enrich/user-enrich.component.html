@@ -1,0 +1,134 @@
+<div class="body">
+  <div class="container">
+    <mat-card-header class="d-flex text-center justify-content-center align-items-center h3 header-title">
+      Informações Pessoais
+    </mat-card-header>
+    <mat-panel-description class="d-flex text-justify justify-content-center">
+      Você pode deixar algumas dessas informações, como detalhes de contato, visíveis
+      para outras pessoas de modo a facilitar o contato delas com você. Você também pode
+      ver um resumo dos seu perfil.
+    </mat-panel-description>
+    <mat-icon matSuffix class="d-flex text-center justify-content-center icon-user">account_circle</mat-icon>
+    <div class="d-flex text-justify justify-content-center edit">Editar</div>
+    <form action="" [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <mat-form-field class="col-sm-12 col-md-12 col-lg-12 field-required" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Digite seu username" required>
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="updateForm.get('username')?.hasError('required')">
+            Username é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-sm-12 col-md-6 col-lg-6" appearance="outline">
+          <mat-label>Data de Nascimento</mat-label>
+          <input matInput placeholder="Digite sua data de nascimento" type="date" formControlName="dateBirth">
+          <mat-icon matSuffix></mat-icon>
+          <mat-error *ngIf="updateForm.get('dateBirth')?.hasError('required')">
+            Data de nascimento é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-sm-12 col-md-6 col-lg-6" appearance="outline">
+          <mat-label>CPF/CNPJ</mat-label>
+          <input matInput placeholder="Digite seu CPF" type="text" formControlName="cpf">
+          <mat-icon matSuffix>contact_page</mat-icon>
+          <mat-error *ngIf="updateForm.get('cpf')?.hasError('required')">
+            CPF/CNPJ é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Digite seu email" type="email" formControlName="email">
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="updateForm.get('email')?.hasError('email') && !updateForm.get('email')?.hasError('required')">
+            Por favor um email válido
+          </mat-error>
+          <mat-error *ngIf="updateForm.get('email')?.hasError('required')">
+            Email é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-sm-12 col-lg-6" appearance="outline">
+          <mat-label>Genero</mat-label>
+          <input matInput placeholder="Escolha seu Genero" type="genero" formControlName="gender">
+          <mat-icon matSuffix>gender</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="col-sm-12 col-lg-6" appearance="outline">
+          <mat-label>Telefone</mat-label>
+          <input matInput placeholder="Escolha seu Telefone" type="text" formControlName="telephone" appPhoneFormat required>
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-error *ngIf="updateForm.get('telephone')?.hasError('required')" >
+            Telefone é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+        <div class="row">
+          <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
+            <mat-label>CEP</mat-label>
+            <input matInput placeholder="Digite sua CEP" (blur)="getByCep()" type="text" formControlName="cep">
+            <mat-icon matSuffix>location_on</mat-icon>
+          </mat-form-field>
+        </div>
+      <div hidden="!findCep">
+        <div class="row">
+          <mat-form-field class="col-sm-12 col-md-6 col-lg-6" appearance="outline">
+            <mat-label>Cidade</mat-label>
+            <input matInput placeholder="Digite sua Cidade" type="text" formControlName="city">
+            <mat-icon matSuffix>location_city</mat-icon>
+          </mat-form-field>
+          <mat-form-field class="col-sm-12 col-md-6 col-lg-6" appearance="outline">
+            <mat-label>Estado</mat-label>
+            <input matInput placeholder="Digite seu Estado" type="text" formControlName="state">
+            <mat-icon matSuffix>flag</mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col-sm-12 col-md-6 col-lg-6" appearance="outline">
+            <mat-label>Rua</mat-label>
+            <input matInput placeholder="Digite seu Rua" type="text" formControlName="street">
+            <mat-icon matSuffix>edit_road</mat-icon>
+          </mat-form-field>
+          <mat-form-field class="col-sm-12 col-md-6 col-lg-6" appearance="outline">
+            <mat-label>Número</mat-label>
+            <input matInput placeholder="Digite seu Número" type="text" formControlName="number">
+            <mat-icon matSuffix>home</mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
+            <mat-label>Complemento</mat-label>
+            <input matInput placeholder="Digite seu Complemento" type="text" formControlName="complement">
+            <mat-icon matSuffix>info</mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
+            <mat-label>Especialidades</mat-label>
+            <input matInput placeholder="Digite seu suas especialidades" type="text" formControlName="specialties">
+            <mat-icon matSuffix>info</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
+            <mat-label>Sobre você</mat-label>
+            <textarea matInput placeholder="Descreva suas experiências e formação, estilo e abordagem, avaliações ou motivação pela
+profissão.." formControlName="aboutYou"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+        <div class="d-flex justify-content-end gap-2">
+          <button mat-raised-button color="gray" type="submit">Descartar Alterações</button>
+          <button mat-raised-button color="primary" type="submit">Atualizar</button>
+        </div>
+
+    </form>
+  </div>
+
+</div>
