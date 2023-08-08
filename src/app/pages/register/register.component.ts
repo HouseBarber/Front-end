@@ -102,8 +102,7 @@ export class RegisterComponent implements OnInit {
     let returnError = false;
     if (form.value.username === null || form.value.username.length === 0) {
       this.toastr.error('O username é obrigatório')
-      const returnError = true;
-      return returnError;
+      returnError = true;
     }
     if (form.value.name === null || form.value.name.length === 0) {
       this.toastr.error('O nome é obrigatório')
@@ -111,45 +110,37 @@ export class RegisterComponent implements OnInit {
     }
     if (form.value.email === null || form.value.email.length === 0) {
       this.toastr.error('O e-mail é obrigatório')
-      const returnError = true;
-      return returnError;
+      returnError = true;
     }
     if (!isEmailValid(form.value.email)) {
       this.toastr.error('O e-mail é inválido')
-      const returnError = true;
-      return returnError;
+      returnError = true;
     }
     if (form.value.telephone === null || form.value.telephone.length === 0) {
       this.toastr.error('O telefone é obrigatório')
-      const returnError = true;
-      return returnError;
+      returnError = true;
     }
     if (form.value.role === null || form.value.role.length === 0) {
       this.toastr.error('O tipo do cadastro é obrigatório')
-      const returnError = true;
-      return returnError;
+      returnError = true;
     }
     if (form.value.password === null || form.value.password.length === 0) {
       this.toastr.error('A senha é obrigatória')
-      const returnError = true;
-      return returnError;
+      returnError = true;
     }
     if (form.value.password.length && form.value.password.length <= 5) {
       this.toastr.error('A senha precisa ter pelo menos 5 digitos')
-      const returnError = true;
-      return returnError;
+      returnError = true;
     }
     if (form.value.password.length && form.value.password.length > 100) {
       this.toastr.error('A senha pode ter no máximo 100 caracteres')
-      const returnError = true;
-      return returnError;
+      returnError = true;
     }
     if (form.value.password != form.value.confirmPassword) {
       this.toastr.error('As senhas não são iguais')
-      const returnError = true;
-      return returnError;
+      returnError = true;
     }
-    return false;
+    return !returnError;
   }
 
   revealPassword(id: String) {

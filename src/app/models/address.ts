@@ -1,5 +1,3 @@
-
-
 export default class Address{
  rua?: string;
  cep?: string;
@@ -8,9 +6,6 @@ export default class Address{
  complemento?: string;
  numero?: string;
 
-
-
-
   constructor(
     rua?: string,
     cep?: string,
@@ -18,8 +13,6 @@ export default class Address{
     estado?: string,
     complemento?: string,
     numero?: string,
-
-
   ) {
     this.rua = rua;
     this.cep = cep;

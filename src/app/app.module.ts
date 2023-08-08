@@ -20,8 +20,6 @@ import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 import { CadastroEstabelecimentoComponent } from './pages/cadastro-estabelecimento/cadastro-estabelecimento.component';
-import { MatStepperModule } from "@angular/material/stepper";
-import { MatExpansionModule } from "@angular/material/expansion";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -64,8 +62,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     RouterOutlet,
     AppMaterialModule,
-    MatStepperModule,
-    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

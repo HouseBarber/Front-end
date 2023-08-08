@@ -64,7 +64,6 @@ export default class User extends Auditable {
     this.description = description;
     this.gender = gender;
 
-
     // Auditable Properties
     this.active = active;
     this.createdBy = createdBy;

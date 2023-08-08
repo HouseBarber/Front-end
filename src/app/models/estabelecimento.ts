@@ -1,6 +1,5 @@
 import Address from "./address";
 
-
 export default class Estabelecimento{
   endereco?: Address;
   nomeFantasia?: string;
@@ -18,8 +17,6 @@ export default class Estabelecimento{
     horario?: string,
     diasAtendimento?: string,
     foto?: string,
-
-
   ) {
     this.endereco = endereco;
     this.nomeFantasia = nomeFantasia;

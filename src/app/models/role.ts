@@ -5,7 +5,6 @@ export class Role {
   name?: string;
   role?: string;
 
-
   constructor(
     id?: number,
     description?: string,
