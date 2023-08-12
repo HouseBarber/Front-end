@@ -1,79 +1,79 @@
-<div class="body">
+<div class="body" style="height: 100vh;">
   <mat-card>
-    <mat-card-content>
+    <mat-card-content fxLayout="column" fxLayout.sm="row">
       <h3>Estabelecimento</h3>
-      <button mat-raised-button color="primary" (click)="Edit()">Editar</button>
+      <button mat-raised-button color="primary" [routerLink]="['/login']">Voltar</button>
     </mat-card-content>
-    <form [formGroup]="estabelecimentoForm" (ngSubmit)="onSubmit()">
-      <div class="row">
-        <mat-form-field appearance="outline">
-          <mat-label>Nome Fantasia</mat-label>
-          <input matInput placeholder="Digite o nome do Estabelecimento" formControlName="nomeFantasia">
-          <mat-icon matSuffix>business</mat-icon>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>CNPJ</mat-label>
-          <input matInput placeholder="CNPJ" type="text" formControlName="cnpj">
-          <mat-icon matSuffix>business</mat-icon>
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field appearance="outline">
-          <mat-label>CEP</mat-label>
-          <input matInput placeholder="Ex: 87711-280" maxlength="9" formControlName="cep">
-          <mat-icon matSuffix>location_on</mat-icon>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Endereço</mat-label>
-          <input matInput placeholder="Endereço" formControlName="endereco">
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field appearance="outline">
-          <mat-label>Número</mat-label>
-          <input matInput placeholder="Ex: 158" formControlName="numero">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Complemento</mat-label>
-          <input matInput placeholder="Ex: Apt 18A" formControlName="complemento">
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field appearance="outline">
-          <mat-label>Estado</mat-label>
-          <input matInput placeholder="Estado" formControlName="estado">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Cidade</mat-label>
-          <input matInput placeholder="Cidade" formControlName="cidade">
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field appearance="outline">
-          <mat-label>Contato</mat-label>
-          <input matInput placeholder="Contato" type="tel" formControlName="contato" appPhoneFormat>
-          <mat-icon matSuffix>call</mat-icon>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Horário de Atendimento</mat-label>
-          <input matInput placeholder="Ex: 08:00 às 18:00" formControlName="horario">
-          <mat-icon matSuffix>access_time</mat-icon>
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field appearance="outline">
-          <mat-label>Dias de Atendimento</mat-label>
-          <input matInput placeholder="Ex: Seg, Ter, Qua..." type="text" formControlName="diasAtendimento">
-          <mat-icon matSuffix>calendar_today</mat-icon>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Faturamento</mat-label>
-          <input matInput placeholder="Ex: R$ 100,00" type="text" formControlName="faturamento">
-          <mat-icon matSuffix>attach_money</mat-icon>
-        </mat-form-field>
-      </div>
-      <button class="button-cadastrar" mat-raised-button color="primary" type="submit">Atualizar</button>
-    </form>
+
+    <mat-dialog-actions class="d-flex justify-content-center update_form">
+      <form [formGroup]="estabelecimentoForm" (ngSubmit)="onSubmit()">
+
+          <div class="row">
+            <mat-form-field class="col-sm-6 col-md-6 col-lg-6 field-required" appearance="outline">
+              <mat-label>Nome do Estabelecimento</mat-label>
+              <input matInput placeholder="Digite o nome do estabelecimento" required formControlName="nomeFantasia">
+              <mat-icon matSuffix>business</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
+              <mat-label>CPF/CNPJ</mat-label>
+              <input matInput placeholder="Digite seu CPF" type="text" formControlName="cnpj">
+              <mat-icon matSuffix>contact_page</mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Digite seu email" type="email" formControlName="email">
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
+              <mat-label>Contato</mat-label>
+              <input matInput placeholder="Contato" type="tel" formControlName="contact">
+              <mat-icon matSuffix>call</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field class="col-sm-12 col-md-12 col-lg-4" appearance="outline">
+              <mat-label>CEP</mat-label>
+              <input matInput placeholder="Digite sua CEP" type="text" formControlName="cep">
+              <mat-icon matSuffix>location_on</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="col-sm-6 col-md-6 col-lg-4" appearance="outline">
+              <mat-label>Cidade</mat-label>
+              <input matInput placeholder="Digite sua Cidade" type="text" formControlName="city">
+              <mat-icon matSuffix>location_city</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="col-sm-6 col-md-6 col-lg-4" appearance="outline">
+              <mat-label>Estado</mat-label>
+              <input matInput placeholder="Digite seu Estado" type="text" formControlName="state">
+              <mat-icon matSuffix>flag</mat-icon>
+            </mat-form-field>
+
+          </div>
+          <div class="row">
+            <mat-form-field class="col-sm-12 col-md-6 col-lg-4" appearance="outline">
+              <mat-label>Rua</mat-label>
+              <input matInput placeholder="Digite seu Rua" type="text" formControlName="street">
+              <mat-icon matSuffix>edit_road</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="col-sm-12 col-md-6 col-lg-4" appearance="outline">
+              <mat-label>Número</mat-label>
+              <input matInput placeholder="Digite seu Número" type="text" formControlName="number">
+              <mat-icon matSuffix>home</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="col-sm-12 col-md-12 col-lg-4" appearance="outline">
+              <mat-label>Complemento</mat-label>
+              <input matInput placeholder="Digite seu Complemento" type="text" formControlName="complement">
+              <mat-icon matSuffix>info</mat-icon>
+            </mat-form-field>
+          </div>
+        <div class="botao">
+          <button class="button-cadastrar" mat-raised-button color="primary" type="submit">Salvar</button>
+        </div>
+      </form>
+
+    </mat-dialog-actions>
+
   </mat-card>
-  </div>
-  
+</div>

@@ -4,7 +4,9 @@ import Endereco from "./endereco";
 export default class Estabelecimento{
   endereco?: Endereco;
   nomeFantasia?: string;
-  contato?: string;
+  cnpj?: string;
+  email?: string;
+  contact?: string;
   faturamento?: string;
   horario?: string;
   diasAtendimento?: string;
@@ -12,8 +14,10 @@ export default class Estabelecimento{
 
   constructor(
     endereco?: Endereco,
+    cnpj?: string,
+    email?: string,
     nomeFantasia?: string,
-    contato?: string,
+    contact?: string,
     faturamento?: string,
     horario?: string,
     diasAtendimento?: string,
@@ -22,8 +26,10 @@ export default class Estabelecimento{
     
   ) {
     this.endereco = endereco;
+    this.cnpj = cnpj;
+    this.email = email;
     this.nomeFantasia = nomeFantasia;
-    this.contato = contato;
+    this.contact = contact;
     this.faturamento =  faturamento;
     this.horario = horario;
     this.diasAtendimento = diasAtendimento;
