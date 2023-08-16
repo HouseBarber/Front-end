@@ -3,36 +3,36 @@ import Endereco from "./endereco";
 
 export default class Estabelecimento{
   endereco?: Endereco;
-  nomeFantasia?: string;
+  name?: string;
   cnpj?: string;
   email?: string;
   contact?: string;
-  faturamento?: string;
-  horario?: string;
-  diasAtendimento?: string;
-  foto?: string;
+  billing?: string;
+  time?: string;
+  daysOpens?: string;
+  photos?: string;
 
   constructor(
     endereco?: Endereco,
     cnpj?: string,
     email?: string,
-    nomeFantasia?: string,
+    name?: string,
     contact?: string,
-    faturamento?: string,
-    horario?: string,
-    diasAtendimento?: string,
-    foto?: string,
+    billing?: string,
+    time?: string,
+    daysOpens?: string,
+    photos?: string,
     
     
   ) {
     this.endereco = endereco;
     this.cnpj = cnpj;
     this.email = email;
-    this.nomeFantasia = nomeFantasia;
+    this.name = name;
     this.contact = contact;
-    this.faturamento =  faturamento;
-    this.horario = horario;
-    this.diasAtendimento = diasAtendimento;
-    this.foto = foto;
+    this.billing = billing;
+    this.time = time;
+    this.daysOpens = daysOpens;
+    this.photos = photos;
   }
 }
