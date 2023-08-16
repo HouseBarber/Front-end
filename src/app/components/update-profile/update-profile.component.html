@@ -7,7 +7,7 @@
       <div class="row">
         <mat-form-field class="col-sm-12 col-md-12 col-lg-12 field-required" appearance="outline">
           <mat-label>Username</mat-label>
-          <input matInput placeholder="Digite seu username" required>
+          <input matInput placeholder="Digite seu username" required formControlName="username">
           <mat-icon matSuffix>person</mat-icon>
           <mat-error *ngIf="updateForm.get('username')?.hasError('required')">
             Username é <strong>obrigatório</strong>
