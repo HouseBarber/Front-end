@@ -22,4 +22,7 @@ export class UserService {
     return this.http.post(`${environment.api}/v1/auth/login`, user);
   }
 
+  getUserById(userId: number): Observable<User> {
+    return this.http.get<User>(`${environment.api}${this.path}/${userId}`);
+  }
 }

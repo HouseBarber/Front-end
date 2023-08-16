@@ -1,9 +1,7 @@
-<div style="height: 100vh;">
+<div style="min-height: 70vh;">
   <mat-dialog-content>
-    Atualize seu perfil
+    <h3>Atualize seu perfil</h3>
   </mat-dialog-content>
-
-
   <mat-dialog-actions class="d-flex justify-content-center update_form">
     <form action="" [formGroup]="updateForm" (ngSubmit)="onSubmit()">
       <div class="row">
@@ -64,7 +62,6 @@
           </mat-error>
         </mat-form-field>
       </div>
-
       <div class="row">
         <mat-form-field class="col-sm-12 col-md-12 col-lg-4" appearance="outline">
           <mat-label>CEP</mat-label>
@@ -81,7 +78,6 @@
           <input matInput placeholder="Digite seu Estado" type="text" formControlName="state">
           <mat-icon matSuffix>flag</mat-icon>
         </mat-form-field>
-
       </div>
       <div class="row">
         <mat-form-field class="col-sm-12 col-md-6 col-lg-4" appearance="outline">
@@ -101,7 +97,6 @@
         </mat-form-field>
       </div>
       <div class="row">
-
       </div>
       <div class="row">
         <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
@@ -110,7 +105,6 @@
           <mat-icon matSuffix>info</mat-icon>
         </mat-form-field>
       </div>
-
       <div class="row">
         <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
           <mat-label>Sobre você</mat-label>
@@ -118,12 +112,8 @@
     profissão.." formControlName="aboutYou"></textarea>
         </mat-form-field>
       </div>
-
-
     </form>
   </mat-dialog-actions>
-
-
   <div class="d-flex justify-content-around" style="margin-top: 2rem;">
     <button mat-button color="primary" type="reset">Descartar Alterações</button>
     <button mat-raised-button color="primary" type="submit">Atualizar</button>

@@ -1,13 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { UpdateProfileComponent } from 'src/app/components/update-profile/update-profile.component';
-import { Role } from 'src/app/models/role';
-import { AuthService } from 'src/app/services/authService';
-import { RolesService } from 'src/app/services/rolesService';
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +15,7 @@ export class ProfileComponent implements OnInit {
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger | undefined;
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {

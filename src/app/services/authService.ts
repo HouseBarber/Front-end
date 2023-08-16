@@ -22,20 +22,22 @@ export class AuthService {
     return localStorage.getItem(this.token_byCrypt);
   }
 
-  getUserByToken() {
+  getUserByToken(): User | null {
     const user: User = new User();
     const infoUserLocalStorage = this.getUserTokenInfo();
-    const infoUserObject = JSON.parse(infoUserLocalStorage!);
-    var decoded: any;
-    if (infoUserLocalStorage != null) {
-      decoded = jwt_decode(infoUserLocalStorage);
+
+    if (infoUserLocalStorage) {
+      const decoded: any = jwt_decode(infoUserLocalStorage);
+
       user.id = decoded.id;
       user.username = decoded.username;
       user.email = decoded.email;
       user.name = decoded.name;
-      user.roles = infoUserObject.roles;
+      user.roles = decoded.roles; 
+
       return user;
     }
+
     return null;
   }
 
@@ -52,7 +54,7 @@ export class AuthService {
     window.location.href = '/login';
   }
 
-  signUp(user: User): Observable<any> {
+  signUp(user: any): Observable<any> {
     return this.http.post(`${environment.api}${this.path}/register`, user);
   }
 }

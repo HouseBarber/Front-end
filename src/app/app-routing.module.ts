@@ -35,6 +35,10 @@ const routes: Routes = [
     component: ProfileComponent,
   },
   {
+    path: 'profile',
+    component: ProfileComponent,
+  },
+  {
     path: 'register',
     component: RegisterComponent,
   },
