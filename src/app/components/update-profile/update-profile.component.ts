@@ -1,3 +1,4 @@
+import { ProfileComponent } from './../../pages/profile/profile.component';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -79,8 +80,6 @@ export class UpdateProfileComponent implements OnInit {
       street: [''],
       number: [''],
       complement: [''],
-      specialties: [''],
-      aboutYou: ['']
     });
     this.controlForm = this.updateForm.controls;
   }
@@ -98,8 +97,21 @@ export class UpdateProfileComponent implements OnInit {
     });
   }
 
-  onSubmit(){
-    console.log(this.updateForm.value);
+  onSubmit() {
+    if (this.currentUser) {
+      const updatedUser: User = { ...this.currentUser, ...this.updateForm.value };
+      this.userService.updateUser(this.currentUser.id!, updatedUser).subscribe(
+        (response) => {
+          console.log('User updated:', response);
+          console.log(updatedUser)
+          this.router.navigateByUrl('/home')
+          // Você pode fazer mais ações aqui, como mostrar uma mensagem de sucesso.
+        },
+        (error) => {
+          console.error('Error updating user:', error);
+        }
+      );
+    }
   }
 
 }

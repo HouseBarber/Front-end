@@ -1,9 +1,9 @@
-<div style="min-height: 70vh;">
+<div class="update-profile-dialog">
   <mat-dialog-content>
-    <h3>Atualize seu perfil</h3>
+    <h3 class="dialog-title">Atualize seu perfil</h3>
   </mat-dialog-content>
-  <mat-dialog-actions class="d-flex justify-content-center update_form">
-    <form action="" [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-actions class="d-flex justify-content-center update-form">
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <mat-form-field class="col-sm-12 col-md-12 col-lg-12 field-required" appearance="outline">
           <mat-label>Username</mat-label>
@@ -100,21 +100,14 @@
       </div>
       <div class="row">
         <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
-          <mat-label>Especialidades</mat-label>
-          <input matInput placeholder="Digite seu suas especialidades" type="text" formControlName="specialties">
-          <mat-icon matSuffix>info</mat-icon>
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
           <mat-label>Sobre você</mat-label>
           <textarea matInput placeholder="Descreva suas experiências e formação, estilo e abordagem, avaliações ou motivação pela
-    profissão.." formControlName="aboutYou"></textarea>
+    profissão.." formControlName="description"></textarea>
         </mat-form-field>
       </div>
     </form>
   </mat-dialog-actions>
-  <div class="d-flex justify-content-around" style="margin-top: 2rem;">
+  <div class="d-flex justify-content-around buttons-container">
     <button mat-button color="primary" type="reset">Descartar Alterações</button>
     <button mat-raised-button color="primary" type="submit">Atualizar</button>
   </div>

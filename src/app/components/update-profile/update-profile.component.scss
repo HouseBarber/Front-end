@@ -1,37 +1,31 @@
-form {
-  width: 50rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+.update-profile-dialog {
+  min-height: 50vh;
+  padding: 1rem;
+  overflow-x: hidden;
+}
+
+.dialog-title {
+  margin-bottom: 1rem;
+}
+
+.update-form {
+  overflow-y: auto;
+  max-height: 50vh;
+}
+
+.buttons-container {
+  margin-top: 2rem;
 }
 
 .row {
   width: 100%;
-  justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
-
-mat-icon {
-  color: #344edf;
+.mat-error {
+  color: red;
 }
 
-.buttons{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+textarea[matInput] {
+  resize: vertical;
 }
-
-.button{
-  width: 20%;
-}
-
-.update_form{
-    overflow-x: auto;
-    height: 80vh;
-    margin-bottom: 1rem;
-}
-
-
