@@ -5,11 +5,11 @@
   <div class="profile-header">
     <div class="profile-picInfo">
       <div class="profile-picture">
-        <img src="https://hinova.com.br/wp-content/uploads/2017/07/Barbearia-1024x585.jpg" alt="Foto de Perfil" class="profile-image">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Foto de Perfil" class="profile-image">
       </div>
-      <div class="profile-info">
-        <h1 class="profile-name">Nome do usuario</h1>
-        <p class="profile-bio">joilejunior2@gmail.com</p>
+      <div class="profile-info" *ngIf="currentUser">
+        <h1 class="profile-name">{{ currentUser.name }}</h1>
+        <p class="profile-bio">{{ currentUser.email }}</p>
         <div class="profile-stats">
           <div class="stat">
             <span class="stat-value">0 </span>

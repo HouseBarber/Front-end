@@ -3,7 +3,7 @@
   <router-outlet></router-outlet>
 </ng-template>
 <ng-template #everyComponent>
-  <mat-toolbar color="primary" *ngIf="!routeLogin">
+  <mat-toolbar color="primary" *ngIf="!routeLogin" class="fixed-toolbar">
     <div class="d-flex">
       <button mat-icon-button (click)="opened = !opened">
         <mat-icon>menu</mat-icon>
