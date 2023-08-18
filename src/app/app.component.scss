@@ -1,8 +1,13 @@
 @import "src/assets/scss/colors.scss";
 
 mat-sidenav-container {
-  height: calc(205vh - 112vh);
+  min-height: 100vh;
 }
+
+mat-sidenav-content{
+  background-color: #efefef;
+}
+
 mat-sidenav {
   width: 14rem;
   background-color: rgba(45, 44, 44, 0.6);

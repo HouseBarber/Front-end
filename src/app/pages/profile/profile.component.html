@@ -1,119 +1,43 @@
-<div class="full-width">
-  <div class="profile">
-    <mat-card class="card-profile">
-      <div class="profile-image">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvjri0cgNoRSFSRqYxKOKHZ_aGAFWughbhUw&usqp=CAU" alt="profile pic">
-      </div>
-      <h3>Username</h3>
-      <div class="description">
-        <h5>Descrição</h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Ratione, rem cum, nam dolor qui eaque, commodi veniam nobis veritatis mollitia distinctio sequi dolore!
-          Voluptas deserunt aliquid aperiam, totam beatae obcaecati.
-        </p>
-      </div>
-      <div class="skills">
-        <h5>Especialidades</h5>
-        <div class="list-skills">
-          <mat-chip-option color="primary" selected>Corte</mat-chip-option>
-          <mat-chip-option color="primary" selected>Barba cabelo e bigode</mat-chip-option>
-          <mat-chip-option color="primary" selected>pica atras e raspa na frente</mat-chip-option>
-          <mat-chip-option color="primary" selected>esfregar</mat-chip-option>
-        </div>
-      </div>
-    </mat-card>
+<div class="profile-container">
+  <div class="cover-photo">
+    <img src="https://hinova.com.br/wp-content/uploads/2017/07/Barbearia-1024x585.jpg" alt="Foto de Capa" class="cover-image">
   </div>
-  <div class="information">
-    <mat-card class="card-info">
-      <div class="row">
-        <div class="title">
-          <h4>Principais informações</h4>
-        </div>
-        <div class="content-row">
-          <span>
-            <h6>Nome</h6>
-            <h5>JOile</h5>
-          </span>
-          <span>
-            <h6>Cpf</h6>
-            <h5>106.945.759-54</h5>
-          </span>
-          <span>
-            <h6>Email</h6>
-            <h5>joilejunior2@gmail.com</h5>
-          </span>
-        </div>
-        <div class="content-row">
-          <span>
-            <h6>Telefoe</h6>
-            <h5>(44) 988045506</h5>
-          </span>
-          <span>
-            <h6>Genero</h6>
-            <h5>Não Binario</h5>
-          </span>
-          <span>
-            <h6>Data de nascimento</h6>
-            <h5>12/12/2012</h5>
-          </span>
-        </div>
-        <div class="content-row">
-          <span>
-            <h6>Acesso</h6>
-            <h5>Barbeiro</h5>
-          </span>
-          <span>
-            <h6>Senha</h6>
-            <a>Alterar senha</a>
-          </span>
+  <div class="profile-header">
+    <div class="profile-picInfo">
+      <div class="profile-picture">
+        <img src="https://hinova.com.br/wp-content/uploads/2017/07/Barbearia-1024x585.jpg" alt="Foto de Perfil" class="profile-image">
+      </div>
+      <div class="profile-info">
+        <h1 class="profile-name">Nome do usuario</h1>
+        <p class="profile-bio">joilejunior2@gmail.com</p>
+        <div class="profile-stats">
+          <div class="stat">
+            <span class="stat-value">0 </span>
+            <span class="stat-label">Seguidores</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">0 </span>
+            <span class="stat-label">Posts</span>
+          </div>
         </div>
       </div>
-      <mat-accordion class="info-addres" multi>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title style="font-weight: bold;">
-              Endereço
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <div class="content-row-addres">
-            <span>
-              <h6>Cep</h6>
-              <h5>87850-000</h5>
-            </span>
-            <span>
-              <h6>Estado</h6>
-              <h5>Paraná</h5>
-            </span>
-            <span>
-              <h6>Cidade</h6>
-              <h5>Amaporã</h5>
-            </span>
-          </div>
-          <div class="content-row-addres">
-            <span>
-              <h6>Bairro</h6>
-              <h5>Ilha dos boçais</h5>
-            </span>
-            <span>
-              <h6>Logradouro</h6>
-              <h5>Rua dos boçais</h5>
-            </span>
-            <span>
-              <h6>Numero</h6>
-              <h5>01</h5>
-            </span>
-            <span>
-              <h6>Complemento</h6>
-              <h5>Casa</h5>
-            </span>
-          </div>
-        </mat-expansion-panel>
-        <div class="button">
-          <button mat-raised-button color="primary" (click)="openDialog()">Atualizar Perfil</button>
-        </div>
-      </mat-accordion>
-
-    </mat-card>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" (click)="openDialog()">Editar perfil</button>
+    </div>
+  </div>
+  <div class="profile-description">
+    <div class="description-header">
+      <h3>Boas-vindas à meu perfil</h3>
+    </div>
+    <p class="description-text">
+      Oferecemos uma ampla gama de serviços de barbearia para atender às suas necessidades. Nossos cortes de cabelo modernos e cuidados com a barba são projetados para que você se sinta no seu melhor.
+    </p>
+    <div class="address-container">
+      <h3>Endereço</h3>
+      <p>Rua Exemplo, 123</p>
+      <p>Bairro Barbearia</p>
+      <p>Cidade, Estado</p>
+    </div>
   </div>
 </div>
