@@ -4,6 +4,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { UpdateProfileComponent } from 'src/app/components/update-profile/update-profile.component';
 import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/authService';
+import { UserImageService } from 'src/app/services/userImageService';
 import { UserService } from 'src/app/services/userService';
 
 @Component({
@@ -18,17 +19,37 @@ export class ProfileComponent implements OnInit {
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger | undefined;
 
   currentUser: User | null = null;
-  user: User | null = null;
+  user: User = new User();
+  userImage: Blob | null = null;
 
   constructor(
     public dialog: MatDialog,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private userImageService: UserImageService,
   ) {}
 
   ngOnInit(): void {
-    this.currentUser = this.authService.getUserByToken();
-    console.log(this.currentUser);
+    if (this.authService.checkIsAuthenticated()) {
+      this.currentUser = this.authService.getUserByToken();
+      if (this.currentUser) {
+        this.userService.getUserById(this.currentUser.id!).subscribe((user) => {
+          console.log('User Details:', user);
+          this.user = user;
+          this.userImageService.getImage(user.id!).subscribe((image) => {
+            this.userImage = image;
+          });
+        });
+      }
+    }
+  }
+
+  getUserImageUrl(): string | undefined {
+    if (this.userImage) {
+      const blob = new Blob([this.userImage], { type: 'image/jpeg' });
+      return URL.createObjectURL(blob);
+    }
+    return undefined;
   }
 
   openDialog() {

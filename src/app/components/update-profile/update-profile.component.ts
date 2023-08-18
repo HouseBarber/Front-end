@@ -39,11 +39,11 @@ export class UpdateProfileComponent implements OnInit {
             description: user.description,
             roles: user.roles,
             cep: user.address?.cep,
-            city: user.address?.cidade,
-            state: user.address?.estado,
-            street: user.address?.rua,
-            number: user.address?.numero,
-            complement: user.address?.complemento,
+            city: user.address?.city,
+            state: user.address?.state,
+            street: user.address?.street,
+            number: user.address?.number,
+            complement: user.address?.complement,
             aboutYou: user.description
           });
         });
@@ -90,7 +90,7 @@ export class UpdateProfileComponent implements OnInit {
       next: (response) => {
         if (response.length > 0) {
           this.roles = response;
-        }        
+        }
       },
       error: () => {
         this.toastr.error("Erro ao buscar roles");
@@ -101,5 +101,5 @@ export class UpdateProfileComponent implements OnInit {
   onSubmit(){
     console.log(this.updateForm.value);
   }
-  
+
 }

@@ -1,24 +1,30 @@
 export default class Address{
- rua?: string;
- cep?: string;
- cidade?: string;
- estado?: string;
- complemento?: string;
- numero?: string;
+  id?: number;
+  street?: string;
+  cep?: string;
+  city?: string;
+  state?: string;
+  complement?: string;
+  number?: string;
+  neighborhood?: string;
 
   constructor(
+    id?: number,
     rua?: string,
     cep?: string,
-    cidade?: string,
-    estado?: string,
-    complemento?: string,
-    numero?: string,
+    city?: string,
+    state?: string,
+    complement?: string,
+    number?: string,
+    neighborhood?: string,
   ) {
-    this.rua = rua;
+    this.id = id;
+    this.street = rua;
     this.cep = cep;
-    this.cidade = cidade;
-    this.estado = estado;
-    this.complemento = complemento;
-    this.numero = numero;
+    this.city = city;
+    this.state = state;
+    this.complement = complement;
+    this.number = number;
+    this.neighborhood = neighborhood;
   }
 }
