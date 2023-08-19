@@ -20,7 +20,7 @@ export class UserImageService {
   }
 
   getImage(id: number): Observable<Blob> {
-    return this.http.get(`${environment.api}${this.path}/${id}`, { responseType: 'blob' });
+    return this.http.get(`${environment.api}${this.path}/user/${id}`, { responseType: 'blob' });
   }
 
   deleteImage(id: number): Observable<any> {
