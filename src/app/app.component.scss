@@ -1,10 +1,7 @@
 @import "src/assets/scss/colors.scss";
 
-mat-sidenav-container {
-  min-height: 100vh;
-}
-
 mat-sidenav-content{
+  min-height: 100vh;
   background-color: #efefef;
 }
 

@@ -1,7 +1,11 @@
+.row {
+  width: 100%;
+  justify-content: space-between;
+}
+
 .update-profile-dialog {
   min-height: 50vh;
   padding: 1rem;
-  overflow-x: hidden;
 }
 
 .dialog-title {
@@ -17,7 +21,7 @@
   margin-top: 2rem;
 }
 
-.row {
+.mat-form-field {
   width: 100%;
   margin-bottom: 1rem;
 }
