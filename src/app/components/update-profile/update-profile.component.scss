@@ -21,14 +21,15 @@
   margin-top: 2rem;
 }
 
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
 .mat-error {
   color: red;
 }
 
 textarea[matInput] {
   resize: vertical;
-}
-
-.invalid-field {
-  border-color: red;
 }

@@ -1,6 +1,7 @@
 import { ProfileComponent } from './../../pages/profile/profile.component';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import User from 'src/app/models/User';
@@ -53,7 +54,8 @@ export class UpdateProfileComponent implements OnInit {
     private router: Router,
     private rolesService: RolesService,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    public dialogRef: MatDialogRef<UpdateProfileComponent>
   ){}
 
   initializeForms(): void {
@@ -99,7 +101,8 @@ export class UpdateProfileComponent implements OnInit {
       this.userService.updateUser(this.user.id, updatedUser).subscribe(
         () => {
           this.toastr.success("Perfil atualizado com sucesso!");
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/profile');
+          this.dialogRef.close();
         },
         () => {
           this.toastr.error("Erro ao atualizar perfil. Por favor, tente novamente mais tarde.");
