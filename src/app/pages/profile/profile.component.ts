@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   currentUser: User | null = null;
   user: User = new User();
   userImage: Blob | null = null;
+  profileImageUrl: string | undefined;
 
   constructor(
     public dialog: MatDialog,
@@ -38,18 +39,19 @@ export class ProfileComponent implements OnInit {
           this.user = user;
           this.userImageService.getImage(user.id!).subscribe((image) => {
             this.userImage = image;
+            this.getUserImageUrl();
           });
         });
       }
     }
   }
 
-  getUserImageUrl(): string | undefined {
+
+  getUserImageUrl(): void {
     if (this.userImage) {
       const blob = new Blob([this.userImage], { type: 'image/jpeg' });
-      return URL.createObjectURL(blob);
+      this.profileImageUrl = URL.createObjectURL(blob);
     }
-    return undefined;
   }
 
   openDialog() {

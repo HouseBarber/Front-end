@@ -6,6 +6,16 @@
     <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <mat-form-field class="col-sm-12 col-md-12 col-lg-12 field-required" appearance="outline">
+          <mat-label>Nome completo</mat-label>
+          <input matInput placeholder="Digite seu nome" type="text" formControlName="name">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="updateForm.get('name')?.hasError('required')">
+            Nome é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
           <mat-label>Username</mat-label>
           <input matInput placeholder="Digite seu username" required formControlName="username">
           <mat-icon matSuffix>person</mat-icon>
@@ -13,8 +23,7 @@
             Username é <strong>obrigatório</strong>
           </mat-error>
         </mat-form-field>
-      </div>
-      <div class="row">
+
         <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
           <mat-label>Data de Nascimento</mat-label>
           <input matInput placeholder="Digite sua data de nascimento" type="date" formControlName="dateBirth">
@@ -23,15 +32,27 @@
             Data de nascimento é <strong>obrigatório</strong>
           </mat-error>
         </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-label>Atualizar seu</mat-label>
+        <mat-radio-group
+          [(ngModel)]="optionSelect">
+          <mat-radio-button *ngFor="let option of options" [value]="option">
+            {{option}}
+          </mat-radio-button>
+        </mat-radio-group>
+
         <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
-          <mat-label>CPF/CNPJ</mat-label>
+          <mat-label>CPF</mat-label>
           <input matInput placeholder="Digite seu CPF" type="text" formControlName="cpf">
           <mat-icon matSuffix>contact_page</mat-icon>
           <mat-error *ngIf="updateForm.get('cpf')?.hasError('required')">
-            CPF/CNPJ é <strong>obrigatório</strong>
+            CPF é <strong>obrigatório</strong>
           </mat-error>
         </mat-form-field>
       </div>
+
       <div class="row">
         <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
           <mat-label>Email</mat-label>
@@ -101,8 +122,10 @@
       <div class="row">
         <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
           <mat-label>Sobre você</mat-label>
-          <textarea matInput placeholder="Descreva suas experiências e formação, estilo e abordagem, avaliações ou motivação pela
-    profissão.." formControlName="description"></textarea>
+          <textarea matInput placeholder="Descreva suas experiências e formação,
+            estilo e abordagem, avaliações ou motivação pela
+            profissão.." formControlName="description">
+          </textarea>
         </mat-form-field>
       </div>
     </form>

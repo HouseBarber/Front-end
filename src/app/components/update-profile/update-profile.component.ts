@@ -15,6 +15,9 @@ import { UserService } from 'src/app/services/userService';
   styleUrls: ['./update-profile.component.scss']
 })
 export class UpdateProfileComponent implements OnInit {
+  optionSelect: string = "";
+  options: string[] = ['CPF', 'CNPJ'];
+
   updateForm!: FormGroup;
   controlForm: { [key: string]: AbstractControl } = {};
   roles: Role[] = [];
@@ -48,6 +51,12 @@ export class UpdateProfileComponent implements OnInit {
             aboutYou: user.description
           });
         });
+        if(this.currentUser.cnpj){
+          this.optionSelect = "CNPJ";
+        } else {
+          this.optionSelect = "CPF";
+        }
+        console.log(this.optionSelect)
       }
     }
   }
