@@ -15,13 +15,11 @@ import { UserService } from 'src/app/services/userService';
   styleUrls: ['./update-profile.component.scss']
 })
 export class UpdateProfileComponent implements OnInit {
-  optionSelect: string = "";
-  options: string[] = ['CPF', 'CNPJ'];
-
   updateForm!: FormGroup;
   controlForm: { [key: string]: AbstractControl } = {};
   roles: Role[] = [];
   currentUser: User | null = null;
+  user: User = new User();
 
   ngOnInit(): void {
     this.initializeForms();
@@ -30,33 +28,21 @@ export class UpdateProfileComponent implements OnInit {
       this.currentUser = this.authService.getUserByToken();
       if (this.currentUser) {
         this.userService.getUserById(this.currentUser.id!).subscribe((user) => {
-          console.log('User Details:', user);
+          this.user = user;
+          console.log('User Details:', this.user);
           this.updateForm.patchValue({
-            username: user.username,
-            name: user.name,
-            cpf: user.cpf,
-            cnpj: user.cnpj,
-            email: user.email,
-            telephone: user.telephone,
-            gender: user.gender,
-            dateBirth: user.dateBirth,
-            description: user.description,
-            roles: user.roles,
-            cep: user.address?.cep,
-            city: user.address?.city,
-            state: user.address?.state,
-            street: user.address?.street,
-            number: user.address?.number,
-            complement: user.address?.complement,
-            aboutYou: user.description
+            username: user.username || '',
+            name: user.name || '',
+            cpf: user.cpf || '',
+            cnpj: user.cnpj || '',
+            email: user.email || '',
+            telephone: user.telephone || '',
+            gender: user.gender || '',
+            dateBirth: user.dateBirth || '',
+            description: user.description || '',
+            roles: user.roles || '',
           });
         });
-        if(this.currentUser.cnpj){
-          this.optionSelect = "CNPJ";
-        } else {
-          this.optionSelect = "CPF";
-        }
-        console.log(this.optionSelect)
       }
     }
   }
@@ -82,13 +68,7 @@ export class UpdateProfileComponent implements OnInit {
       dateBirth: [''],
       description: [''],
       roles: [''],
-      cep: [''],
-      city: [''],
-      state: [''],
-      neighborhood: [''],
-      street: [''],
-      number: [''],
-      complement: [''],
+
     });
     this.controlForm = this.updateForm.controls;
   }
@@ -107,20 +87,44 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.currentUser) {
-      const updatedUser: User = { ...this.currentUser, ...this.updateForm.value };
-      this.userService.updateUser(this.currentUser.id!, updatedUser).subscribe(
-        (response) => {
-          console.log('User updated:', response);
-          console.log(updatedUser)
-          this.router.navigateByUrl('/home')
-          // Você pode fazer mais ações aqui, como mostrar uma mensagem de sucesso.
+    const canUpdate = this.validateUpdate(this.updateForm);
+
+    if (!canUpdate) {
+      this.toastr.error("Existem informações a serem preenchidas.");
+      return;
+    }
+
+    const updatedUser = { ...this.user, ...this.updateForm.value };
+    if (this.user.id) { // Certifique-se de que this.user.id não seja nulo
+      this.userService.updateUser(this.user.id, updatedUser).subscribe(
+        () => {
+          this.toastr.success("Perfil atualizado com sucesso!");
+          this.router.navigateByUrl('/home');
         },
-        (error) => {
-          console.error('Error updating user:', error);
+        () => {
+          this.toastr.error("Erro ao atualizar perfil. Por favor, tente novamente mais tarde.");
         }
       );
+    } else {
+      console.error("ID do usuário não encontrado.");
     }
+  }
+
+  validateUpdate(form: FormGroup): boolean {
+    if (form.invalid) {
+      // Percorra os controles do formulário
+      for (const controlName in form.controls) {
+        if (form.controls.hasOwnProperty(controlName)) {
+          // Se o controle estiver inválido, adicione a classe CSS
+          if (form.controls[controlName].invalid) {
+            form.controls[controlName].markAsTouched();
+            form.controls[controlName].setErrors({ 'invalid': true });
+          }
+        }
+      }
+      return false;
+    }
+    return true;
   }
 
 }

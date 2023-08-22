@@ -46,7 +46,6 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-
   getUserImageUrl(): void {
     if (this.userImage) {
       const blob = new Blob([this.userImage], { type: 'image/jpeg' });

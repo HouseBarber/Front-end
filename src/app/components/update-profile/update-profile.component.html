@@ -35,14 +35,6 @@
       </div>
 
       <div class="row">
-        <mat-label>Atualizar seu</mat-label>
-        <mat-radio-group
-          [(ngModel)]="optionSelect">
-          <mat-radio-button *ngFor="let option of options" [value]="option">
-            {{option}}
-          </mat-radio-button>
-        </mat-radio-group>
-
         <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
           <mat-label>CPF</mat-label>
           <input matInput placeholder="Digite seu CPF" type="text" formControlName="cpf">
@@ -51,10 +43,17 @@
             CPF é <strong>obrigatório</strong>
           </mat-error>
         </mat-form-field>
+
+        <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
+          <mat-label>CNPJ</mat-label>
+          <input matInput placeholder="Digite seu CNPJ" type="text" formControlName="cnpj">
+          <mat-icon matSuffix>contact_page</mat-icon>
+        </mat-form-field>
       </div>
 
       <div class="row">
-        <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
+
+        <mat-form-field class="col-sm-6 col-lg-6" appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput placeholder="Digite seu email" type="email" formControlName="email">
           <mat-icon matSuffix>email</mat-icon>
@@ -66,13 +65,7 @@
             Email é <strong>obrigatório</strong>
           </mat-error>
         </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field class="col-sm-6 col-lg-6" appearance="outline">
-          <mat-label>Genero</mat-label>
-          <input matInput placeholder="Escolha seu Genero" formControlName="gender">
-          <mat-icon matSuffix>gender</mat-icon>
-        </mat-form-field>
+
         <mat-form-field class="col-sm-6 col-lg-6" appearance="outline">
           <mat-label>Telefone</mat-label>
           <input matInput placeholder="Escolha seu Telefone" type="text" formControlName="telephone" appPhoneFormat
@@ -84,41 +77,16 @@
         </mat-form-field>
       </div>
       <div class="row">
-        <mat-form-field class="col-sm-12 col-md-12 col-lg-4" appearance="outline">
-          <mat-label>CEP</mat-label>
-          <input matInput placeholder="Digite sua CEP" type="text" formControlName="cep">
-          <mat-icon matSuffix>location_on</mat-icon>
-        </mat-form-field>
-        <mat-form-field class="col-sm-6 col-md-6 col-lg-4" appearance="outline">
-          <mat-label>Cidade</mat-label>
-          <input matInput placeholder="Digite sua Cidade" type="text" formControlName="city">
-          <mat-icon matSuffix>location_city</mat-icon>
-        </mat-form-field>
-        <mat-form-field class="col-sm-6 col-md-6 col-lg-4" appearance="outline">
-          <mat-label>Estado</mat-label>
-          <input matInput placeholder="Digite seu Estado" type="text" formControlName="state">
-          <mat-icon matSuffix>flag</mat-icon>
+        <mat-form-field class="col-sm-6 col-lg-6" appearance="outline">
+          <mat-label>Cadastrar-se como</mat-label>
+          <mat-select matNativeControl formControlName="roles" required>
+            <mat-option *ngFor="let role of roles" [value]="role.id">
+              {{ role.name }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
-      <div class="row">
-        <mat-form-field class="col-sm-12 col-md-6 col-lg-4" appearance="outline">
-          <mat-label>Rua</mat-label>
-          <input matInput placeholder="Digite seu Rua" type="text" formControlName="street">
-          <mat-icon matSuffix>edit_road</mat-icon>
-        </mat-form-field>
-        <mat-form-field class="col-sm-12 col-md-6 col-lg-4" appearance="outline">
-          <mat-label>Número</mat-label>
-          <input matInput placeholder="Digite seu Número" type="text" formControlName="number">
-          <mat-icon matSuffix>home</mat-icon>
-        </mat-form-field>
-        <mat-form-field class="col-sm-12 col-md-12 col-lg-4" appearance="outline">
-          <mat-label>Complemento</mat-label>
-          <input matInput placeholder="Digite seu Complemento" type="text" formControlName="complement">
-          <mat-icon matSuffix>info</mat-icon>
-        </mat-form-field>
-      </div>
-      <div class="row">
-      </div>
+
       <div class="row">
         <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
           <mat-label>Sobre você</mat-label>
@@ -128,10 +96,11 @@
           </textarea>
         </mat-form-field>
       </div>
+      
+      <div class="d-flex justify-content-around buttons-container">
+        <button mat-button color="primary" type="reset">Descartar Alterações</button>
+        <button mat-raised-button color="primary" type="submit">Atualizar</button>
+      </div>
     </form>
   </mat-dialog-actions>
-  <div class="d-flex justify-content-around buttons-container">
-    <button mat-button color="primary" type="reset">Descartar Alterações</button>
-    <button mat-raised-button color="primary" type="submit">Atualizar</button>
-  </div>
 </div>
