@@ -1,0 +1,113 @@
+<div class="update-profile-dialog">
+  <mat-dialog-content>
+    <h3 class="dialog-title">Atualize seu perfil</h3>
+  </mat-dialog-content>
+  <mat-dialog-actions class="d-flex justify-content-center update-form">
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <mat-form-field class="col-sm-12 col-md-12 col-lg-12 field-required" appearance="outline">
+          <mat-label>Nome completo</mat-label>
+          <input matInput placeholder="Digite seu nome" type="text" formControlName="name">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="updateForm.get('name')?.hasError('required')">
+            Nome é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Digite seu username" required formControlName="username">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="updateForm.get('username')?.hasError('required')">
+            Username é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
+          <mat-label>Data de Nascimento</mat-label>
+          <input matInput placeholder="Digite sua data de nascimento" type="date" formControlName="dateBirth">
+          <mat-icon matSuffix>calendar_today</mat-icon>
+          <mat-error *ngIf="updateForm.get('dateBirth')?.hasError('required')">
+            Data de nascimento é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
+          <mat-label>CPF</mat-label>
+          <input matInput placeholder="Digite seu CPF" type="text" formControlName="cpf">
+          <mat-icon matSuffix>contact_page</mat-icon>
+          <mat-error *ngIf="updateForm.get('cpf')?.hasError('required')">
+            CPF é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
+          <mat-label>CNPJ</mat-label>
+          <input matInput placeholder="Digite seu CNPJ" type="text" formControlName="cnpj">
+          <mat-icon matSuffix>contact_page</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-sm-6 col-lg-6" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Digite seu email" type="email" formControlName="email">
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error
+            *ngIf="updateForm.get('email')?.hasError('email') && !updateForm.get('email')?.hasError('required')">
+            Por favor um email válido
+          </mat-error>
+          <mat-error *ngIf="updateForm.get('email')?.hasError('required')">
+            Email é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-sm-6 col-lg-6" appearance="outline">
+          <mat-label>Telefone</mat-label>
+          <input matInput placeholder="Escolha seu Telefone" type="text" formControlName="telephone" appPhoneFormat
+            required>
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-error *ngIf="updateForm.get('telephone')?.hasError('required')">
+            Telefone é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-sm-6 col-lg-6" appearance="outline">
+          <mat-label>Cadastrar-se como</mat-label>
+          <mat-select matNativeControl formControlName="roles">
+            <mat-option *ngFor="let role of roles" [value]="role.id">
+              {{ role.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-sm-6 col-lg-6" appearance="outline">
+          <mat-label>Informe seu gênero</mat-label>
+          <mat-select [(ngModel)]="genderSelect" [(value)]="genderSelect" formControlName="gender">
+            <mat-option *ngFor="let gender of genders" [value]="gender">
+              {{gender}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
+          <mat-label>Sobre você</mat-label>
+          <textarea matInput placeholder="Descreva suas experiências e formação,
+            estilo e abordagem, avaliações ou motivação pela
+            profissão.." formControlName="description">
+          </textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="d-flex justify-content-around buttons-container">
+        <button mat-button color="primary" type="reset">Descartar Alterações</button>
+        <button mat-raised-button color="primary" type="submit">Atualizar</button>
+      </div>
+    </form>
+  </mat-dialog-actions>
+</div>

@@ -3,31 +3,48 @@
   <router-outlet></router-outlet>
 </ng-template>
 <ng-template #everyComponent>
-  <mat-toolbar color="primary" *ngIf="!routeLogin">
+  <mat-toolbar color="primary" *ngIf="!routeLogin" class="fixed-toolbar">
     <div class="d-flex">
       <button mat-icon-button (click)="opened = !opened">
         <mat-icon>menu</mat-icon>
       </button>
-      <div class="p-top">House Barber</div>
+      <div class="p-top">
+        Home
+      </div>
     </div>
     <span class="spacer-sidenav"></span>
     <button mat-icon-button [matMenuTriggerFor]="logout" #menuTrigger>
-      <mat-icon>exit_to_app</mat-icon>
+      <mat-icon>
+        account_circle
+      </mat-icon>
     </button>
     <mat-menu #logout="matMenu">
-      <button mat-menu-item (click)="openDialog()">
-        Sign out
+      <a class="menu-itens" mat-menu-item [routerLink]="['/profile']">
+        <mat-icon>person</mat-icon>
+        Perfil
+      </a>
+      <button class="menu-itens" mat-menu-item (click)="openDialog()">
+        <mat-icon>logout</mat-icon>
+        Sair
       </button>
     </mat-menu>
   </mat-toolbar>
   <mat-sidenav-container>
     <mat-sidenav [(opened)]="opened" mode="over">
       <mat-nav-list>
-        <mat-list-item>
-          <div class="d-flex" [routerLink]="['/home']">
+        <mat-list-item [routerLink]="['/home']">
+          <div class="d-flex">
             <mat-icon class="text-white">home</mat-icon>
             <a class="text-white icon-texto">
               Home
+            </a>
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <div class="d-flex" [routerLink]="['/cadastroEstabelecimento']">
+            <mat-icon class="text-white">home</mat-icon>
+            <a class="text-white icon-texto">
+              Estabelecimento
             </a>
           </div>
         </mat-list-item>
