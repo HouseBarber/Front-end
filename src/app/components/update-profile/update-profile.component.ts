@@ -16,6 +16,14 @@ import { UserService } from 'src/app/services/userService';
   styleUrls: ['./update-profile.component.scss']
 })
 export class UpdateProfileComponent implements OnInit {
+  genderSelect?: string;
+  genders: String[] = [
+    'Masculino',
+    'Feminino',
+    'Prefiro não informar',
+    'Outros',
+  ];
+
   updateForm!: FormGroup;
   controlForm: { [key: string]: AbstractControl } = {};
   roles: Role[] = [];
@@ -44,6 +52,7 @@ export class UpdateProfileComponent implements OnInit {
             roles: user.roles || '',
           });
         });
+        this.genderSelect = this.user.gender;
       }
     }
   }
