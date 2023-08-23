@@ -9,6 +9,7 @@ import { ValidatorCpfCnpj } from 'src/app/utils/validatorCpfCnpj';
 
 
 
+
 @Component({
   selector: 'app-cadastro-estabelecimento',
   templateUrl: './cadastro-estabelecimento.component.html',
@@ -43,9 +44,9 @@ export class CadastroEstabelecimentoComponent implements OnInit {
 
   initializeForms(): void {
     this.estabelecimentoForm = this.formBuilder.group({
-      nomeFantasia: ['', Validators.required],
+      establishmentName: ['', Validators.required],
       cnpj: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', Validators.required, Validators.email],
       contact: ['', Validators.required],
       cep:[''],
       city:[''],
@@ -58,11 +59,12 @@ export class CadastroEstabelecimentoComponent implements OnInit {
     });
     this.controlForm = this.estabelecimentoForm.controls;
   }
+  
 
 
   onSubmit() {
     const canRegister = this.validateRegister(
-      this.estabelecimentoForm.value.nomeFantasia,
+      this.estabelecimentoForm.value.establishmentName,
       this.estabelecimentoForm.value.cnpj,
       this.estabelecimentoForm.value.email,
       this.estabelecimentoForm.value.contact,
@@ -74,7 +76,7 @@ export class CadastroEstabelecimentoComponent implements OnInit {
     }
 
     const userToRegister = new Estabelecimento();
-    userToRegister.name = this.estabelecimentoForm.value.nomeFantasia;
+    userToRegister.establishmentName = this.estabelecimentoForm.value.establishmentName;
     userToRegister.cnpj = this.estabelecimentoForm.value.cnpj;
     userToRegister.email = this.estabelecimentoForm.value.email;
     userToRegister.contact = this.estabelecimentoForm.value.contact;
@@ -98,13 +100,17 @@ export class CadastroEstabelecimentoComponent implements OnInit {
     let returnError = false;
     if (nomeFantasia === null || nomeFantasia.length === 0) {
       this.toastr.error('O Nome Fantasia é obrigatório')
+      
       returnError = true;
     }
     if (email === null || email.length === 0) {
       this.toastr.error('O e-mail é obrigatório')
       returnError = true;
     }
-
+    if (!isEmailValid(email)) {
+      this.toastr.error('O e-mail é inválido')
+      returnError = true;
+    }
     if (cnpj === null || cnpj.length === 0) {
       this.toastr.error('O CNPJ é obrigatório')
       returnError = true;
@@ -116,6 +122,8 @@ export class CadastroEstabelecimentoComponent implements OnInit {
     }
     return !returnError;
   }
+
+  
 
 
 }

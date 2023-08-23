@@ -3,7 +3,7 @@ import Endereco from "./endereco";
 
 export default class Estabelecimento{
   endereco?: Endereco;
-  name?: string;
+  establishmentName?: string;
   cnpj?: string;
   email?: string;
   contact?: string;
@@ -16,7 +16,7 @@ export default class Estabelecimento{
     endereco?: Endereco,
     cnpj?: string,
     email?: string,
-    name?: string,
+    establishmentName?: string,
     contact?: string,
     billing?: string,
     time?: string,
@@ -28,7 +28,7 @@ export default class Estabelecimento{
     this.endereco = endereco;
     this.cnpj = cnpj;
     this.email = email;
-    this.name = name;
+    this.establishmentName = establishmentName;
     this.contact = contact;
     this.billing = billing;
     this.time = time;
