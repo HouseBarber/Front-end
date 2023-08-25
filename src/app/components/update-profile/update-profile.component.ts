@@ -1,5 +1,5 @@
 import { ProfileComponent } from './../../pages/profile/profile.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -16,6 +16,7 @@ import { UserService } from 'src/app/services/userService';
   styleUrls: ['./update-profile.component.scss']
 })
 export class UpdateProfileComponent implements OnInit {
+  @Output() profileUpdated = new EventEmitter<User>();
   genderSelect?: string;
   genders: String[] = [
     'Masculino',
@@ -23,7 +24,6 @@ export class UpdateProfileComponent implements OnInit {
     'Prefiro não informar',
     'Outros',
   ];
-
   updateForm!: FormGroup;
   controlForm: { [key: string]: AbstractControl } = {};
   roles: Role[] = [];
@@ -50,6 +50,13 @@ export class UpdateProfileComponent implements OnInit {
             dateBirth: user.dateBirth || '',
             description: user.description || '',
             roles: user.roles || '',
+            cep: user.address?.cep || '',
+            city: user.address?.city || '',
+            state: user.address?.state || '',
+            neighborhood: user.address?.neighborhood || '',
+            street: user.address?.state || '',
+            number: user.address?.number || '',
+            complement: user.address?.complement || '',
           });
         });
         this.genderSelect = this.user.gender;
@@ -60,7 +67,6 @@ export class UpdateProfileComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
-    private router: Router,
     private rolesService: RolesService,
     private authService: AuthService,
     private userService: UserService,
@@ -79,7 +85,13 @@ export class UpdateProfileComponent implements OnInit {
       dateBirth: [''],
       description: [''],
       roles: [''],
-
+      cep: [''],
+      city: [''],
+      state: [''],
+      neighborhood: [''],
+      street: [''],
+      number: [''],
+      complement: [''],
     });
     this.controlForm = this.updateForm.controls;
   }
@@ -106,17 +118,18 @@ export class UpdateProfileComponent implements OnInit {
     }
 
     const updatedUser = { ...this.user, ...this.updateForm.value };
-    if (this.user.id) { // Certifique-se de que this.user.id não seja nulo
-      this.userService.updateUser(this.user.id, updatedUser).subscribe(
-        () => {
+
+    if (this.user.id) {
+      this.userService.updateUser(this.user.id, updatedUser).subscribe({
+        next: () => {
           this.toastr.success("Perfil atualizado com sucesso!");
-          this.router.navigateByUrl('/profile');
           this.dialogRef.close();
+          this.profileUpdated.emit(updatedUser);
         },
-        () => {
+        error: () => {
           this.toastr.error("Erro ao atualizar perfil. Por favor, tente novamente mais tarde.");
-        }
-      );
+        }, complete: () => {}
+      });
     } else {
       console.error("ID do usuário não encontrado.");
     }
@@ -124,10 +137,8 @@ export class UpdateProfileComponent implements OnInit {
 
   validateUpdate(form: FormGroup): boolean {
     if (form.invalid) {
-      // Percorra os controles do formulário
       for (const controlName in form.controls) {
         if (form.controls.hasOwnProperty(controlName)) {
-          // Se o controle estiver inválido, adicione a classe CSS
           if (form.controls[controlName].invalid) {
             form.controls[controlName].markAsTouched();
             form.controls[controlName].setErrors({ 'invalid': true });
