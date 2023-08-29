@@ -35,7 +35,6 @@ export class ProfileComponent implements OnInit {
       this.currentUser = this.authService.getUserByToken();
       if (this.currentUser) {
         this.userService.getUserById(this.currentUser.id!).subscribe((user) => {
-          console.log('User Details:', user);
           this.user = user;
           this.userImageService.getImage(user.id!).subscribe((image) => {
             this.userImage = image;
