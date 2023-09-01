@@ -1,4 +1,4 @@
-export default class Address{
+export default class Address {
   id?: number;
   street?: string;
   cep?: string;
