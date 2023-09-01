@@ -10,7 +10,7 @@ export default class Address{
 
   constructor(
     id?: number,
-    rua?: string,
+    street?: string,
     cep?: string,
     city?: string,
     state?: string,
@@ -19,7 +19,7 @@ export default class Address{
     neighborhood?: string,
   ) {
     this.id = id;
-    this.street = rua;
+    this.street = street;
     this.cep = cep;
     this.city = city;
     this.state = state;

@@ -5,6 +5,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import User from 'src/app/models/User';
+import Address from 'src/app/models/address';
 import { Role } from 'src/app/models/role';
 import { AuthService } from 'src/app/services/authService';
 import { RolesService } from 'src/app/services/rolesService'
@@ -110,21 +111,26 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    const canUpdate = this.validateUpdate(this.updateForm);
-
-    if (!canUpdate) {
-      this.toastr.error("Existem informações a serem preenchidas.");
-      return;
-    }
-
-    const updatedUser = { ...this.user, ...this.updateForm.value };
+      
+    const addressUser: Address = new Address();
+    addressUser.cep = this.updateForm.value.cep
+    addressUser.city = this.updateForm.value.city
+    addressUser.complement = this.updateForm.value.complement
+    addressUser.neighborhood = this.updateForm.value.neighborhood
+    addressUser.street = this.updateForm.value.street
+    addressUser.state = this.updateForm.value.state
+    addressUser.number = this.updateForm.value.number
+    addressUser.id = this.user.address?.id
+    console.log(addressUser)
+    this.user.address = addressUser;
+    console.log(this.user)
 
     if (this.user.id) {
-      this.userService.updateUser(this.user.id, updatedUser).subscribe({
+      this.userService.updateUser(this.user.id, this.user).subscribe({
         next: () => {
           this.toastr.success("Perfil atualizado com sucesso!");
           this.dialogRef.close();
-          this.profileUpdated.emit(updatedUser);
+          this.profileUpdated.emit(this.user);
         },
         error: () => {
           this.toastr.error("Erro ao atualizar perfil. Por favor, tente novamente mais tarde.");

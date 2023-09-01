@@ -40,7 +40,7 @@ export default class User extends Auditable {
     gender?: string,
     dateBirth?: Date,
     description?: string,
-
+    address?: Address,
     // Auditable Properties
     active?: boolean,
     createdBy?: string,
@@ -63,7 +63,7 @@ export default class User extends Auditable {
     this.description = description;
     this.description = description;
     this.gender = gender;
-
+    this.address = address;
     // Auditable Properties
     this.active = active;
     this.createdBy = createdBy;
