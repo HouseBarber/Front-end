@@ -111,7 +111,15 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   onSubmit() {
-      
+    this.user.cpf = this.updateForm.value.cpf
+    this.user.cnpj = this.updateForm.value.cnpj
+    this.user.dateBirth = this.updateForm.value.dateBirth
+    this.user.email = this.updateForm.value.email 
+    this.user.telephone = this.updateForm.value.telephone 
+    this.user.description = this.updateForm.value.description
+    this.user.name = this.updateForm.value.name 
+    this.user.roles = this.roles.filter(role => role.id === this.updateForm.value.role)
+    this.user.username = this.updateForm.value.username
     const addressUser: Address = new Address();
     addressUser.cep = this.updateForm.value.cep
     addressUser.city = this.updateForm.value.city
