@@ -29,15 +29,6 @@ export class UpdateProfileComponent implements OnInit {
   currentUser: User | null = null;
   user: User = new User();
 
-  ngOnInit(): void {
-    this.initializeForms();
-    this.popularRoles();
-    if (this.authService.checkIsAuthenticated()) {
-      this.currentUser = this.authService.getUserByToken();
-      this.loadUserData();
-    }
-  }
-
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
@@ -45,7 +36,21 @@ export class UpdateProfileComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     public dialogRef: MatDialogRef<UpdateProfileComponent>
-  ){}
+  ) { }
+
+  ngOnInit(): void {
+    this.initializeForms();
+    this.popularRoles();
+    this.checkAuthenticated();
+  }
+
+  checkAuthenticated(): void {
+    if (!this.authService.checkIsAuthenticated()) {
+      return;
+    }
+    this.currentUser = this.authService.getUserByToken();
+    this.loadUserData();
+  }
 
   initializeForms(): void {
     this.updateForm = this.formBuilder.group({
@@ -73,7 +78,6 @@ export class UpdateProfileComponent implements OnInit {
   loadUserData(): void {
     this.userService.getUserById(this.currentUser!.id!).subscribe((user) => {
       this.user = user;
-      console.log('User Details:', this.user);
       this.updateForm.patchValue({
         username: user.username || '',
         name: user.name || '',
@@ -129,11 +133,9 @@ export class UpdateProfileComponent implements OnInit {
     addressUser.state = this.updateForm.value.state
     addressUser.number = this.updateForm.value.number
     addressUser.id = this.user.address?.id
-    console.log(addressUser)
     this.user.address = addressUser;
-    console.log(this.user)
 
-    if(!this.user.id){
+    if (!this.user.id) {
       this.toastr.error("ID do usuário não encontrado.");
       return
     }

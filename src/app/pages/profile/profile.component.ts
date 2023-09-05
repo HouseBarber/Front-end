@@ -18,7 +18,6 @@ export class ProfileComponent implements OnInit {
   opened: boolean = false;
   currentRoute: string = '';
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger | undefined;
-
   currentUser: User | null = null;
   user: User = new User();
   userImage: Blob | null = null;
@@ -30,7 +29,7 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private userImageService: UserImageService,
     private toastr: ToastrService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.checkAuthentication();
@@ -38,25 +37,33 @@ export class ProfileComponent implements OnInit {
     this.loadUserImage();
   }
 
-  checkAuthentication() {
+  checkAuthentication(): void {
     if (!this.authService.checkIsAuthenticated()) {
-      throw new Error("Autenticação falhou.");
+      this.toastr.error("Autenticação falhou");
+      return;
     }
     this.currentUser = this.authService.getUserByToken();
   }
 
-  loadUserProfile() {
+  loadUserProfile(): void {
     if (!this.currentUser) {
-      throw new Error("Usuário atual não encontrado.");
+      this.toastr.error("Falha ao buscar usuario");
+      return;
     }
-    this.userService.getUserById(this.currentUser.id).subscribe((user) => {
-      this.user = user;
-    });
+    this.userService.getUserById(this.currentUser.id).subscribe({
+      next: user => {
+        this.user = user;
+      },
+      error: () => {
+        this.toastr.error("Falha ao buscar usuario");
+      }
+    })
   }
 
-  loadUserImage() {
+  loadUserImage(): void {
     if (!this.currentUser) {
-      throw new Error("Usuário atual não encontrado.");
+      this.toastr.error("Usuario não encontrado");
+      return;
     }
     this.userImageService.getImage(this.currentUser.id).subscribe({
       next: (image) => {
@@ -69,14 +76,14 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  getUserImageUrl() {
+  getUserImageUrl(): void {
     if (this.userImage) {
       const blob = new Blob([this.userImage], { type: 'image/jpeg' });
       this.profileImageUrl = URL.createObjectURL(blob);
     }
   }
 
-  openDialog() {
+  openDialog(): void {
     const dialogRef = this.dialog.open(UpdateProfileComponent, { restoreFocus: false });
     dialogRef.componentInstance.profileUpdated.subscribe((updatedUser: User) => {
       this.user = updatedUser;
