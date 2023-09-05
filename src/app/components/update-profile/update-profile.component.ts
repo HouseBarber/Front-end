@@ -5,7 +5,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import User from 'src/app/models/User';
-import Address from 'src/app/models/address';
+import Address from 'src/app/models/Address';
 import { Role } from 'src/app/models/role';
 import { AuthService } from 'src/app/services/authService';
 import { RolesService } from 'src/app/services/rolesService'
@@ -150,20 +150,4 @@ export class UpdateProfileComponent implements OnInit {
       }
     });
   }
-
-  validateUpdate(form: FormGroup): boolean {
-    if (form.invalid) {
-      for (const controlName in form.controls) {
-        if (form.controls.hasOwnProperty(controlName)) {
-          if (form.controls[controlName].invalid) {
-            form.controls[controlName].markAsTouched();
-            form.controls[controlName].setErrors({ 'invalid': true });
-          }
-        }
-      }
-      return false;
-    }
-    return true;
-  }
-
 }
