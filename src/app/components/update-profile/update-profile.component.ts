@@ -1,8 +1,6 @@
-import { ProfileComponent } from './../../pages/profile/profile.component';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import User from 'src/app/models/User';
 import Address from 'src/app/models/Address';
@@ -91,7 +89,7 @@ export class UpdateProfileComponent implements OnInit {
         city: user.address?.city || '',
         state: user.address?.state || '',
         neighborhood: user.address?.neighborhood || '',
-        street: user.address?.state || '',
+        street: user.address?.street || '',
         number: user.address?.number || '',
         complement: user.address?.complement || '',
       });
