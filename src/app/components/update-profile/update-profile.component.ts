@@ -36,32 +36,7 @@ export class UpdateProfileComponent implements OnInit {
     this.popularRoles();
     if (this.authService.checkIsAuthenticated()) {
       this.currentUser = this.authService.getUserByToken();
-      if (this.currentUser) {
-        this.userService.getUserById(this.currentUser.id!).subscribe((user) => {
-          this.user = user;
-          console.log('User Details:', this.user);
-          this.updateForm.patchValue({
-            username: user.username || '',
-            name: user.name || '',
-            cpf: user.cpf || '',
-            cnpj: user.cnpj || '',
-            email: user.email || '',
-            telephone: user.telephone || '',
-            gender: user.gender || '',
-            dateBirth: user.dateBirth || '',
-            description: user.description || '',
-            roles: user.roles || '',
-            cep: user.address?.cep || '',
-            city: user.address?.city || '',
-            state: user.address?.state || '',
-            neighborhood: user.address?.neighborhood || '',
-            street: user.address?.state || '',
-            number: user.address?.number || '',
-            complement: user.address?.complement || '',
-          });
-        });
-        this.genderSelect = this.user.gender;
-      }
+      this.loadUserData();
     }
   }
 
@@ -97,6 +72,33 @@ export class UpdateProfileComponent implements OnInit {
     this.controlForm = this.updateForm.controls;
   }
 
+  loadUserData(): void {
+    this.userService.getUserById(this.currentUser!.id!).subscribe((user) => {
+      this.user = user;
+      console.log('User Details:', this.user);
+      this.updateForm.patchValue({
+        username: user.username || '',
+        name: user.name || '',
+        cpf: user.cpf || '',
+        cnpj: user.cnpj || '',
+        email: user.email || '',
+        telephone: user.telephone || '',
+        gender: user.gender || '',
+        dateBirth: user.dateBirth || '',
+        description: user.description || '',
+        roles: user.roles || '',
+        cep: user.address?.cep || '',
+        city: user.address?.city || '',
+        state: user.address?.state || '',
+        neighborhood: user.address?.neighborhood || '',
+        street: user.address?.state || '',
+        number: user.address?.number || '',
+        complement: user.address?.complement || '',
+      });
+    });
+    this.genderSelect = this.user.gender;
+  }
+
   popularRoles(): void {
     this.rolesService.getAllRoles().subscribe({
       next: (response) => {
@@ -114,10 +116,10 @@ export class UpdateProfileComponent implements OnInit {
     this.user.cpf = this.updateForm.value.cpf
     this.user.cnpj = this.updateForm.value.cnpj
     this.user.dateBirth = this.updateForm.value.dateBirth
-    this.user.email = this.updateForm.value.email 
-    this.user.telephone = this.updateForm.value.telephone 
+    this.user.email = this.updateForm.value.email
+    this.user.telephone = this.updateForm.value.telephone
     this.user.description = this.updateForm.value.description
-    this.user.name = this.updateForm.value.name 
+    this.user.name = this.updateForm.value.name
     this.user.roles = this.roles.filter(role => role.id === this.updateForm.value.role)
     this.user.username = this.updateForm.value.username
     const addressUser: Address = new Address();
@@ -133,20 +135,20 @@ export class UpdateProfileComponent implements OnInit {
     this.user.address = addressUser;
     console.log(this.user)
 
-    if (this.user.id) {
-      this.userService.updateUser(this.user.id, this.user).subscribe({
-        next: () => {
-          this.toastr.success("Perfil atualizado com sucesso!");
-          this.dialogRef.close();
-          this.profileUpdated.emit(this.user);
-        },
-        error: () => {
-          this.toastr.error("Erro ao atualizar perfil. Por favor, tente novamente mais tarde.");
-        }, complete: () => {}
-      });
-    } else {
-      console.error("ID do usuário não encontrado.");
+    if(!this.user.id){
+      this.toastr.error("ID do usuário não encontrado.");
+      return
     }
+    this.userService.updateUser(this.user.id, this.user).subscribe({
+      next: () => {
+        this.toastr.success("Perfil atualizado com sucesso!");
+        this.dialogRef.close();
+        this.profileUpdated.emit(this.user);
+      },
+      error: () => {
+        this.toastr.error("Falha ao atualizar perfil.");
+      }
+    });
   }
 
   validateUpdate(form: FormGroup): boolean {
