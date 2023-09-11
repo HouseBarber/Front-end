@@ -50,9 +50,8 @@
             Telefone é obrigatório
           </mat-error>
         </mat-form-field>
-        <mat-form-field class="funcao" appearance="outline">
-          <mat-label>Cadastrar-se como</mat-label>
-          <mat-select matNativeControl formControlName="role" required>
+        <mat-form-field appearance="outline">
+          <mat-select matNativeControl formControlName="role" placeholder="Cadastrar-se como">
             <mat-option *ngFor="let role of roles" [value]="role.id">
               {{ role.name }}
             </mat-option>
