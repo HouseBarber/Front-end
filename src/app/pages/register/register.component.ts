@@ -7,6 +7,8 @@ import { Role } from "../../models/role";
 import { RolesService } from "../../services/rolesService";
 import User from '../../models/User';
 import { AuthService } from '../../services/authService';
+import { isPasswordValid } from 'src/app/utils/passwordValid';
+import { passwordValidator } from 'src/app/utils/validatorPassword';
 
 @Component({
   selector: 'app-register',
@@ -38,15 +40,13 @@ export class RegisterComponent implements OnInit {
   initializeForms(): void {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
-      cpf: ['', Validators.required],
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      cpf: ['', Validators.required],
       telephone: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8), passwordValidator()]],
+      confirmPassword: ['', Validators.required, this.passwordMatchValidator],
       role: [],
-    }, {
-      validator: this.passwordMatchValidator
     });
     this.controlForm = this.registerForm.controls;
   }
@@ -128,12 +128,8 @@ export class RegisterComponent implements OnInit {
       this.toastr.error('A senha é obrigatória')
       returnError = true;
     }
-    if (form.value.password.length && form.value.password.length <= 5) {
-      this.toastr.error('A senha precisa ter pelo menos 5 digitos')
-      returnError = true;
-    }
-    if (form.value.password.length && form.value.password.length > 100) {
-      this.toastr.error('A senha pode ter no máximo 100 caracteres')
+    if(!isPasswordValid(form.value.password)){
+      this.toastr.error('A senha precisa conter letras maiusculas e minusculas e pelo menos 8 digitos')
       returnError = true;
     }
     if (form.value.password != form.value.confirmPassword) {
@@ -165,7 +161,6 @@ export class RegisterComponent implements OnInit {
         this.revealedConfirmPassword = true;
       }
     }
-
   }
 
 }

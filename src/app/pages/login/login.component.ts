@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {TranslateService} from "@ngx-translate/core";
 import Constants from '../../shared/messages/constants';
 import {Permissions} from '../../models/permissions';
 import User from '../../models/User';
@@ -23,7 +22,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              private translateService: TranslateService,
               private authService: AuthService,
               private toastr: ToastrService) {
   }
@@ -35,9 +33,8 @@ export class LoginComponent implements OnInit {
   instanceFormLogin(): void {
     this.formLogin = this.formBuilder.group({
       username: [null, Validators.required],
-      password: [null, [Validators.required, Validators.minLength(10)]]
+      password: [null, [Validators.required, Validators.minLength(8)]]
     });
-
     this.controlLogin = this.formLogin.controls;
   }
 
@@ -62,7 +59,7 @@ export class LoginComponent implements OnInit {
         let userAuthentication = this.authService.getUserByToken();
 
         this.router.navigateByUrl('/home', {state: {token: userAuthentication}})
-          .then(r => this.toastr.success('Successfully authenticated'));
+          .then(r => this.toastr.success('Login realizado com sucesso'));
       }, error: () => {
         this.loading = false
         this.toastr.error('Erro interno, tente novamente mais tarde.')
@@ -95,7 +92,7 @@ export class LoginComponent implements OnInit {
       returnError = true;
     }
     if (password.length && password.length <= 5) {
-      this.toastr.error('A senha precisa ter pelo menos 5 digitos')
+      this.toastr.error('A senha precisa ter pelo menos 8 digitos')
       returnError = true;
     }
     if (password.length && password.length > 100) {
