@@ -51,7 +51,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-select matNativeControl formControlName="role" placeholder="Cadastrar-se como">
+          <mat-select matNativeControl formControlName="role" required placeholder="Cadastrar-se">
             <mat-option *ngFor="let role of roles" [value]="role.id">
               {{ role.name }}
             </mat-option>
