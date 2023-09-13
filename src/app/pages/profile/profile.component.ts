@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { ToastrService } from 'ngx-toastr';
 import { UpdateProfileComponent } from 'src/app/components/update-profile/update-profile.component';
 import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/authService';
@@ -17,7 +18,6 @@ export class ProfileComponent implements OnInit {
   opened: boolean = false;
   currentRoute: string = '';
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger | undefined;
-
   currentUser: User | null = null;
   user: User = new User();
   userImage: Blob | null = null;
@@ -28,22 +28,52 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private userImageService: UserImageService,
-  ) {}
+    private toastr: ToastrService,
+  ) { }
 
   ngOnInit(): void {
-    if (this.authService.checkIsAuthenticated()) {
-      this.currentUser = this.authService.getUserByToken();
-      if (this.currentUser) {
-        this.userService.getUserById(this.currentUser.id!).subscribe((user) => {
-          console.log('User Details:', user);
-          this.user = user;
-          this.userImageService.getImage(user.id!).subscribe((image) => {
-            this.userImage = image;
-            this.getUserImageUrl();
-          });
-        });
-      }
+    this.checkAuthentication();
+    this.loadUserProfile();
+    this.loadUserImage();
+  }
+
+  checkAuthentication(): void {
+    if (!this.authService.checkIsAuthenticated()) {
+      this.toastr.error("Autenticação falhou");
+      return;
     }
+    this.currentUser = this.authService.getUserByToken();
+  }
+
+  loadUserProfile(): void {
+    if (!this.currentUser) {
+      this.toastr.error("Falha ao buscar usuario");
+      return;
+    }
+    this.userService.getUserById(this.currentUser.id).subscribe({
+      next: user => {
+        this.user = user;
+      },
+      error: () => {
+        this.toastr.error("Falha ao buscar usuario");
+      }
+    })
+  }
+
+  loadUserImage(): void {
+    if (!this.currentUser) {
+      this.toastr.error("Usuario não encontrado");
+      return;
+    }
+    this.userImageService.getImage(this.currentUser.id).subscribe({
+      next: (image) => {
+        this.userImage = image;
+        this.getUserImageUrl();
+      },
+      error: () => {
+        this.toastr.error("Falha ao buscar foto de perfil.");
+      }
+    })
   }
 
   getUserImageUrl(): void {
@@ -53,10 +83,11 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(UpdateProfileComponent, {restoreFocus: false});
-    dialogRef.afterClosed().subscribe(() => {
-      this.menuTrigger!.focus()
+  openDialog(): void {
+    const dialogRef = this.dialog.open(UpdateProfileComponent, { restoreFocus: false });
+    dialogRef.componentInstance.profileUpdated.subscribe((updatedUser: User) => {
+      this.user = updatedUser;
     });
   }
+
 }

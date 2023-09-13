@@ -1,10 +1,9 @@
-import { ProfileComponent } from './../../pages/profile/profile.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import User from 'src/app/models/User';
+import Address from 'src/app/models/Address';
 import { Role } from 'src/app/models/role';
 import { AuthService } from 'src/app/services/authService';
 import { RolesService } from 'src/app/services/rolesService'
@@ -16,6 +15,7 @@ import { UserService } from 'src/app/services/userService';
   styleUrls: ['./update-profile.component.scss']
 })
 export class UpdateProfileComponent implements OnInit {
+  @Output() profileUpdated = new EventEmitter<User>();
   genderSelect?: string;
   genders: String[] = [
     'Masculino',
@@ -23,49 +23,34 @@ export class UpdateProfileComponent implements OnInit {
     'Prefiro não informar',
     'Outros',
   ];
-
   updateForm!: FormGroup;
   controlForm: { [key: string]: AbstractControl } = {};
   roles: Role[] = [];
   currentUser: User | null = null;
   user: User = new User();
 
-  ngOnInit(): void {
-    this.initializeForms();
-    this.popularRoles();
-    if (this.authService.checkIsAuthenticated()) {
-      this.currentUser = this.authService.getUserByToken();
-      if (this.currentUser) {
-        this.userService.getUserById(this.currentUser.id!).subscribe((user) => {
-          this.user = user;
-          console.log('User Details:', this.user);
-          this.updateForm.patchValue({
-            username: user.username || '',
-            name: user.name || '',
-            cpf: user.cpf || '',
-            cnpj: user.cnpj || '',
-            email: user.email || '',
-            telephone: user.telephone || '',
-            gender: user.gender || '',
-            dateBirth: user.dateBirth || '',
-            description: user.description || '',
-            roles: user.roles || '',
-          });
-        });
-        this.genderSelect = this.user.gender;
-      }
-    }
-  }
-
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
-    private router: Router,
     private rolesService: RolesService,
     private authService: AuthService,
     private userService: UserService,
     public dialogRef: MatDialogRef<UpdateProfileComponent>
-  ){}
+  ) { }
+
+  ngOnInit(): void {
+    this.initializeForms();
+    this.popularRoles();
+    this.checkAuthenticated();
+  }
+
+  checkAuthenticated(): void {
+    if (!this.authService.checkIsAuthenticated()) {
+      return;
+    }
+    this.currentUser = this.authService.getUserByToken();
+    this.loadUserData();
+  }
 
   initializeForms(): void {
     this.updateForm = this.formBuilder.group({
@@ -79,9 +64,41 @@ export class UpdateProfileComponent implements OnInit {
       dateBirth: [''],
       description: [''],
       roles: [''],
-
+      cep: [''],
+      city: [''],
+      state: [''],
+      neighborhood: [''],
+      street: [''],
+      number: [''],
+      complement: [''],
     });
     this.controlForm = this.updateForm.controls;
+  }
+
+  loadUserData(): void {
+    this.userService.getUserById(this.currentUser!.id!).subscribe((user) => {
+      this.user = user;
+      this.updateForm.patchValue({
+        username: user.username || '',
+        name: user.name || '',
+        cpf: user.cpf || '',
+        cnpj: user.cnpj || '',
+        email: user.email || '',
+        telephone: user.telephone || '',
+        gender: user.gender || '',
+        dateBirth: user.dateBirth || '',
+        description: user.description || '',
+        roles: user.roles || '',
+        cep: user.address?.cep || '',
+        city: user.address?.city || '',
+        state: user.address?.state || '',
+        neighborhood: user.address?.neighborhood || '',
+        street: user.address?.street || '',
+        number: user.address?.number || '',
+        complement: user.address?.complement || '',
+      });
+    });
+    this.genderSelect = this.user.gender;
   }
 
   popularRoles(): void {
@@ -98,45 +115,39 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    const canUpdate = this.validateUpdate(this.updateForm);
+    this.user.cpf = this.updateForm.value.cpf
+    this.user.cnpj = this.updateForm.value.cnpj
+    this.user.dateBirth = this.updateForm.value.dateBirth
+    this.user.email = this.updateForm.value.email
+    this.user.telephone = this.updateForm.value.telephone
+    this.user.description = this.updateForm.value.description
+    this.user.name = this.updateForm.value.name
+    this.user.roles = this.roles.filter(role => role.id === this.updateForm.value.role)
+    this.user.username = this.updateForm.value.username
+    const addressUser: Address = new Address();
+    addressUser.cep = this.updateForm.value.cep
+    addressUser.city = this.updateForm.value.city
+    addressUser.complement = this.updateForm.value.complement
+    addressUser.neighborhood = this.updateForm.value.neighborhood
+    addressUser.street = this.updateForm.value.street
+    addressUser.state = this.updateForm.value.state
+    addressUser.number = this.updateForm.value.number
+    addressUser.id = this.user.address?.id
+    this.user.address = addressUser;
 
-    if (!canUpdate) {
-      this.toastr.error("Existem informações a serem preenchidas.");
-      return;
+    if (!this.user.id) {
+      this.toastr.error("ID do usuário não encontrado.");
+      return
     }
-
-    const updatedUser = { ...this.user, ...this.updateForm.value };
-    if (this.user.id) { // Certifique-se de que this.user.id não seja nulo
-      this.userService.updateUser(this.user.id, updatedUser).subscribe(
-        () => {
-          this.toastr.success("Perfil atualizado com sucesso!");
-          this.router.navigateByUrl('/profile');
-          this.dialogRef.close();
-        },
-        () => {
-          this.toastr.error("Erro ao atualizar perfil. Por favor, tente novamente mais tarde.");
-        }
-      );
-    } else {
-      console.error("ID do usuário não encontrado.");
-    }
-  }
-
-  validateUpdate(form: FormGroup): boolean {
-    if (form.invalid) {
-      // Percorra os controles do formulário
-      for (const controlName in form.controls) {
-        if (form.controls.hasOwnProperty(controlName)) {
-          // Se o controle estiver inválido, adicione a classe CSS
-          if (form.controls[controlName].invalid) {
-            form.controls[controlName].markAsTouched();
-            form.controls[controlName].setErrors({ 'invalid': true });
-          }
-        }
+    this.userService.updateUser(this.user.id, this.user).subscribe({
+      next: () => {
+        this.toastr.success("Perfil atualizado com sucesso!");
+        this.dialogRef.close();
+        this.profileUpdated.emit(this.user);
+      },
+      error: () => {
+        this.toastr.error("Falha ao atualizar perfil.");
       }
-      return false;
-    }
-    return true;
+    });
   }
-
 }

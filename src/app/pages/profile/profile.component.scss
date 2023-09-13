@@ -45,7 +45,6 @@
 .profile-image {
   width: 100%;
   height: 100%;
-  background-size: cover;
   object-fit: cover;
 }
 
@@ -100,6 +99,7 @@
 .description-text {
   font-size: 16px;
   margin-bottom: 20px;
+  word-wrap: break-word;
 }
 
 .address-container {

@@ -26,7 +26,7 @@
         </mat-form-field>
         <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
           <mat-label>Data de Nascimento</mat-label>
-          <input matInput placeholder="Digite sua data de nascimento" type="date" formControlName="dateBirth">
+          <input matInput placeholder="Digite sua data de nascimento" formControlName="dateBirth">
           <mat-icon matSuffix>calendar_today</mat-icon>
           <mat-error *ngIf="updateForm.get('dateBirth')?.hasError('required')">
             Data de nascimento é <strong>obrigatório</strong>
@@ -91,6 +91,49 @@
               {{gender}}
             </mat-option>
           </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-sm-12 col-md-12 col-lg-4" appearance="outline">
+          <mat-label>CEP</mat-label>
+          <input matInput placeholder="Digite sua CEP" type="text" formControlName="cep">
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="col-sm-12 col-md-12 col-lg-4" appearance="outline">
+          <mat-label>Cidade</mat-label>
+          <input matInput placeholder="Digite sua Cidade" type="text" formControlName="city">
+          <mat-icon matSuffix>location_city</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="col-sm-12 col-md-12 col-lg-4" appearance="outline">
+          <mat-label>Estado</mat-label>
+          <input matInput placeholder="Digite seu Estado" type="text" formControlName="state">
+          <mat-icon matSuffix>flag</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-sm-12 col-md-12 col-lg-12" appearance="outline">
+          <mat-label>Rua</mat-label>
+          <input matInput placeholder="Digite seu Rua" type="text" formControlName="street">
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-sm-6 col-md-6 col-lg-4" appearance="outline">
+          <mat-label>Bairro</mat-label>
+          <input matInput placeholder="Digite seu Rua" type="text" formControlName="neighborhood">
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="col-sm-6 col-md-6 col-lg-4" appearance="outline">
+          <mat-label>Número</mat-label>
+          <input matInput placeholder="Digite seu Número" type="text" formControlName="number">
+          <mat-icon matSuffix>home</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="col-sm-6 col-md-6 col-lg-4" appearance="outline">
+          <mat-label>Complemento</mat-label>
+          <input matInput placeholder="Digite seu Complemento" type="text" formControlName="complement">
+          <mat-icon matSuffix>info</mat-icon>
         </mat-form-field>
       </div>
 
