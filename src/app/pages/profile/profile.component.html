@@ -36,7 +36,7 @@
     <p class="description-text">
       {{user.description}}
     </p>
-    <div class="address-container" *ngIf="user?.address">
+    <div class="address-container" *ngIf="user?.address?.cep">
       <h3>Endereço</h3>
       <p>Logradouro: {{ user.address?.street }}, {{ user.address?.number }}</p>
       <p>Bairro: {{ user.address?.neighborhood }}</p>

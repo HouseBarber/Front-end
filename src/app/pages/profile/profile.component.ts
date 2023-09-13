@@ -69,9 +69,6 @@ export class ProfileComponent implements OnInit {
       next: (image) => {
         this.userImage = image;
         this.getUserImageUrl();
-      },
-      error: () => {
-        this.toastr.error("Falha ao buscar foto de perfil.");
       }
     })
   }
