@@ -31,14 +31,11 @@ form{
 .row{
   width: 100%;
   justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
 mat-form-field{
   width: 50%;
-}
-
-mat-icon {
-  color: #344edf;
 }
 
 .button-cadastrar{

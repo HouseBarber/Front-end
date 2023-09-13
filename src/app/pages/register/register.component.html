@@ -7,11 +7,11 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <mat-form-field appearance="outline">
-          <mat-label>Username</mat-label>
-          <input matInput placeholder="Digite seu username" formControlName="username">
+          <mat-label>Usuário</mat-label>
+          <input matInput placeholder="Digite seu nome de usuario" formControlName="username">
           <mat-icon matSuffix>person</mat-icon>
           <mat-error *ngIf="registerForm.hasError">
-            Username é obrigatório
+            O usuário é obrigatório
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">

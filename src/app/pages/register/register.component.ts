@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
       cpf: ['', Validators.required],
       telephone: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8), passwordValidator()]],
-      confirmPassword: ['', Validators.required, this.passwordMatchValidator],
+      confirmPassword: ['', Validators.required],
       role: [],
     });
     this.controlForm = this.registerForm.controls;
@@ -62,12 +62,6 @@ export class RegisterComponent implements OnInit {
         this.toastr.error("Erro ao buscar roles");
       }
     });
-  }
-
-  passwordMatchValidator(g: FormGroup) {
-    const password = g.get('password');
-    const confirmPassword = g.get('confirmPassword');
-    return password === confirmPassword ? null : {'passwordMismatch': true};
   }
 
   onSubmit() {
@@ -98,10 +92,10 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  validateRegister(form: FormGroup): boolean | null {
+  validateRegister(form: FormGroup): boolean {
     let returnError = false;
     if (form.value.username === null || form.value.username.length === 0) {
-      this.toastr.error('O username é obrigatório')
+      this.toastr.error('O usuario é obrigatório')
       returnError = true;
     }
     if (form.value.name === null || form.value.name.length === 0) {
