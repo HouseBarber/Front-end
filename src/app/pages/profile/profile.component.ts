@@ -7,6 +7,7 @@ import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/authService';
 import { UserImageService } from 'src/app/services/userImageService';
 import { UserService } from 'src/app/services/userService';
+import Constants from 'src/app/shared/messages/constants';
 
 @Component({
   selector: 'app-profile',
@@ -20,8 +21,7 @@ export class ProfileComponent implements OnInit {
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger | undefined;
   currentUser: User | null = null;
   user: User = new User();
-  userImage: Blob | null = null;
-  profileImageUrl: string | undefined;
+  userImage: string = Constants.IMAGE_DEFAULT_PROFILE;
 
   constructor(
     public dialog: MatDialog,
@@ -67,17 +67,17 @@ export class ProfileComponent implements OnInit {
     }
     this.userImageService.getImage(this.currentUser.id).subscribe({
       next: (image) => {
-        this.userImage = image;
-        this.getUserImageUrl();
+        if(!image){
+          return;
+        }
+        this.getUserImageUrl(image);
       }
     })
   }
 
-  getUserImageUrl(): void {
-    if (this.userImage) {
-      const blob = new Blob([this.userImage], { type: 'image/jpeg' });
-      this.profileImageUrl = URL.createObjectURL(blob);
-    }
+  getUserImageUrl(base64: Blob): void {
+    const blob = new Blob([base64], { type: 'image/jpeg' });
+    this.userImage = URL.createObjectURL(blob);
   }
 
   openDialog(): void {
