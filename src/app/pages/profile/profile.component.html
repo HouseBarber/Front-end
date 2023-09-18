@@ -4,11 +4,8 @@
   </div>
   <div class="profile-header">
     <div class="profile-picInfo" >
-      <div *ngIf="userImage" class="profile-picture">
-        <img [src]="profileImageUrl" alt="Foto de Perfil" class="profile-image">>
-      </div>
-      <div *ngIf="!userImage" class="profile-picture">
-        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Foto de Perfil" class="profile-image">
+      <div class="profile-picture">
+        <img [src]="userImage" alt="Foto de Perfil" class="profile-image">>
       </div>
       <div class="profile-info" *ngIf="user">
         <h1 class="profile-name">{{ user.name }}</h1>
@@ -36,7 +33,7 @@
     <p class="description-text">
       {{user.description}}
     </p>
-    <div class="address-container" *ngIf="user?.address">
+    <div class="address-container" *ngIf="user?.address?.cep">
       <h3>Endereço</h3>
       <p>Logradouro: {{ user.address?.street }}, {{ user.address?.number }}</p>
       <p>Bairro: {{ user.address?.neighborhood }}</p>

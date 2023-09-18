@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import User from 'src/app/models/User';
-import Address from 'src/app/models/Address';
+import Address from 'src/app/models/address';
 import { Role } from 'src/app/models/role';
 import { AuthService } from 'src/app/services/authService';
 import { RolesService } from 'src/app/services/rolesService'
@@ -137,7 +137,7 @@ export class UpdateProfileComponent implements OnInit {
 
     if (!this.user.id) {
       this.toastr.error("ID do usuário não encontrado.");
-      return
+      return;
     }
     this.userService.updateUser(this.user.id, this.user).subscribe({
       next: () => {

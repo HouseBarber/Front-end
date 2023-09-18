@@ -1,7 +1,6 @@
-
 import {Role} from "./role";
 import Auditable from './auditable';
-import Address from "./Address";
+import Address from "./address";
 
 export default class User extends Auditable {
 

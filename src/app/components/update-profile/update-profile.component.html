@@ -26,12 +26,11 @@
         </mat-form-field>
         <mat-form-field class="col-sm-6 col-md-6 col-lg-6" appearance="outline">
           <mat-label>Data de Nascimento</mat-label>
-          <input matInput placeholder="Digite sua data de nascimento" formControlName="dateBirth">
-          <mat-icon matSuffix>calendar_today</mat-icon>
-          <mat-error *ngIf="updateForm.get('dateBirth')?.hasError('required')">
-            Data de nascimento é <strong>obrigatório</strong>
-          </mat-error>
+          <input matInput [matDatepicker]="picker" formControlName="dateBirth">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+
       </div>
 
       <div class="row">
