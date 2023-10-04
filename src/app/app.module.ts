@@ -1,7 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { MatTableModule } from '@angular/material/table';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterOutlet } from '@angular/router';
@@ -20,6 +20,7 @@ import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 import { CadastroEstabelecimentoComponent } from './pages/cadastro-estabelecimento/cadastro-estabelecimento.component';
+import { EstablishmentListComponent } from './pages/establishment/establishment-list/establishment-list.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -37,8 +38,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProfileComponent,
     UpdateProfileComponent,
     CadastroEstabelecimentoComponent,
+    EstablishmentListComponent
   ],
   imports: [
+    MatTableModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,

@@ -1,6 +1,8 @@
 import Address from "./address";
 
 export default class Estabelecimento{
+
+  id!: number;
   endereco?: Address;
   nomeFantasia?: string;
   contato?: string;
