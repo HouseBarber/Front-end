@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EstablishmentService } from 'src/app/services/establishmentService';
 import { ToastrService } from 'ngx-toastr';
 import Estabelecimento from 'src/app/models/estabelecimento';
+import { AuthService } from 'src/app/services/authService';
 
 
 
@@ -15,6 +16,7 @@ export class EstablishmentListComponent implements OnInit{
 
   constructor(
     private establishmentService: EstablishmentService,
+    private authService: AuthService,
     private toastr: ToastrService
   ){
 
@@ -25,7 +27,7 @@ export class EstablishmentListComponent implements OnInit{
     this.popularEstablishment();
   }
   popularEstablishment(): void {
-    this.establishmentService.getAllEstablishment().subscribe({
+    this.establishmentService.getAllEstablishment(this.authService.getUserByToken()!.id).subscribe({
       next: (response) => {
         if (response.length > 0) {
           this.estabelecimento = response;

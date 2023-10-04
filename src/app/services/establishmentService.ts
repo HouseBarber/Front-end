@@ -12,9 +12,9 @@ export class EstablishmentService {
 
   constructor(private http: HttpClient) {}
 
-  getAllEstablishment(): Observable<Estabelecimento[]> {
+  getAllEstablishment(id : number): Observable<Estabelecimento[]> {
     return this.http.get<Estabelecimento[]>(
-      `${environment.api}${this.path}`
+      `${environment.api}${this.path}/{id}`
     );
   }
 }
