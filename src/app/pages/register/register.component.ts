@@ -28,9 +28,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private rolesService: RolesService,
     private authService: AuthService
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     this.initializeForms();
@@ -65,7 +63,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-
     const canRegister = this.validateRegister(this.registerForm);
 
     if (!canRegister) {
@@ -80,7 +77,6 @@ export class RegisterComponent implements OnInit {
     userToRegister.telephone = this.registerForm.value.telephone;
     userToRegister.password = this.registerForm.value.password;
     userToRegister.roles = this.roles.filter(role => role.id === this.registerForm.value.role)
-    userToRegister.cnpj = "";
     userToRegister.cpf = this.registerForm.value.cpf;
     this.authService.signUp(userToRegister).subscribe({
       next: () => {

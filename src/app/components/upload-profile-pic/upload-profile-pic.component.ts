@@ -32,14 +32,8 @@ export class UploadProfilePicComponent {
         }
         this.imageUploaded.emit(this.userImage);
       };
-      this.userImageService.uploadImage(this.currentUser!.id, file).subscribe({
-        next: () => {
-          this.toastr.success("Foto do perfil atualizada com sucesso!");
-        },
-        error: () => {
-          this.toastr.error("Falha ao foto do perfil.");
-        }
-      });
+      this.userImageService.uploadImage(this.currentUser!.id, file);
+      this.toastr.success("Foto do perfil atualizada com sucesso!");
     }
   }
 
