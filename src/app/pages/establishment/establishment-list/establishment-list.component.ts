@@ -3,6 +3,7 @@ import { EstablishmentService } from 'src/app/services/establishmentService';
 import { ToastrService } from 'ngx-toastr';
 import Estabelecimento from 'src/app/models/estabelecimento';
 import { AuthService } from 'src/app/services/authService';
+import {Page} from "../../../models/Page";
 
 
 
@@ -27,14 +28,15 @@ export class EstablishmentListComponent implements OnInit{
     this.popularEstablishment();
   }
   popularEstablishment(): void {
-    this.establishmentService.getAllEstablishment(this.authService.getUserByToken()!.id).subscribe({
-      next: (response) => {
-        if (response.length > 0) {
-          this.estabelecimento = response;
+    const userId = this.authService.getUserByToken()!.id;
+    this.establishmentService.getAllEstablishments(userId).subscribe({
+      next: (page: Page<Estabelecimento>) => {
+        if (page.content && page.content.length > 0) {
+          this.estabelecimento = page.content;
         }
       },
       error: (err) => {
-        console.log(err);
+        console.error(err);
         this.toastr.error("Erro ao buscar estabelecimentos");
       }
     });
