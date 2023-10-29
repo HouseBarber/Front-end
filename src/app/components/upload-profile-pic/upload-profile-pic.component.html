@@ -1,0 +1,4 @@
+<div class="profile-picture" (click)="fileInput.click()">
+    <img [src]="userImage" alt="Prévia da Imagem" class="profile-image" />
+    <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" style="display: none;" />
+</div>

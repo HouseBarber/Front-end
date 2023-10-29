@@ -20,6 +20,8 @@ import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 import { CadastroEstabelecimentoComponent } from './pages/cadastro-estabelecimento/cadastro-estabelecimento.component';
+import { UploadProfilePicComponent } from './components/upload-profile-pic/upload-profile-pic.component';
+import { CarrousselHomeComponent } from './components/carroussel-home/carroussel-home.component';
 import { EstablishmentListComponent } from './pages/establishment/establishment-list/establishment-list.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -38,7 +40,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProfileComponent,
     UpdateProfileComponent,
     CadastroEstabelecimentoComponent,
-    EstablishmentListComponent
+    EstablishmentListComponent,
+    UploadProfilePicComponent,
+    CarrousselHomeComponent,
   ],
   imports: [
     MatTableModule,

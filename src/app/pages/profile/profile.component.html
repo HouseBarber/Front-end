@@ -4,9 +4,7 @@
   </div>
   <div class="profile-header">
     <div class="profile-picInfo" >
-      <div class="profile-picture">
-        <img [src]="userImage" alt="Foto de Perfil" class="profile-image">>
-      </div>
+      <app-upload-profile-pic [userImage]="userImage" ></app-upload-profile-pic>
       <div class="profile-info" *ngIf="user">
         <h1 class="profile-name">{{ user.name }}</h1>
         <p class="profile-bio">{{ user.email }}</p>

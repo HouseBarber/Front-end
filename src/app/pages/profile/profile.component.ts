@@ -87,4 +87,8 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  onImageUploaded(newImage: string | ArrayBuffer): void {
+    this.userImage = newImage as string;
+  }
+
 }
