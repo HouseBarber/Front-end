@@ -1,8 +1,10 @@
 @import "src/assets/scss/colors.scss";
 
-mat-sidenav-container {
-  height: calc(205vh - 112vh);
+mat-sidenav-content{
+  min-height: 100vh;
+  background-color: #efefef;
 }
+
 mat-sidenav {
   width: 14rem;
   background-color: rgba(45, 44, 44, 0.6);
@@ -12,6 +14,13 @@ mat-nav-list {
   h6 {
     margin: auto 10px;
   }
+}
+
+.fixed-toolbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 .spacer-sidenav {
@@ -29,7 +38,7 @@ mat-nav-list {
 }
 
 .p-top {
-  padding-top: 10.7%;
+  padding-top: 0.5%;
 }
 
 .menu-sidenav {
@@ -40,4 +49,9 @@ mat-nav-list {
 
 .icon-texto{
   margin-left: 10px;
+}
+
+.menu-itens{
+  display: flex;
+  justify-content: center;
 }

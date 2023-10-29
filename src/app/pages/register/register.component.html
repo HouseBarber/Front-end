@@ -7,14 +7,20 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <mat-form-field appearance="outline">
-          <mat-label>Username</mat-label>
-          <input matInput placeholder="Digite seu username" formControlName="username">
+          <mat-label>Usuário</mat-label>
+          <input matInput placeholder="Digite seu nome de usuario" formControlName="username">
           <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="registerForm.hasError">
+            O usuário é obrigatório
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput placeholder="Digite seu email" type="email" formControlName="email">
           <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="registerForm.hasError">
+            O email é invalido
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="row">
@@ -22,11 +28,17 @@
           <mat-label>Nome</mat-label>
           <input matInput placeholder="Digite seu nome" formControlName="name">
           <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="registerForm.hasError">
+            Nome é obrigatório
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>CPF</mat-label>
           <input matInput placeholder="Digite seu CPF" type="text" formControlName="cpf">
           <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="registerForm.hasError">
+            CPF é obrigatório
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="row">
@@ -34,30 +46,50 @@
           <mat-label>Telefone</mat-label>
           <input matInput placeholder="Digite seu telefone" type="tel" formControlName="telephone" appPhoneFormat>
           <mat-icon matSuffix>call</mat-icon>
+          <mat-error *ngIf="registerForm.hasError">
+            Telefone é obrigatório
+          </mat-error>
         </mat-form-field>
-        <mat-form-field class="funcao" appearance="outline">
-          <mat-label>Cadastrar-se como</mat-label>
-          <mat-select matNativeControl formControlName="role" required>
+        <mat-form-field appearance="outline">
+          <mat-select matNativeControl formControlName="role" required placeholder="Cadastrar-se">
             <mat-option *ngFor="let role of roles" [value]="role.id">
               {{ role.name }}
             </mat-option>
           </mat-select>
+          <mat-error *ngIf="registerForm.hasError">
+            Seu tipo de cadastro é obrigatório
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Senha</mat-label>
           <input matInput placeholder="Digite sua senha" id="password" type="password" formControlName="password">
-          <mat-icon matSuffix (click)="revealPassword()">
+          <mat-icon matSuffix (click)="revealPassword('password')">
             {{this.revealedPassword != null && !this.revealedPassword ? 'lock' : 'lock_open'}}
           </mat-icon>
+          <mat-error *ngIf="registerForm.hasError! && !registerForm.value.password">
+            A senha é obrigatória.
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('password')?.hasError('minlength')">
+            A senha deve ter pelo menos 8 caracteres.
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('password')?.hasError('passwordInvalid') && registerForm.value.password">
+            A senha precisa conter letras maiúsculas e minúsculas.
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Confirme sua senha</mat-label>
           <input matInput placeholder="Confirme sua senha" id="confirmPassword" type="password" formControlName="confirmPassword">
-          <mat-icon matSuffix (click)="revealConfirmPassword()">
+          <mat-icon matSuffix (click)="revealPassword('confirmPassword')">
             {{this.revealedConfirmPassword != null && !this.revealedConfirmPassword ? 'lock' : 'lock_open'}}
           </mat-icon>
+          <mat-error *ngIf="registerForm.get('confirmPassword')?.hasError('required')">
+            Confirmar a senha é obrigatório
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('confirmPassword')?.hasError('passwordMatchValidator')">
+            As senhas são diferentes
+          </mat-error>
         </mat-form-field>
       </div>
       <button class="button-cadastrar" mat-raised-button color="primary" type="submit">Cadastrar-se</button>

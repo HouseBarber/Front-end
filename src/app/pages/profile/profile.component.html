@@ -1,0 +1,44 @@
+<div class="profile-container" *ngIf="user.name">
+  <div class="cover-photo">
+    <img src="https://hinova.com.br/wp-content/uploads/2017/07/Barbearia-1024x585.jpg" alt="Foto de Capa" class="cover-image">
+  </div>
+  <div class="profile-header">
+    <div class="profile-picInfo" >
+      <app-upload-profile-pic [userImage]="userImage" ></app-upload-profile-pic>
+      <div class="profile-info" *ngIf="user">
+        <h1 class="profile-name">{{ user.name }}</h1>
+        <p class="profile-bio">{{ user.email }}</p>
+        <div class="profile-stats">
+          <div class="stat">
+            <span class="stat-value">0 </span>
+            <span class="stat-label">Seguidores</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">0 </span>
+            <span class="stat-label">Posts</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" (click)="openDialog()">Editar perfil</button>
+    </div>
+  </div>
+  <div class="profile-description">
+    <div class="description-header">
+      <h3>Boas-vindas à meu perfil</h3>
+    </div>
+    <p class="description-text">
+      {{user.description}}
+    </p>
+    <div class="address-container" *ngIf="user?.address?.cep">
+      <h3>Endereço</h3>
+      <p>Logradouro: {{ user.address?.street }}, {{ user.address?.number }}</p>
+      <p>Bairro: {{ user.address?.neighborhood }}</p>
+      <p>{{ user.address?.city }}, {{ user.address?.state }}</p>
+    </div>
+  </div>
+</div>
+<div *ngIf="!user.name" style="display: flex; width: 100%; height: 100vh; align-items: center; justify-content: center;">
+  <mat-spinner [style]="'90px'"></mat-spinner>
+</div>

@@ -1,0 +1,35 @@
+.row {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.update-profile-dialog {
+  min-height: 50vh;
+  padding: 1rem;
+}
+
+.dialog-title {
+  margin-bottom: 1rem;
+}
+
+.update-form {
+  overflow-y: auto;
+  max-height: 50vh;
+}
+
+.buttons-container {
+  margin-top: 2rem;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.mat-error {
+  color: red;
+}
+
+textarea[matInput] {
+  resize: vertical;
+}

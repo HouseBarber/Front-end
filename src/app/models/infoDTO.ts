@@ -1,5 +1,5 @@
 export interface InfoDTO<T> {
   status: number;
-  data: T;
+  object: T;
   message: string;
 }

@@ -15,6 +15,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatStepperModule } from "@angular/material/stepper";
+import { MatExpansionModule } from "@angular/material/expansion";
 
 @NgModule({
   exports: [
@@ -33,6 +37,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatDialogModule,
     MatMenuModule,
     MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatChipsModule,
+    MatRadioModule,
+    MatStepperModule,
   ]
 })
+
 export class AppMaterialModule { }

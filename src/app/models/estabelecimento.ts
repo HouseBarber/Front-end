@@ -1,8 +1,7 @@
-import Endereco from "./endereco";
-
+import Address from "./address";
 
 export default class Estabelecimento{
-  endereco?: Endereco;
+  endereco?: Address;
   establishmentName?: string;
   cnpj?: string;
   email?: string;
@@ -13,7 +12,7 @@ export default class Estabelecimento{
   photos?: string;
 
   constructor(
-    endereco?: Endereco,
+    endereco?: Address,
     cnpj?: string,
     email?: string,
     establishmentName?: string,
@@ -22,8 +21,6 @@ export default class Estabelecimento{
     time?: string,
     daysOpens?: string,
     photos?: string,
-    
-    
   ) {
     this.endereco = endereco;
     this.cnpj = cnpj;

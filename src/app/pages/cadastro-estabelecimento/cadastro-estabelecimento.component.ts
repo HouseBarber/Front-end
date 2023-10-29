@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/authService';
 import Estabelecimento from 'src/app/models/estabelecimento';
 import { EstablishmentService } from 'src/app/services/establishmentService';
 import { isEmailValid } from 'src/app/utils/validadorEmail';
@@ -59,7 +60,7 @@ export class CadastroEstabelecimentoComponent implements OnInit {
     });
     this.controlForm = this.estabelecimentoForm.controls;
   }
-  
+
 
 
   onSubmit() {
@@ -93,14 +94,14 @@ export class CadastroEstabelecimentoComponent implements OnInit {
 
   }
 
-    
+
 
   validateRegister(nomeFantasia: string, email: string, contact: string,
     cnpj: string): boolean | null {
     let returnError = false;
     if (nomeFantasia === null || nomeFantasia.length === 0) {
       this.toastr.error('O Nome Fantasia é obrigatório')
-      
+
       returnError = true;
     }
     if (email === null || email.length === 0) {
@@ -123,7 +124,7 @@ export class CadastroEstabelecimentoComponent implements OnInit {
     return !returnError;
   }
 
-  
+
 
 
 }

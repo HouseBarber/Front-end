@@ -9,7 +9,7 @@ import {
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
-import { TokenRecoveryGuard } from './guards/tokenRecovery.guard';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { CadastroEstabelecimentoComponent } from './pages/cadastro-estabelecimento/cadastro-estabelecimento.component';
 
 const routes: Routes = [
@@ -31,12 +31,19 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path: 'profile',
+    component: ProfileComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  },
+  {
     path: 'register',
     component: RegisterComponent,
   },
   {
     path: 'changePassword/:token',
-    canActivate: [TokenRecoveryGuard],
     component: ChangePasswordComponent,
   },
   {

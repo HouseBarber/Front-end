@@ -1,19 +1,23 @@
-
 import {Role} from "./role";
 import Auditable from './auditable';
+import Address from "./address";
 
 export default class User extends Auditable {
 
-  id?: number;
-  name?: string;
-  email?: string;
+  id!: number;
+  name!: string;
+  email!: string;
   cpf?: string;
   cnpj?: string;
-  telephone?: string;
-  birthday?: Date;
-  username?: string;
-  password?: string;
+  telephone!: string;
+  username!: string;
+  password!: string;
+  gender?: string;
+  description?: string;
   roles?: Role[];
+  dateBirth?: Date;
+
+  address?: Address;
 
   // Auditable Properties
   override active?: boolean;
@@ -21,44 +25,4 @@ export default class User extends Auditable {
   override createdDate?: Date;
   override lastModifiedBy?: string;
   override lastModifiedDate?: Date;
-
-  constructor(
-    id?: number,
-    name?: string,
-    cpf?: string,
-    cnpj?: string,
-    telephone?: string,
-    birthday?: Date,
-    username?: string,
-    password?: string,
-    email?: string,
-    roles?: Role[],
-
-    // Auditable Properties
-    active?: boolean,
-    createdBy?: string,
-    createdDate?: Date,
-    lastModifiedBy?: string,
-    lastModifiedDate?: Date
-  ) {
-    super();
-    this.id = id;
-    this.name = name;
-    this.cpf = cpf;
-    this.cnpj = cnpj;
-    this.telephone = telephone;
-    this.birthday = birthday;
-    this.username = username;
-    this.password = password;
-    this.email = email;
-    this.roles = roles;
-
-    // Auditable Properties
-    this.active = active;
-    this.createdBy = createdBy;
-    this.createdDate = createdDate;
-    this.lastModifiedBy = lastModifiedBy;
-    this.lastModifiedDate = lastModifiedDate;
-
-  }
 }
