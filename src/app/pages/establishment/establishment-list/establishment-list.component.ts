@@ -33,7 +33,8 @@ export class EstablishmentListComponent implements OnInit{
           this.estabelecimento = response;
         }
       },
-      error: () => {
+      error: (err) => {
+        console.log(err);
         this.toastr.error("Erro ao buscar estabelecimentos");
       }
     });
