@@ -9,7 +9,7 @@ import {Page} from "../models/Page";
   providedIn: 'root',
 })
 export class EstablishmentService {
-  private path = '/v1/establishment';
+  private path = 'v1/establishment';
 
   constructor(private http: HttpClient) {}
 
@@ -17,7 +17,7 @@ export class EstablishmentService {
     const params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());
-
+    console.log(`${environment.api}/${this.path}/${userId}`);
     return this.http.get<Page<Estabelecimento>>(`${environment.api}/${this.path}/${userId}`, { params });
   }
 }
