@@ -30,9 +30,10 @@ export class EstablishmentListComponent implements OnInit{
   popularEstablishment(): void {
     const userId = this.authService.getUserByToken()!.id;
     this.establishmentService.getAllEstablishments(userId).subscribe({
-      next: (page: Page<Estabelecimento>) => {
-        if (page.content && page.content.length > 0) {
-          this.estabelecimento = page.content;
+      next: (info) => {
+        if (info.object.content && info.object.content.length > 0) {
+          console.log(info);
+          this.estabelecimento = info.object.content;
         }
       },
       error: (err) => {
