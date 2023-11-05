@@ -5,6 +5,7 @@ import Estabelecimento from 'src/app/models/estabelecimento';
 import { AuthService } from 'src/app/services/authService';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import {Router} from "@angular/router";
 
 
 
@@ -28,7 +29,8 @@ export class EstablishmentListComponent implements OnInit, AfterViewInit{
   constructor(
     private establishmentService: EstablishmentService,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ){
 
 
@@ -56,7 +58,6 @@ export class EstablishmentListComponent implements OnInit, AfterViewInit{
   }
 
   editEstablishment(row: any): void{
-    console.log(row);
-
+    this.router.navigate(['/cadastroEstabelecimento', row.id]);
   }
 }

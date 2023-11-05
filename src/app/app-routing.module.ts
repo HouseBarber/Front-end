@@ -24,6 +24,10 @@ const routes: Routes = [
     component: ForgotPasswordComponent,
   },
   {
+    path: 'cadastroEstabelecimento/:id',
+    component: CadastroEstabelecimentoComponent,
+  },
+  {
     path: 'cadastroEstabelecimento',
     component: CadastroEstabelecimentoComponent,
   },
