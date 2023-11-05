@@ -25,7 +25,7 @@ export class CadastroEstabelecimentoComponent implements OnInit{
 
   }
 
-  
+
 
   Edit() {
 
@@ -35,7 +35,7 @@ export class CadastroEstabelecimentoComponent implements OnInit{
 
   ngOnInit(): void {
     this.initializeForms();
-        
+
   }
 
   initializeForms(): void {

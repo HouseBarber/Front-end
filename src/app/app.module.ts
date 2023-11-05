@@ -23,6 +23,7 @@ import { CadastroEstabelecimentoComponent } from './pages/cadastro-estabelecimen
 import { UploadProfilePicComponent } from './components/upload-profile-pic/upload-profile-pic.component';
 import { CarrousselHomeComponent } from './components/carroussel-home/carroussel-home.component';
 import { EstablishmentListComponent } from './pages/establishment/establishment-list/establishment-list.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -44,32 +45,33 @@ export function HttpLoaderFactory(http: HttpClient) {
     UploadProfilePicComponent,
     CarrousselHomeComponent,
   ],
-  imports: [
-    MatTableModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserModule,
-    ToastrModule.forRoot({
-      timeOut: 3000,
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: true,
-      progressBar: true
-    }),
-    RouterOutlet,
-    AppMaterialModule,
-  ],
+    imports: [
+        MatTableModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserModule,
+        ToastrModule.forRoot({
+            timeOut: 3000,
+            positionClass: 'toast-bottom-right',
+            preventDuplicates: true,
+            progressBar: true
+        }),
+        RouterOutlet,
+        AppMaterialModule,
+        MatPaginatorModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

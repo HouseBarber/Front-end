@@ -10,6 +10,7 @@ export default class Estabelecimento{
   horario?: string;
   diasAtendimento?: string;
   foto?: string;
+  formattedAddress?: string;
 
   constructor(
     endereco?: Address,
@@ -19,6 +20,7 @@ export default class Estabelecimento{
     horario?: string,
     diasAtendimento?: string,
     foto?: string,
+    formattedAddress?: string
   ) {
     this.endereco = endereco;
     this.nomeFantasia = nomeFantasia;
@@ -27,5 +29,6 @@ export default class Estabelecimento{
     this.horario = horario;
     this.diasAtendimento = diasAtendimento;
     this.foto = foto;
+    this.formattedAddress = formattedAddress;
   }
 }
