@@ -8,7 +8,7 @@
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Nome Fantasia</mat-label>
-          <input matInput placeholder="Digite o nome do Estabelecimento" formControlName="nomeFantasia">
+          <input matInput placeholder="Digite o nome do Estabelecimento" formControlName="name">
           <mat-icon matSuffix>business</mat-icon>
         </mat-form-field>
         <mat-form-field appearance="outline">
@@ -18,57 +18,57 @@
         </mat-form-field>
       </div>
       <div class="row">
-        <mat-form-field appearance="outline">
+        <mat-form-field id="cep" appearance="outline">
           <mat-label>CEP</mat-label>
           <input matInput placeholder="Ex: 87711-280" maxlength="9" formControlName="cep">
           <mat-icon matSuffix>location_on</mat-icon>
         </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Endereço</mat-label>
-          <input matInput placeholder="Endereço" formControlName="endereco">
-        </mat-form-field>
+<!--        <mat-form-field appearance="outline">-->
+<!--          <mat-label>Endereço</mat-label>-->
+<!--          <input matInput placeholder="Endereço" formControlName="endereco">-->
+<!--        </mat-form-field>-->
       </div>
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Número</mat-label>
-          <input matInput placeholder="Ex: 158" formControlName="numero">
+          <input matInput placeholder="Ex: 158" formControlName="number">
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Complemento</mat-label>
-          <input matInput placeholder="Ex: Apt 18A" formControlName="complemento">
+          <input matInput placeholder="Ex: Apt 18A" formControlName="complement">
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Estado</mat-label>
-          <input matInput placeholder="Estado" formControlName="estado">
+          <input matInput placeholder="Estado" formControlName="state">
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Cidade</mat-label>
-          <input matInput placeholder="Cidade" formControlName="cidade">
+          <input matInput placeholder="Cidade" formControlName="city">
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Contato</mat-label>
-          <input matInput placeholder="Contato" type="tel" formControlName="contato" appPhoneFormat>
+          <input matInput placeholder="Contato" type="tel" formControlName="contact" appPhoneFormat>
           <mat-icon matSuffix>call</mat-icon>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Horário de Atendimento</mat-label>
-          <input matInput placeholder="Ex: 08:00 às 18:00" formControlName="horario">
+          <input matInput placeholder="Ex: 08:00 às 18:00" formControlName="time">
           <mat-icon matSuffix>access_time</mat-icon>
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Dias de Atendimento</mat-label>
-          <input matInput placeholder="Ex: Seg, Ter, Qua..." type="text" formControlName="diasAtendimento">
+          <input matInput placeholder="Ex: Seg, Ter, Qua..." type="text" formControlName="daysOpens">
           <mat-icon matSuffix>calendar_today</mat-icon>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Faturamento</mat-label>
-          <input matInput placeholder="Ex: R$ 100,00" type="text" formControlName="faturamento">
+          <input matInput placeholder="Ex: R$ 100,00" type="text" formControlName="billing">
           <mat-icon matSuffix>attach_money</mat-icon>
         </mat-form-field>
       </div>
@@ -76,4 +76,3 @@
     </form>
   </mat-card>
   </div>
-  

@@ -41,33 +41,26 @@ export class CadastroEstabelecimentoComponent implements OnInit{
 
 
     this.router.params.subscribe(params => {
-      console.log(params);
-      if(Object.keys(params).length == 0){
-        console.log("teste")
-        this.initializeForms();
-        return;
+      this.initializeForms();
+      if(!(Object.keys(params).length == 0)){
+        this.loadEstablishment(params['id']);
       }
-
-      this.loadEstablishment(params['id']);
-
     });
   }
 
   initializeForms(): void {
     this.estabelecimentoForm = this.formBuilder.group({
-      nomeFantasia: [''],
+      name: [''],
       cnpj: [''],
       cep: [''],
-      endereco: [''],
-      horarioAtendimento: [''],
-      numero: [''],
-      complemento: [''],
-      estado: [''],
-      cidade: [''],
-      contato: [''],
-      horario: [''],
-      diasAtendimento: [''],
-      faturamento: [''],
+      time: [''],
+      number: [''],
+      complement: [''],
+      state: [''],
+      city: [''],
+      contact: [''],
+      daysOpens: [''],
+      billing: [''],
     });
     this.controlForm = this.estabelecimentoForm.controls;
   }
@@ -79,26 +72,22 @@ export class CadastroEstabelecimentoComponent implements OnInit{
 
   loadEstablishment(establishmentId: number): void{
     console.log(establishmentId);
-    this.establishmentService.findEstablishmentById(establishmentId).subscribe((establishment) => {
-        this.establishment = establishment.object;
-
-        this.estabelecimentoForm = this.formBuilder.group({
-
-          nomeFantasia: this.establishment.nomeFantasia,
-          // cnpj realmente deve esta aqui?
-          //cnpj: this.establishment.,
-          cep: this.establishment.endereco?.cep,
-          // endereco: this.establishment.,
-          horarioAtendimento: this.establishment.nomeFantasia,
-          numero: this.establishment.endereco?.number,
-          complemento: this.establishment.endereco?.complement,
-          estado: this.establishment.endereco?.state,
-          cidade: this.establishment.endereco?.city,
-          contato: this.establishment.contato,
-          horario: this.establishment.horario,
-          diasAtendimento: this.establishment.horario,
-          faturamento: this.establishment.faturamento,
+    this.establishmentService.findEstablishmentById(establishmentId).subscribe((info) => {
+        this.establishment = info.object;
+        this.estabelecimentoForm.patchValue({
+          name: this.establishment.name || '',
+          cep: this.establishment.address?.cep || '',
+          cnpj: this.establishment.cnpj || '',
+          number: this.establishment.address?.number || '',
+          complement: this.establishment.address?.complement || '',
+          state: this.establishment.address?.state || '',
+          city: this.establishment.address?.city || '',
+          contact: this.establishment.contact || '',
+          time: this.establishment.time || '',
+          daysOpens: this.establishment.daysOpens || '',
+          billing: this.establishment.billing || '',
         })
+        this.controlForm = this.estabelecimentoForm.controls;
       },
       error => {
         this.toastr.error("Erro ao buscar estabelecimento");

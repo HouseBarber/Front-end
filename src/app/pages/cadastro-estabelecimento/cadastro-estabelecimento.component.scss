@@ -14,7 +14,7 @@
 mat-card {
   margin-top: 2cm;
   width: 50%;
-  
+
 }
 
 
@@ -23,7 +23,7 @@ mat-card {
     justify-content: space-between;
     margin-bottom: 2rem;
   }
-  
+
   form{
     width: 100%;
     display: flex;
@@ -31,23 +31,27 @@ mat-card {
     justify-content: center;
     flex-direction: column;
   }
-  
+
   .row{
     width: 100%;
     justify-content: space-between;
   }
-  
+
   mat-form-field{
     height: 100%;
-    width: 50%; 
+    width: 50%;
   }
-  
+
+  mat-form-field#cep{
+    height: 100%;
+    width: 100%;
+  }
+
   mat-icon {
     color: #344edf;
   }
-  
+
   .button-cadastrar{
     width: 30%;
     margin-bottom: 2rem;
   }
-  
