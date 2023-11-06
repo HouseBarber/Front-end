@@ -26,4 +26,12 @@ export class EstablishmentService {
   findEstablishmentById(establishmentId: number): Observable<InfoDTO<Estabelecimento>>{
     return this.http.get<InfoDTO<Estabelecimento>>(`${environment.api}/${this.path}/${establishmentId}`);
   }
+
+  createEstablishment(establishmentDto: Estabelecimento): Observable<InfoDTO<Estabelecimento>>{
+    return this.http.post<InfoDTO<Estabelecimento>>(`${environment.api}/${this.path}/creatEstablishment`,establishmentDto);
+  }
+
+  updateEstablishment(establishmentDto: Estabelecimento): Observable<InfoDTO<Estabelecimento>>{
+    return this.http.put<InfoDTO<Estabelecimento>>(`${environment.api}/${this.path}/updateEstablishment`,establishmentDto);
+  }
 }

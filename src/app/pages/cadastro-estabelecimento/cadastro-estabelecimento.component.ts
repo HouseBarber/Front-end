@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/authService';
 import { ActivatedRoute } from '@angular/router';
 import {EstablishmentService} from "../../services/establishmentService";
 import Estabelecimento from "../../models/estabelecimento";
+import Address from "../../models/address";
 
 
 @Component({
@@ -22,7 +23,6 @@ export class CadastroEstabelecimentoComponent implements OnInit{
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private router: ActivatedRoute,
-    private authService: AuthService,
     private establishmentService: EstablishmentService
   ){
 
@@ -66,13 +66,36 @@ export class CadastroEstabelecimentoComponent implements OnInit{
   }
 
 
-  onSubmit() {
+  onSubmit(): void {
+    if(!(Object.assign(this.establishment, this.estabelecimentoForm.value).id)){
+      this.createEstablishment();
+      return;
+    }
+    this.updateEstablishment();
+  }
 
+  createEstablishment(): void{
+      this.establishmentService.createEstablishment(Object.assign(this.establishment, this.estabelecimentoForm.value)).subscribe({
+        next: () => {
+          this.toastr.success("Estabelecimento criado com sucesso!");
+        },
+        error: () => {
+          this.toastr.error("Estabelecimento criado com sucesso!");
+        }
+      })
+  }
+
+  updateEstablishment(): void{
+    this.establishmentService.updateEstablishment(Object.assign(this.establishment, this.estabelecimentoForm.value)).subscribe(next => {
+        this.toastr.success("Estabelecimento atualizado com sucesso!");
+      },
+      error => {
+        this.toastr.error("Erro ao criar Estabelecimento");
+      });
   }
 
   loadEstablishment(establishmentId: number): void{
-    console.log(establishmentId);
-    this.establishmentService.findEstablishmentById(establishmentId).subscribe((info) => {
+    this.establishmentService.findEstablishmentById(establishmentId).subscribe(info => {
         this.establishment = info.object;
         this.estabelecimentoForm.patchValue({
           name: this.establishment.name || '',
