@@ -14,11 +14,50 @@
 mat-card {
   width: 50%;
 
+
 }
 
 .error-border {
   border-color: red;
 }
+
+  mat-card-content{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  form{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .row{
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  mat-form-field{
+    height: 100%;
+    width: 50%;
+  }
+
+  mat-form-field#cep{
+    height: 100%;
+    width: 100%;
+  }
+
+  mat-icon {
+    color: #344edf;
+  }
+
+  .button-cadastrar{
+    width: 30%;
+    margin-bottom: 2rem;
+  }
 
 mat-card-content {
   display: flex;

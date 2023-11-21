@@ -1,35 +1,37 @@
 import Address from "./address";
 
 export default class Estabelecimento{
-  endereco?: Address;
-  establishmentName?: string;
-  cnpj?: string;
-  email?: string;
+
+  id!: number;
+  address?: Address;
+  name?: string;
   contact?: string;
   billing?: string;
+  cnpj?: string;
   time?: string;
   daysOpens?: string;
   photos?: string;
+  formattedAddress?: string;
 
   constructor(
-    endereco?: Address,
-    cnpj?: string,
-    email?: string,
-    establishmentName?: string,
+    address?: Address,
+    name?: string,
     contact?: string,
     billing?: string,
+    cnpj?: string,
     time?: string,
     daysOpens?: string,
     photos?: string,
+    formattedAddress?: string
   ) {
-    this.endereco = endereco;
-    this.cnpj = cnpj;
-    this.email = email;
-    this.establishmentName = establishmentName;
+    this.address = address;
+    this.name = name;
     this.contact = contact;
-    this.billing = billing;
+    this.billing =  billing;
+    this.cnpj = cnpj;
     this.time = time;
     this.daysOpens = daysOpens;
     this.photos = photos;
+    this.formattedAddress = formattedAddress;
   }
 }

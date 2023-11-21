@@ -1,6 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
 import { NgxMaskModule } from 'ngx-mask'
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +23,8 @@ import { UpdateProfileComponent } from './components/update-profile/update-profi
 import { CadastroEstabelecimentoComponent } from './pages/cadastro-estabelecimento/cadastro-estabelecimento.component';
 import { UploadProfilePicComponent } from './components/upload-profile-pic/upload-profile-pic.component';
 import { CarrousselHomeComponent } from './components/carroussel-home/carroussel-home.component';
+import { EstablishmentListComponent } from './pages/establishment/establishment-list/establishment-list.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -39,6 +42,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProfileComponent,
     UpdateProfileComponent,
     CadastroEstabelecimentoComponent,
+    EstablishmentListComponent,
     UploadProfilePicComponent,
     CarrousselHomeComponent,
   ],
@@ -67,7 +71,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RouterOutlet,
     AppMaterialModule,
     NgxMaskModule.forRoot({
-      showMaskTyped : true,
+      showMaskTyped: true,
     }),
   ],
   providers: [],

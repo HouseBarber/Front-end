@@ -83,6 +83,7 @@ export class ProfileComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(UpdateProfileComponent, { restoreFocus: false });
     dialogRef.componentInstance.profileUpdated.subscribe((updatedUser: User) => {
+      console.log(updatedUser);
       this.user = updatedUser;
     });
   }

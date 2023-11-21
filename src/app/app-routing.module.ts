@@ -11,6 +11,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CadastroEstabelecimentoComponent } from './pages/cadastro-estabelecimento/cadastro-estabelecimento.component';
+import { EstablishmentListComponent } from './pages/establishment/establishment-list/establishment-list.component';
 
 const routes: Routes = [
   {
@@ -23,8 +24,16 @@ const routes: Routes = [
     component: ForgotPasswordComponent,
   },
   {
+    path: 'cadastroEstabelecimento/:id',
+    component: CadastroEstabelecimentoComponent,
+  },
+  {
     path: 'cadastroEstabelecimento',
     component: CadastroEstabelecimentoComponent,
+  },
+  {
+    path: 'establishmentList',
+    component: EstablishmentListComponent,
   },
   {
     path: 'home',

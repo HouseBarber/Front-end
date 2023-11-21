@@ -1,42 +1,36 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../../environments/environment';
-import User from '../models/User';
 import Estabelecimento from '../models/estabelecimento';
+import { Page } from "../models/Page";
+import { InfoDTO } from "../models/infoDTO";
 
 @Injectable({
   providedIn: 'root',
 })
 export class EstablishmentService {
-  private path = '/v1/establish';
-  private token_byCrypt = 'Local_TokenInfo';
+  private path = 'v1/establishment';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  login(user: User): Observable<any> {
-    return this.http.post(`${environment.api}${this.path}/login`, user);
+  getAllEstablishments(userId: number, page: number = 0, size: number = 10): Observable<InfoDTO<Page<Estabelecimento>>> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+    console.log(`${environment.api}/${this.path}/${userId}`);
+    return this.http.get<InfoDTO<Page<Estabelecimento>>>(`${environment.api}/${this.path}/user/${userId}`, { params });
   }
 
-  getUserTokenInfo() {
-    return localStorage.getItem(this.token_byCrypt);
+  findEstablishmentById(establishmentId: number): Observable<InfoDTO<Estabelecimento>> {
+    return this.http.get<InfoDTO<Estabelecimento>>(`${environment.api}/${this.path}/${establishmentId}`);
   }
 
-  setInfoUserLocalStorage(infoUser: string) {
-    localStorage.setItem(this.token_byCrypt, infoUser);
+  createEstablishment(establishmentDto: Estabelecimento): Observable<InfoDTO<Estabelecimento>> {
+    return this.http.post<InfoDTO<Estabelecimento>>(`${environment.api}/${this.path}/creatEstablishment`, establishmentDto);
   }
 
-  checkIsAuthenticated() {
-    return this.getUserTokenInfo() !== null;
-  }
-
-  logout() {
-    localStorage.removeItem(this.token_byCrypt);
-    window.location.href = '/login';
-  }
-
-  signUp(establishment: Estabelecimento): Observable<any> {
-    console.log(`${environment.api}${this.path}/creatEstablishment`);
-    return this.http.post(`${environment.api}${this.path}/creatEstablishment`, establishment);
+  updateEstablishment(establishmentDto: Estabelecimento): Observable<InfoDTO<Estabelecimento>> {
+    return this.http.put<InfoDTO<Estabelecimento>>(`${environment.api}/${this.path}/updateEstablishment`, establishmentDto);
   }
 }
