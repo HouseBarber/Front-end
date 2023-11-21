@@ -2,28 +2,34 @@ import Address from "./address";
 
 export default class Estabelecimento{
   endereco?: Address;
-  nomeFantasia?: string;
-  contato?: string;
-  faturamento?: string;
-  horario?: string;
-  diasAtendimento?: string;
-  foto?: string;
+  establishmentName?: string;
+  cnpj?: string;
+  email?: string;
+  contact?: string;
+  billing?: string;
+  time?: string;
+  daysOpens?: string;
+  photos?: string;
 
   constructor(
     endereco?: Address,
-    nomeFantasia?: string,
-    contato?: string,
-    faturamento?: string,
-    horario?: string,
-    diasAtendimento?: string,
-    foto?: string,
+    cnpj?: string,
+    email?: string,
+    establishmentName?: string,
+    contact?: string,
+    billing?: string,
+    time?: string,
+    daysOpens?: string,
+    photos?: string,
   ) {
     this.endereco = endereco;
-    this.nomeFantasia = nomeFantasia;
-    this.contato = contato;
-    this.faturamento =  faturamento;
-    this.horario = horario;
-    this.diasAtendimento = diasAtendimento;
-    this.foto = foto;
+    this.cnpj = cnpj;
+    this.email = email;
+    this.establishmentName = establishmentName;
+    this.contact = contact;
+    this.billing = billing;
+    this.time = time;
+    this.daysOpens = daysOpens;
+    this.photos = photos;
   }
 }

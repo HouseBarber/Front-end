@@ -1,7 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { NgxMaskModule } from 'ngx-mask'
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterOutlet } from '@angular/router';
@@ -66,6 +66,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     RouterOutlet,
     AppMaterialModule,
+    NgxMaskModule.forRoot({
+      showMaskTyped : true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
