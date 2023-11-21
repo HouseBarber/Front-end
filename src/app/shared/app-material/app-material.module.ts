@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -19,6 +18,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatExpansionModule } from "@angular/material/expansion";
+import { MatPaginatorModule } from "@angular/material/paginator";
 
 @NgModule({
   exports: [
@@ -41,6 +41,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
     MatChipsModule,
     MatRadioModule,
     MatStepperModule,
+    MatPaginatorModule
   ]
 })
 

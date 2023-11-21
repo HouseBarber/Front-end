@@ -87,6 +87,7 @@ export default class RouterEvents {
       eventUrl === '/register' ||
       eventUrl === '/register/establishment' ||
       eventUrl === '/forgotPassword' ||
+      eventUrl == '/cadastroEstabelecimento' ||
       this.validateUrlChangePassword(eventUrl)
     );
   }
